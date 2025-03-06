@@ -1,6 +1,6 @@
 .main{
     position: absolute;
-    width: 80%;
+    width: 90vw;
     height: 100%;
     right:0;
 
@@ -12,26 +12,153 @@
 
     background-color: aqua;
 }
-
+/* =========================================================== */
 .topbox{
     position: relative;
+    display: flex;
+    width: 80%;
+    height: 60%;
 
-    width: 60%;
-    height: 50%;
-
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     
     background-color: red;
 }
 
+/* ============================2 */
+.top_leftbox{
+    position: relative;
 
+    width: 40%;
+    height: 100%;
+    background-color: pink;
+
+    justify-items: center;
+}
+
+.backbutton{
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    background-color: blueviolet;
+}
+
+.imgbox{
+    position: relative;
+    width : 40%;
+    height: 45%;
+    
+    top: 20%;
+
+    background-color: beige;
+}
+
+.buttonbox{
+    position: absolute;
+    width : 100%;
+    height : 20%;
+
+    bottom: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+
+    background-color: white;
+}
+
+.modify_button{
+    width: 20%;
+    height: 40%;
+
+    background-color: black;
+}
+
+.delete_button{
+    width: 20%;
+    height: 40%;
+    
+    background-color: purple;
+}
+/* ============================2 */
+
+.top_rightbox{
+
+
+    width: 60%;
+    height: 100%;
+    background-color: blue;
+
+    justify-items: center;
+}
+
+.inputboxes{
+    position: relative;
+    width: 100%;
+    height: 60%;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2열 정렬 */
+    gap: 20px; /* 요소 간 간격 */
+
+    justify-items: center;
+    align-content: center;
+
+}
+
+.name_box{
+    /* position: relative; */
+    width: 100%;
+
+    justify-items: center;
+
+}
+
+.inputboxname{
+    position: relative;
+
+    width: 200px;
+    height: 50px;
+
+    /* align-self: flex-start; */
+
+}
+
+.inputbox1{
+    position: relative;
+    width: 200px;
+    height: 50px;
+
+    /* background-color: black; */
+}
+
+.contentbox{
+    position: relative; 
+
+    width: 80%;
+    height: 30%;
+
+    background-color: blueviolet;
+}
+
+.inputbox1::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    width: 100%;
+    height: 2px;
+    background-color: orangered;
+}
 
 /* =========================================================== */
 
 .bottombox{
     position: relative;
     
-    width: 60%;
+    width: 80%;
     height: 30%;
 
     background-color: yellow;
