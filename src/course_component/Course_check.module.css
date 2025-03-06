@@ -1,0 +1,38 @@
+.main{
+    position: absolute;
+    width: 80%;
+    height: 100%;
+    right:0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    justify-content: flex-end; /* 아래 정렬 */
+
+    background-color: aqua;
+}
+
+.topbox{
+    position: relative;
+
+    width: 60%;
+    height: 50%;
+
+    margin-bottom: 100px;
+    
+    background-color: red;
+}
+
+
+
+/* =========================================================== */
+
+.bottombox{
+    position: relative;
+    
+    width: 60%;
+    height: 30%;
+
+    background-color: yellow;
+}

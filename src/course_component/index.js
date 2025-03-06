@@ -1,0 +1,1 @@
+export {default as Course_check} from './Course_check.js';
