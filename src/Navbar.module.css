@@ -1,0 +1,6 @@
+.nav {
+  display: inline-flex;
+  width: 15vw;
+  height: 100vh;
+  background-color: #ddd;
+}
