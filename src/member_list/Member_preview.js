@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './Member_list.module.css';
+import styles from './Member_preview.module.css';
 
 const Member_list = () => {
   // 회원 정보 상태 관리
