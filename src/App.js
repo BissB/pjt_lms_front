@@ -1,6 +1,6 @@
 import './App.css';
 import  Course_manage  from './course_component_2/Course_manage';
-import { Member } from './member_component/index';
+import { Member } from './member_list/';
 import Navbar from './Navbar';
 
 function App() {
