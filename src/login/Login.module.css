@@ -2,21 +2,76 @@
     width: 85vw;
     height: 100vh;
 
-    background-color: blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgb(133, 133, 245);
 }
 
-.login_text{
+.main{
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
 }
 
-.login_id{
+.logo{
+    width : clamp(200px, 20vw, 300px);
+    height : 100px;
+
+    background-color: rgb(240, 153, 153);
+
+    margin-bottom: 5%;
+
+    border-radius: 3px;
+}
+
+.id{
+    width: 200px;
+    height: 10%;
+
+    background-color: #ddd;
+
+
+    margin-bottom: 3%;
+
+    border-radius: 3px;
 
 }
 
-.login_pw{
+.pw{
+    width: 200px;
+    height: 10%;
+
+    background-color: #ddd;
+
+    margin-bottom: 5%;
+
+    border-radius: 3px;
 
 }
 
-.login_button{
-    
+.errortext{
+    min-height: 24px;
+
+    color: red;
+
+    margin-bottom: 2%;
+}
+
+.loginbutton{
+    width: 100px;
+    height: 30px;
+
+    background-color: rgb(171, 253, 171);
+
+    /* border: 1px solid ; */
+    cursor: pointer;
+
+    border-radius: 3px;
 }
