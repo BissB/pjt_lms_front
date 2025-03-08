@@ -1,10 +1,17 @@
-import exp from "constants";
-import { useContext, createContext, useState } from "react";
+// 등록 된 과정 데이터 가져오는 함수 찾는 중
 
-const Coursecontext = courseCreate();
+// import { useContext, createContext, useState } from "react";    // 
 
-export const useContext = () => {
+// const Coursecontext = createContext();
+
+// export const useContext = () => {
    
-    return useContext(courseContext);
+//     return useContext(courseContext);
 
-};
+// };
+
+
+// const CourseDataShare = ( {children} ) => {
+//     return <div></div>
+// }
+

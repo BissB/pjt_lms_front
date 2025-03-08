@@ -1,7 +1,7 @@
 import './App.css';
 
 import Login from './login/Login';
-import  Course_manage  from './course_component_2/Course_manage';
+import  Course_manage  from './course_overview';
 import { Course_check } from './course_details';
 import { Member } from './member_list/';
 import Navbar from './Navbar';

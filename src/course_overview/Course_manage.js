@@ -36,6 +36,7 @@ const Course_manage = () => {
                 <Course_manage_contentsbox3/>
                 <Course_manage_contentsbox4/>
             </div>
+            
             <div className={styles.contentsboxlist2}>
                 <Course_manage_contentsbox5/>
                 <Course_manage_contentsbox6/>
