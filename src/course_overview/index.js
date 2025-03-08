@@ -1,0 +1,1 @@
+export {default as Course_manage} from './Course_manage.js';
