@@ -1,0 +1,17 @@
+.contentbox{
+    width: 80%;
+    height: 30%;
+
+    border-radius: 5px;
+
+    background-color: rgb(252, 174, 174);
+}
+
+.input_contentbox{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;  
+    outline: none; 
+    color: white;  /* 입력된 텍스트 색상 */
+}
