@@ -1,18 +1,20 @@
 import styles from './Course_manage.module.css';
+import sample1 from './img/sample1.avif'
 
-const Course_manage_contentsbox2 = () => {
+const Course_manage_contentsbox8 = () => {
 
     return (
         <div className={styles.contentsbox}>
 
-                <div className={styles.contents_head2}>구분</div>
+                <div className={styles.contents_head1}>구분</div>
 
                 <div className={styles.img_box}>
-                    <p>과정 이미지</p>
+                <div className={styles.course_name}>과정명</div>
+                    <img src={sample1}></img>
                     <div className={styles.state}>예정</div>
                 </div>
 
-                <div className={styles.course_name}>과정명</div>
+                
 
                 <div className={styles.date}>2025.1.1 ~ 2025.1.31</div>
 
@@ -26,4 +28,4 @@ const Course_manage_contentsbox2 = () => {
     )
 }
 
-export default Course_manage_contentsbox2;
+export default Course_manage_contentsbox8;

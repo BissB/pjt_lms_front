@@ -1,16 +1,15 @@
 import styles from './Course_manage.module.css';
-import Course_manage_contentsbox1 from './Course_manege_contentsbox1';
-import Course_manage_contentsbox2 from './Course_manege_contentsbox2';
-import Course_manage_contentsbox3 from './Course_manege_contentsbox3';
-import Course_manage_contentsbox4 from './Course_manege_contentsbox4';
-import Course_manage_contentsbox5 from './Course_manege_contentsbox5';
-import Course_manage_contentsbox6 from './Course_manege_contentsbox6';
-import Course_manage_contentsbox7 from './Course_manege_contentsbox7';
-import Course_manage_contentsbox8 from './Course_manege_contentsbox8';
+import Course_manage_contentsbox1 from './Course_manage_contentsbox1';
+import Course_manage_contentsbox2 from './Course_manage_contentsbox2';
+import Course_manage_contentsbox3 from './Course_manage_contentsbox3';
+import Course_manage_contentsbox4 from './Course_manage_contentsbox4';
+import Course_manage_contentsbox5 from './Course_manage_contentsbox5';
+import Course_manage_contentsbox6 from './Course_manage_contentsbox6';
+import Course_manage_contentsbox7 from './Course_manage_contentsbox7';
+import Course_manage_contentsbox8 from './Course_manage_contentsbox8';
 
 
 const Course_manage = () => {
-
 
     console.log("Course_manage() invoked.");
 
@@ -21,10 +20,19 @@ const Course_manage = () => {
 
             <div className={styles.search}>
 
-                <section className={styles.drop1}>구분</section>
-                <section className={styles.drop2}>항목</section>
+                <select className={styles.drop1}>
+                    <option value="">구분</option>
+                    <option value="fullstack">풀스택</option>
+                    <option value="frontend">프론트엔드</option>
+                    <option value="backend">백엔드</option>
+                </select>
+                <select className={styles.drop2}>
+                    <option value="">항목</option>
+                    <option value="courseName">과정명</option>
+                    <option value="instructorName">강사명</option>
+                </select>
 
-                <div className={styles.search_bar}></div>
+                <input className={styles.search_bar}></input>
 
             </div>
 
@@ -36,14 +44,14 @@ const Course_manage = () => {
                 <Course_manage_contentsbox3/>
                 <Course_manage_contentsbox4/>
             </div>
-            
+
             <div className={styles.contentsboxlist2}>
                 <Course_manage_contentsbox5/>
                 <Course_manage_contentsbox6/>
                 <Course_manage_contentsbox7/>
                 <Course_manage_contentsbox8/>
             </div>
-
+            
         </div>
     )
 
