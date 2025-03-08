@@ -83,7 +83,7 @@ const Member_list = () => {
               <td>{member.phone}</td>
               <td>{member.course}</td>
               <td>{member.date}</td>
-              <td>...</td> {/* 수정/삭제 버튼 자리 */}
+              <button>...</button> {/* 수정/삭제 버튼 자리 */}
             </tr>
           ))}
         </tbody>
