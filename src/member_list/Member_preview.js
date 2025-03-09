@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Member_preview.module.css';
+import { Registration } from './';
 import img1 from './img/1.png';
 import img2 from './img/2.png';
 import img3 from './img/3.png';
@@ -71,6 +72,32 @@ const Member_list = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchOption, setSearchOption] = useState('');
   const [filteredMembers, setFilteredMembers] = useState(members);
+  const [showRegistration, setShowRegistration] = useState(false);
+
+  const handleRegistrationClick = () => {
+    setShowRegistration(true);
+  };
+
+  const handleCloseRegistration = () => {
+      setShowRegistration(false);
+  };
+
+  // useEffect(() => {   *** db에서 데이터 받아오기 ***
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch('https://your-backend-api.com/members');
+  //       if (!response.ok) {
+  //         throw new Error('Network response was not ok');
+  //       }
+  //       const data = await response.json();
+  //       setMembers(data);
+  //       setFilteredMembers(data);
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error.message);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
 
   // 검색 버튼 클릭 이벤트 핸들러
   const handleSearch = () => {
@@ -113,7 +140,10 @@ const Member_list = () => {
       <div className={styles.title}>훈련생 리스트</div>
 
       <div className={styles.btns}>
-        <button className={styles.register}>회원 등록 버튼</button> {/* 회원 등록 버튼 */}
+        <button className={styles.registerBtn} onClick={handleRegistrationClick}>회원 등록 버튼</button> {/* 회원 등록 버튼 */}
+        {showRegistration && (
+            <Registration onClose={handleCloseRegistration} />
+        )}
 
         {/* 검색항목 */}
         <div className={styles.searchContainer}>
@@ -159,7 +189,6 @@ const Member_list = () => {
             // <tr key={index} style= {{ backgroundColor: getCourseColor(member.course) }} >
             <tr key={index}>
               <td className={styles.photo} style={{ borderLeft: `10px solid ${getCourseColor(member.course)}` }}>
-                {/* <img src={member.photo} alt='' /> 실제 사용할 코드 */}
                 <img src={member.photo} alt='' />
               </td>
               <td>{member.id}</td>
