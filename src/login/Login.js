@@ -19,7 +19,7 @@ const Login = () => {
 
     // 입력값 상태 업데이트
     const handleInputChange = (e) => {
-        const { name, value } = e.target;     
+        const { name, value } = e.target;
         setLoginData((prevData) => ({
             ...prevData,
             [name]: value
@@ -59,30 +59,35 @@ const Login = () => {
 
 
     return (
-        <div className={styles.login}>   
+        <div className={styles.login}>
+                <div className={styles.logo}></div>
             <div className={styles.main}>
-                <div className={styles.logo}>로고</div>
-                
-                <input
-                    className={styles.id}
-                    placeholder="id"    
-                    name="id"                           // 서버로 전송되는 이름
-                    value={loginData.id}
-                    onChange={handleInputChange}
-                />
-                <input
-                    className={styles.pw}
-                    placeholder="password"
-                    name="password"                     // 서버로 전송되는 이름
-                    type="password"
-                    value={loginData.password}
-                    onChange={handleInputChange}
-                />
-                <div className={styles.errortext}>{errorMessage}</div> 
-                
-                <button className={styles.loginbutton} onClick={handleLogin}>
-                    Login
-                </button>
+
+                <form>
+                    <input
+                        className={styles.id}
+                        placeholder="id"
+                        name="id"                           // 서버로 전송되는 이름
+                        value={loginData.id}
+                        onChange={handleInputChange}
+                    />
+                    <i className={`fas fa-user ${styles.user_icon}`} />
+                    <input
+                        className={styles.pw}
+                        placeholder="password"
+                        name="password"                     // 서버로 전송되는 이름
+                        type="password"
+                        value={loginData.password}
+                        onChange={handleInputChange}
+                    />
+                    <i className={`fas fa-lock ${styles.pass_icon}`} />
+
+                    <div className={styles.errortext}>{errorMessage}</div>
+                </form>
+
+                    <button className={styles.loginbutton} onClick={handleLogin}>
+                        로그인
+                    </button>
             </div>
         </div>
     )
