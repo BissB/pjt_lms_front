@@ -32,7 +32,7 @@ const Login = () => {
 
         // 백엔드로 데이터 전송
         try {
-            const response = await fetch('/api/login', {
+            const response = await fetch('/project/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

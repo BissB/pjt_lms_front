@@ -1,0 +1,60 @@
+.main{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 30vw;
+    height: 30vh;
+
+    z-index: 100;
+
+    background-color: rgb(116, 116, 116);
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.deletetext{
+    width: 100%;
+    height: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonbox{
+    position: relative;
+
+    width: 100%;
+    height: 30%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+}
+
+
+.yesnobutton{
+    width: 100px;
+    height: 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border:none;
+    cursor: pointer;
+
+    border-radius: 4px;
+    background-color: white;
+}

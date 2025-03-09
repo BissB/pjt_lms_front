@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import styles from './Course_check.module.css';  
 import Course_info from './Course_info';
 import Course_content from './Course_content';
+import Course_delete from './Course_delete';
+import Course_modify from './Course_modify';
 
 const Course_check = () => {
     console.log("Course_check() invoked.");
@@ -52,48 +54,85 @@ const Course_check = () => {
         }));
     };
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////삭제, 수정 팝업////////////////////////////////////////////////////////////////////////////////////////////////
+    const [showModifyPopup, setShowModifyPopup] = useState(false);
+      
+    const handleModifyShowPopup = () => {
+        if(showDeletePopup) setShowDeletePopup(false);
+        setShowModifyPopup(true);  // 팝업 보이기
+    };
+    
+    const handleModifyClosePopup = () => {
+        setShowModifyPopup(false);  // 팝업 닫기
+    };
 
+    const handleModify = () => {
+        alert("수정되었습니다!");  // 저장 처리 예시
+        setShowModifyPopup(false);  // 팝업 닫기
+    };
+
+    const [showDeletePopup, setShowDeletePopup] = useState(false);
+
+    const handleDeleteShowPopup = () => {
+        if(showModifyPopup) setShowModifyPopup(false);
+        setShowDeletePopup(true);  // 팝업 보이기
+    };
+
+    const handleDeleteClosePopup = () => {
+        setShowDeletePopup(false);  // 팝업 닫기
+    };
+
+    const handleDelete = () => {
+        alert("삭제되었습니다!");  // 저장 처리 예시
+        setShowDeletePopup(false);  // 팝업 닫기
+    };
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
    
     return(
-        <>
+
         <div className={styles.main}>
-                <div className={styles.topbox}>
+        
+            {showDeletePopup && <Course_delete onClose={handleDeleteClosePopup} onDelete={handleDelete} />}
+            {showModifyPopup && <Course_modify onClose={handleModifyClosePopup} onModify={handleModify} />}
 
-                    <div className={styles.top_leftbox}>
+            <div className={styles.topbox}>
 
-                        <button className={styles.backbutton}><i class="fa-solid fa-chevron-left fa-2x"></i></button>
-                        <div className={styles.imgbox}></div>
-                        <div className={styles.buttonbox}>
-                            <button className={styles.regist_button}>등록</button>
-                            <button className={styles.modify_button}>수정</button>
-                        </div>
+                <div className={styles.top_leftbox}>
 
+                    <button className={styles.backbutton}><i class="fa-solid fa-chevron-left fa-2x"></i></button>
+                    <div className={styles.imgbox}></div>
+                    <div className={styles.buttonbox}>
+                        <button className={styles.modify_button} onClick={handleModifyShowPopup}>수정</button>
+                        <button className={styles.delete_button} onClick={handleDeleteShowPopup}>삭제</button> 
                     </div>
-
-                    <div className={styles.top_rightbox}>
-                        <div className={styles.inputboxes}>
-                            <Course_info label="구분" value={formData.category} onChange={(e) => handleChange("category", e.target.value)} />
-                            <Course_info label="수강시작" value={formData.startDate} onChange={(e) => handleChange("startDate", e.target.value)} />
-                            <Course_info label="과정명" value={formData.courseName} onChange={(e) => handleChange("courseName", e.target.value)} />
-                            <Course_info label="수강종료" value={formData.endDate} onChange={(e) => handleChange("endDate", e.target.value)} />
-                            <Course_info label="강사명" value={formData.instructor} onChange={(e) => handleChange("instructor", e.target.value)} />
-                            <Course_info label="수강정원" value={formData.capacity} onChange={(e) => handleChange("capacity", e.target.value)} />                    
-                        </div>
-                        <Course_content value={formData.content} onChange={(e) => handleChange("content", e.target.value)} />
-                    </div>
-                  
 
                 </div>
 
-                <div className={styles.bottombox}>
-                   
+                <div className={styles.top_rightbox}>
+                    <div className={styles.inputboxes}>
+                        <Course_info label="구분" value={formData.category} onChange={(e) => handleChange("category", e.target.value)} />
+                        <Course_info label="수강시작" value={formData.startDate} onChange={(e) => handleChange("startDate", e.target.value)} />
+                        <Course_info label="과정명" value={formData.courseName} onChange={(e) => handleChange("courseName", e.target.value)} />
+                        <Course_info label="수강종료" value={formData.endDate} onChange={(e) => handleChange("endDate", e.target.value)} />
+                        <Course_info label="강사명" value={formData.instructor} onChange={(e) => handleChange("instructor", e.target.value)} />
+                        <Course_info label="수강정원" value={formData.capacity} onChange={(e) => handleChange("capacity", e.target.value)} />                    
+                    </div>
+                    <Course_content value={formData.content} onChange={(e) => handleChange("content", e.target.value)} />
                 </div>
+                
+
+            </div>
+
+            <div className={styles.bottombox}>
+                
+            </div>
+
         </div>
-        </>
     )
 
 }
+
 
 export default Course_check;
