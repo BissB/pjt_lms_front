@@ -1,11 +1,9 @@
 .main {
     position: relative;
 
-    width: 90%;
+    width: 85vw;
     min-height: 100vh;
 
-    left: 10vw;
-    
     background-color: lightgray;
 
     overflow: hidden; 

@@ -7,6 +7,7 @@ import img3 from './img/3.png';
 import img4 from './img/4.png';
 import img5 from './img/5.png';
 import img6 from './img/6.png';
+import img7 from './img/7.png';
 
 
 const Member_list = () => {
@@ -66,6 +67,15 @@ const Member_list = () => {
       date: '2025.01.18',
       photo: img6,
     },
+    {
+      id: 'A766213',
+      name: '소용소',
+      username: 'htesgrrg',
+      phone: '010-1234-5678',
+      course: '미정',
+      date: '2025.01.18',
+      photo: img7,
+    },
   ]);
 
   // 검색 상태 관리
@@ -123,8 +133,10 @@ const Member_list = () => {
         return "#72F2F6";
       case "eclipse":
         return "#FF7BED";
+      case "풀스택":
+        return "#96FF88";
       default:
-        return "#96FF88"; // 기본 색상
+        return "#ddd"; // 기본 색상
     }
   };
 
@@ -154,7 +166,7 @@ const Member_list = () => {
           >
             <option value="">검색 항목</option>
             <option value="name">이름</option>
-            <option value="username">아이디</option>
+            <option value="username">아이디</option> {/* 전화번호 추가할것 (***) */}
           </select>
           <input
             type="text"
