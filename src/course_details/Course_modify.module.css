@@ -11,7 +11,9 @@
     display: flex;
     flex-direction: row;
 
-    background-color: rgb(119, 119, 119);
+    background-color: rgb(42, 84, 90);
+
+    border-radius: 4px;
 }
 
 /* =========================================================== */
@@ -30,7 +32,7 @@
 
     align-content: center;
 
-    background-color: orange;
+    /* background-color: orange; */
 
     margin: 10px 0 50px 0;
 }
@@ -43,20 +45,35 @@
 
     background-color: yellow;
 
+    border-radius: 4px;
+
     margin-bottom: 40px;
 }
 
-.inputbox{
+.inputcontainer{
     width: 450px;
     height: 65px;
 
     align-content: center;
 
     background-color: green;
+
+    border-radius: 4px;
     
     margin-bottom: 20px;
 }
 
+.inputbox{
+    width: 450px;
+    height: 40px;
+
+    border: none;
+    background: transparent; 
+    outline: none; 
+
+    /* border-bottom: 1px solid black; */
+
+}
 /* =========================================================== */
 
 .rightbox{
@@ -77,12 +94,19 @@
 
     background-color: blue;
 
+    border-radius: 4px;
+
     margin-bottom: 30px;
 }
 
 .contentbox{
     width: 500px;
     height: 350px;
+
+    border-radius: 4px;
+
+    border:none;
+    outline: none;
 
     background-color: purple;
 }

@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
+
 
 import styles from './Course_check.module.css';  
 import Course_info from './Course_info';
 import Course_content from './Course_content';
 import Course_delete from './Course_delete';
 import Course_modify from './Course_modify';
+import Course_memberlist  from './Course_memberlist';
 
 const Course_check = () => {
     console.log("Course_check() invoked.");
 
+    const navigate = useNavigate();
     // 과정 조회 데이터 ///////////////////////////////////////////////////////////////////////////////////////
 
     const [formData, setFormData] = useState({
@@ -126,9 +130,9 @@ const Course_check = () => {
 
                 <div className={styles.top_leftbox}>
 
-                    <button className={styles.backbutton}><i class="fa-solid fa-chevron-left fa-2x"></i></button>
+                    <button className={styles.backbutton} onClick={()=> navigate("/course_overview")}><i class="fa-solid fa-chevron-left fa-2x"></i></button> {/* 뒤로가기 버튼 */}
                     <div className={styles.imgbox}></div>
-                    <div className={styles.buttonbox}>
+                    <div className={styles.buttonbox}>      
                         <button className={styles.modify_button} onClick={handleModifyShowPopup}>수정</button>
                         <button className={styles.delete_button} onClick={handleDeleteShowPopup}>삭제</button> 
                     </div>
@@ -151,7 +155,7 @@ const Course_check = () => {
             </div>
 
             <div className={styles.bottombox}>
-                
+                <Course_memberlist/>
             </div>
 
         </div>

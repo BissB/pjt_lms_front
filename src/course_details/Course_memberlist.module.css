@@ -1,0 +1,44 @@
+.scroolContainer{
+    height: 300px;
+    overflow-y: auto;
+    border: 1px solid black;
+    padding: 10px;
+    scrollbar-width: none; /*  스크롤바 숨기기 */
+}
+
+.item{
+    height: 50px;
+    background: #ddd;
+    margin: 5px 0;
+
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+
+    /* line-height: 50px; */
+}
+
+.empty{
+    height: 20px;
+    background: transparent;
+}
+
+.itembtn{
+    position: relative;
+    width: 30px;
+    height: 40px;
+    background: #ddd;
+
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.itemicon{
+    position: relative;
+    
+    font-size: 20px;
+    /* right: 600px; */
+}

@@ -148,4 +148,6 @@
     border-radius: 5px 5px 0 0;
     
     box-shadow: 4px 4px 10px rgb(131, 0, 0);;
+
+    /* overflow: hidden; 전체 페이지에서 스크롤 안 생기도록 */
 }
