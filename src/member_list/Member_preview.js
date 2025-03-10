@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './Member_preview.module.css';
 import { Registration } from './';
 import img1 from './img/1.png';
@@ -76,20 +76,134 @@ const Member_list = () => {
       date: '2025.01.18',
       photo: img7,
     },
+    {
+      id: 'A6873513',
+      name: '김헤헿1',
+      username: 'wpgkfhfef',
+      phone: '010-1234-5678',
+      course: '그래픽',
+      date: '2025.03.06',
+      photo: '',
+    },
+    {
+      id: 'A572145',
+      name: '김헤헿2',
+      username: 'wpgkfhfef',
+      phone: '010-1234-5678',
+      course: '그래픽',
+      date: '2025.03.06',
+      photo: '',
+    },
+    {
+      id: 'A6721346',
+      name: '김헤헿3',
+      username: 'wpgkfhfef',
+      phone: '010-1234-5678',
+      course: '그래픽',
+      date: '2025.03.06',
+      photo: '',
+    },
+    {
+      id: 'A11223344',
+      name: '김헤헿4',
+      username: 'wpgkfhfef',
+      phone: '010-1234-5678',
+      course: '그래픽',
+      date: '2025.03.06',
+      photo: '',
+    },
+    {
+      id: 'A563244',
+      name: '김헤헿5',
+      username: 'wpgkfhfef',
+      phone: '010-1234-5678',
+      course: '그래픽',
+      date: '2025.03.06',
+      photo: '',
+    },
+    {
+      id: 'A832556',
+      name: '김헤헿6',
+      username: 'wpgkfhfef',
+      phone: '010-1234-5678',
+      course: '그래픽',
+      date: '2025.03.06',
+      photo: '',
+    },
+    {
+      id: 'A234456',
+      name: '김헤헿7',
+      username: 'wpgkfhfef',
+      phone: '010-1234-5678',
+      course: '그래픽',
+      date: '2025.03.06',
+      photo: '',
+    },
+    {
+      id: 'A7823456',
+      name: '김헤헿8',
+      username: 'wpgkfhfef',
+      phone: '010-1234-5678',
+      course: '그래픽',
+      date: '2025.03.06',
+      photo: '',
+    },
+    {
+      id: 'A723456',
+      name: '김헤헿9',
+      username: 'wpgkfhfef',
+      phone: '010-1234-5678',
+      course: '그래픽',
+      date: '2025.03.06',
+      photo: '',
+    },
+    {
+      id: 'A986556',
+      name: '김헤헿10',
+      username: 'wpgkfhfef',
+      phone: '010-1234-5678',
+      course: '그래픽',
+      date: '2025.03.06',
+      photo: '',
+    },
+    {
+      id: 'A08723123456',
+      name: '김헤헿11',
+      username: 'wpgkfhfef',
+      phone: '010-1234-5678',
+      course: '그래픽',
+      date: '2025.03.06',
+      photo: '',
+    },
+    {
+      id: 'A063126',
+      name: '김헤헿12',
+      username: 'wpgkfhfef',
+      phone: '010-1234-5678',
+      course: '그래픽',
+      date: '2025.03.06',
+      photo: '',
+    },
   ]);
 
   // 검색 상태 관리
-  const [searchTerm, setSearchTerm] = useState('');
-  const [searchOption, setSearchOption] = useState('');
-  const [filteredMembers, setFilteredMembers] = useState(members);
+  const [searchTerm, setSearchTerm] = useState(''); // 검색어
+  const [searchOption, setSearchOption] = useState(''); // 검색 옵션
+  const [filteredMembers, setFilteredMembers] = useState(members);  // 검색 결과
   const [showRegistration, setShowRegistration] = useState(false);
+
+  // **추가된 상태: 무한 스크롤을 위한 변수**
+  const [visibleMembers, setVisibleMembers] = useState(members.slice(0, 3)); // 처음에 보여줄 멤버 수
+  const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true); // 더 로드할 데이터가 있는지 여부
+  const observerRef = useRef(null); // IntersectionObserver에 사용할 ref
 
   const handleRegistrationClick = () => {
     setShowRegistration(true);
   };
 
   const handleCloseRegistration = () => {
-      setShowRegistration(false);
+    setShowRegistration(false);
   };
 
   // useEffect(() => {   *** db에서 데이터 받아오기 ***
@@ -111,12 +225,26 @@ const Member_list = () => {
 
   // 검색 버튼 클릭 이벤트 핸들러
   const handleSearch = () => {
-    if (searchOption === 'name') {
-      setFilteredMembers(members.filter((member) => member.name.includes(searchTerm)));
-    } else if (searchOption === 'username') {
-      setFilteredMembers(members.filter((member) => member.username.includes(searchTerm)));
+    if (searchOption === 'name') {  // 이름 검색 추가
+      const searchedMembers = members.filter((member) => member.name.includes(searchTerm));
+      setFilteredMembers(searchedMembers);
+      setVisibleMembers(searchedMembers);
+      setHasMore(true); // 검색 후 다시 로딩 가능하도록 설정
+    } else if (searchOption === 'username') { // 아이디 검색 추가
+      const searchedMembers = members.filter((member) => member.username.includes(searchTerm));
+      setFilteredMembers(searchedMembers);
+      setVisibleMembers(searchedMembers);
+      setHasMore(true);
+    } else if (searchOption === 'phone') {  // 전화번호 검색 추가
+      const searchedMembers = members.filter((member) => member.phone.includes(searchTerm));
+      setFilteredMembers(searchedMembers);
+      setVisibleMembers(searchedMembers);
+      setHasMore(true);
     } else {
-      setFilteredMembers(members.filter((member) => member.name.includes(searchTerm) || member.username.includes(searchTerm)));
+      const searchedMembers = members.filter((member) => member.name.includes(searchTerm) || member.username.includes(searchTerm));
+      setFilteredMembers(searchedMembers);
+      setVisibleMembers(searchedMembers);
+      setHasMore(true);
     }
   };
 
@@ -147,6 +275,42 @@ const Member_list = () => {
     }
   };
 
+  // 무한 스크롤을 위한 데이터 로드 함수
+  const loadMoreMembers = () => {
+    setLoading(true);
+    setTimeout(() => {
+      const nextIndex = visibleMembers.length;
+      const moreMembers = filteredMembers.slice(nextIndex, nextIndex + 5); // filteredMembers에서 다음 데이터를 가져옴
+
+      if (moreMembers.length > 0) {
+        setVisibleMembers((prev) => [...prev, ...moreMembers]);
+      } else {
+        setHasMore(false); // 더 로드할 데이터가 없으면 hasMore를 false로 설정
+      }
+
+      setLoading(false);
+    }, 1000);
+  };
+
+  // 무한스크롤을 위한 설정
+  useEffect(() => {
+    if (loading || !hasMore) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          loadMoreMembers();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (observerRef.current) observer.observe(observerRef.current);
+
+    return () => observer.disconnect();
+  }, [loading, hasMore, filteredMembers]);
+
+
   return (
     <div className={styles.main}>
       <div className={styles.title}>훈련생 리스트</div>
@@ -154,7 +318,7 @@ const Member_list = () => {
       <div className={styles.btns}>
         <button className={styles.registerBtn} onClick={handleRegistrationClick}>회원 등록 버튼</button> {/* 회원 등록 버튼 */}
         {showRegistration && (
-            <Registration onClose={handleCloseRegistration} />
+          <Registration onClose={handleCloseRegistration} />
         )}
 
         {/* 검색항목 */}
@@ -166,7 +330,8 @@ const Member_list = () => {
           >
             <option value="">검색 항목</option>
             <option value="name">이름</option>
-            <option value="username">아이디</option> {/* 전화번호 추가할것 (***) */}
+            <option value="username">아이디</option>
+            <option value="phone">전화번호</option>
           </select>
           <input
             type="text"
@@ -197,7 +362,7 @@ const Member_list = () => {
       {/* 테이블 본문 */}
       <table className={styles.tableBody}>
         <tbody>
-          {filteredMembers.map((member, index) => (
+          {visibleMembers.map((member, index) => (
             // <tr key={index} style= {{ backgroundColor: getCourseColor(member.course) }} >
             <tr key={index}>
               <td className={styles.photo} style={{ borderLeft: `10px solid ${getCourseColor(member.course)}` }}>
@@ -213,6 +378,13 @@ const Member_list = () => {
           ))}
         </tbody>
       </table>
+
+      {/* **추가된 요소: 감지용 빈 div** */}
+      <div ref={observerRef} style={{ height: "1px" }} />
+
+      {/* **추가된 요소: 로딩 표시** */}
+      {loading && <p>Loading...</p>}
+      {!hasMore && ''}
     </div>
   );
 };
