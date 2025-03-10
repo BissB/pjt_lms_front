@@ -32,7 +32,7 @@ const Login = () => {
 
         // 백엔드로 데이터 전송
         try {
-            const response = await fetch('/project/login', {
+            const response = await fetch('https://localhost:8080/login/loginCheck', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

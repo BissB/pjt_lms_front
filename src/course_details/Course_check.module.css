@@ -108,6 +108,8 @@
     border-radius: 5px;
 
     background-color: rgb(252, 174, 174);
+
+    cursor: pointer;
 }
 /* ============================2 */
 
@@ -117,8 +119,6 @@
     background-color: pink;
 
     justify-items: center;
-
-    cursor: pointer;
 }
 
 .inputboxes{

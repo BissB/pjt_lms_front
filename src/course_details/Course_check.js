@@ -22,29 +22,30 @@ const Course_check = () => {
     });
 
    
-    useEffect(() => {                               // 백엔드에서 데이터 가져오기 (오류 방지 처리 추가)
-        fetch("/api/courseData")
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("서버 응답 오류");
-                }
-                return response.json();
-            })
-            .then((data) => {
-                setFormData({
-                    category: data?.category || "",
-                    startDate: data?.startDate || "",
-                    courseName: data?.courseName || "",
-                    endDate: data?.endDate || "",
-                    instructor: data?.instructor || "",
-                    capacity: data?.capacity || "",
-                    content: data.content || "",
-                });
-            })
-            .catch((error) => {
-                console.error("데이터 불러오기 실패:", error);
-            });
-    }, []);
+    // useEffect(() => {                               // 백엔드에서 데이터 가져오기 (오류 방지 처리 추가)
+    //     fetch(`http://localhost:8080/project/courseData/${courseId}`)
+    //         .then((response) => {
+    //             if (!response.ok) {
+    //                 throw new Error("서버 응답 오류");
+    //             }
+    //             return response.json();
+    //         })
+    //         .then((data) => {
+    //             setFormData({
+    //                 category: data?.category || "",
+    //                 startDate: data?.startDate || "",
+    //                 courseName: data?.courseName || "",
+    //                 endDate: data?.endDate || "",
+    //                 instructor: data?.instructor || "",
+    //                 capacity: data?.capacity || "",
+    //                 content: data.content || "",
+    //             });
+    //         })
+    //         .catch((error) => {
+    //             console.error("데이터 불러오기 실패:", error);
+    //         });
+    //         // fetchData();    // *** db에서 데이터 받아오기 ***굼금! 
+    // }, []);
 
 
     const handleChange = (field) => (e) => {        // field를 받아서 e.target.value를 formData에 넣어줌
@@ -54,7 +55,7 @@ const Course_check = () => {
         }));
     };
 
-    /////삭제, 수정 팝업////////////////////////////////////////////////////////////////////////////////////////////////
+    //// 수정 팝업////////////////////////////////////////////////////////////////////////////////////////////////
     const [showModifyPopup, setShowModifyPopup] = useState(false);
       
     const handleModifyShowPopup = () => {
@@ -71,20 +72,44 @@ const Course_check = () => {
         setShowModifyPopup(false);  // 팝업 닫기
     };
 
-    const [showDeletePopup, setShowDeletePopup] = useState(false);
+    //// 삭제 팝업////////////////////////////////////////////////////////////////////////////////////////////////
 
+    const [showDeletePopup, setShowDeletePopup] = useState(false);  // 팝업 상태
+    const [selectedCourseId, setSelectedCourseId] = useState(null); // 삭제할 courseId 저장
+
+
+    // 삭제 버튼 클릭 시 팝업 표시
     const handleDeleteShowPopup = () => {
         if(showModifyPopup) setShowModifyPopup(false);
-        setShowDeletePopup(true);  // 팝업 보이기
+        setShowDeletePopup(true);
     };
 
+    // 팝업 닫기
     const handleDeleteClosePopup = () => {
-        setShowDeletePopup(false);  // 팝업 닫기
+        setShowDeletePopup(false);
     };
 
-    const handleDelete = () => {
-        alert("삭제되었습니다!");  // 저장 처리 예시
-        setShowDeletePopup(false);  // 팝업 닫기
+    // 실제 삭제 요청
+    const handleDeleteConfirm = async () => {
+        if (!selectedCourseId) return;
+        
+        try {
+            const response = await fetch(`http://localhost:8080/course/${selectedCourseId}`, {
+                method: "DELETE",
+            });
+
+            if (response.ok) {
+                alert("삭제되었습니다.");
+                // setCourses(prevCourses => prevCourses.filter(course => course.id !== selectedCourseId));
+            } else {
+                alert("삭제 실패: " + response.status);
+            }
+        } catch (error) {
+            console.error("삭제 오류:", error);
+            // alert("삭제 중 오류가 발생했습니다.");
+        }
+
+        handleDeleteClosePopup(); // 팝업 닫기
     };
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -94,7 +119,7 @@ const Course_check = () => {
 
         <div className={styles.main}>
         
-            {showDeletePopup && <Course_delete onClose={handleDeleteClosePopup} onDelete={handleDelete} />}
+            {showDeletePopup && <Course_delete onClose={handleDeleteClosePopup} onDelete={handleDeleteConfirm} />}
             {showModifyPopup && <Course_modify onClose={handleModifyClosePopup} onModify={handleModify} />}
 
             <div className={styles.topbox}>

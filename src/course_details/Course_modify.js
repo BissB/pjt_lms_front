@@ -8,11 +8,21 @@ const Course_modify = ({onClose,onModify}) => {
         <div className={styles.main}>
             <div className={styles.leftbox}>
                 <div className={styles.titletext}>과정 정보 관리</div>
-                <div className={styles.dropdown}>구분</div>
-                <div className={styles.inputbox}>과정명</div>
-                <div className={styles.inputbox}>강사명</div>
-                <div className={styles.inputbox}>수강시작|수강종료</div>
-                <div className={styles.inputbox}>수강 정원</div>
+                <div className={styles.dropdown}>구분 
+                    <input ></input> 
+                </div>
+                <div className={styles.inputbox}>과정명
+                    <input ></input> 
+                </div>
+                <div className={styles.inputbox}>강사명
+                    <input ></input> 
+                </div>
+                <div className={styles.inputbox}>수강시작|수강종료
+                    <input ></input> 
+                </div>
+                <div className={styles.inputbox}>수강 정원
+                    <input></input> 
+                </div>
             </div>
 
             <div className={styles.rightbox}>
