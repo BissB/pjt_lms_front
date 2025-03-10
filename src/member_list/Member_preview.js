@@ -186,18 +186,6 @@ const Member_list = () => {
     },
   ]);
 
-  // 검색 상태 관리
-  const [searchTerm, setSearchTerm] = useState(''); // 검색어
-  const [searchOption, setSearchOption] = useState(''); // 검색 옵션
-  const [filteredMembers, setFilteredMembers] = useState(members);  // 검색 결과
-  const [showRegistration, setShowRegistration] = useState(false);
-
-  // **추가된 상태: 무한 스크롤을 위한 변수**
-  const [visibleMembers, setVisibleMembers] = useState(members.slice(0, 3)); // 처음에 보여줄 멤버 수
-  const [loading, setLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true); // 더 로드할 데이터가 있는지 여부
-  const observerRef = useRef(null); // IntersectionObserver에 사용할 ref
-
   const handleRegistrationClick = () => {
     setShowRegistration(true);
   };
@@ -222,6 +210,49 @@ const Member_list = () => {
   //   };
   //   fetchData();
   // }, []);
+
+  // 검색 상태 관리
+  const [searchTerm, setSearchTerm] = useState(''); // 검색어
+  const [searchOption, setSearchOption] = useState(''); // 검색 옵션
+  const [filteredMembers, setFilteredMembers] = useState(members);  // 검색 결과
+  const [showRegistration, setShowRegistration] = useState(false);
+
+  // 무한스크롤에 사용하기위한 변수들
+  const [visibleMembers, setVisibleMembers] = useState(members.slice(0, 3)); // 처음에 보여줄 멤버 수
+  const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true); // 더 로드할 데이터가 있는지 여부
+  const observerRef = useRef(null); // IntersectionObserver에 사용할 ref
+
+  // 수정 / 삭제 메뉴 관리
+  const [showEditMenu, setShowEditMenu] = useState(null);
+  const editMenuRef = useRef(null);
+
+  // 수정 / 삭제 팝업 여는 조건
+  const handleEditButton = (index) => {
+    if (showEditMenu === index) {
+      setShowEditMenu(null); // 팝업이 이미 열려있으면 닫기
+    } else {
+      setShowEditMenu(index); // 팝업 열기
+    }
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (editMenuRef.current && !editMenuRef.current.contains(event.target)) {
+        setShowEditMenu(null); // 팝업이 열려 있을 때, 다른 곳을 클릭하면 닫기
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showEditMenu]);
+
+  const handleEditMenuClose = () => {
+    setShowEditMenu(null);
+  };
 
   // 검색 버튼 클릭 이벤트 핸들러
   const handleSearch = () => {
@@ -373,17 +404,25 @@ const Member_list = () => {
               <td>{member.phone}</td>
               <td>{member.course}</td>
               <td>{member.date}</td>
-              <td className={styles.edit}><button>···</button></td> {/* 수정 / 삭제 버튼 */}
+              <td>
+                <button onClick={() => handleEditButton(index)} className={`${styles.edit}`}>···</button>
+                {showEditMenu === index && (
+                  <div ref={editMenuRef} className={styles.editMenu}>
+                    <button>수정</button>
+                    <button>삭제</button>
+                  </div>
+                )}
+              </td> {/* 수정 / 삭제 버튼 */}
             </tr>
           ))}
         </tbody>
       </table>
 
-      {/* **추가된 요소: 감지용 빈 div** */}
-      <div ref={observerRef} style={{ height: "1px" }} />
+      {/* 스크롤 확인용 div */}
+      <div ref={observerRef} style={{ height: "3px" }} />
 
-      {/* **추가된 요소: 로딩 표시** */}
-      {loading && <p>Loading...</p>}
+      {/* 로딩상태 표시 */}
+      {loading && <p style={{ textAlign: 'center', marginTop: '0' }}>Loading...</p>}
       {!hasMore && ''}
     </div>
   );

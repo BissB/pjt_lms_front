@@ -172,11 +172,11 @@ const Member_registration = ({ onClose }) => {
               <input
                 type="tel"
                 className={styles.textbox}
-                placeholder="전화번호"
+                placeholder="전화번호(-제외)"
                 name="memberPhone"
                 value={registerForm.memberPhone}
                 onChange={handleInputChange}
-                maxLength={10}
+                maxLength={11}
               // value={phoneNumber}
               // onChange={handlePhoneNumberChange}
               // maxLength={17}
