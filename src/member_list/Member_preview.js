@@ -76,114 +76,114 @@ const Member_list = () => {
       date: '2025.01.18',
       photo: img7,
     },
-    {
-      id: 'A6873513',
-      name: '김헤헿1',
-      username: 'wpgkfhfef',
-      phone: '010-1234-5678',
-      course: '그래픽',
-      date: '2025.03.06',
-      photo: '',
-    },
-    {
-      id: 'A572145',
-      name: '김헤헿2',
-      username: 'wpgkfhfef',
-      phone: '010-1234-5678',
-      course: '그래픽',
-      date: '2025.03.06',
-      photo: '',
-    },
-    {
-      id: 'A6721346',
-      name: '김헤헿3',
-      username: 'wpgkfhfef',
-      phone: '010-1234-5678',
-      course: '그래픽',
-      date: '2025.03.06',
-      photo: '',
-    },
-    {
-      id: 'A11223344',
-      name: '김헤헿4',
-      username: 'wpgkfhfef',
-      phone: '010-1234-5678',
-      course: '그래픽',
-      date: '2025.03.06',
-      photo: '',
-    },
-    {
-      id: 'A563244',
-      name: '김헤헿5',
-      username: 'wpgkfhfef',
-      phone: '010-1234-5678',
-      course: '그래픽',
-      date: '2025.03.06',
-      photo: '',
-    },
-    {
-      id: 'A832556',
-      name: '김헤헿6',
-      username: 'wpgkfhfef',
-      phone: '010-1234-5678',
-      course: '그래픽',
-      date: '2025.03.06',
-      photo: '',
-    },
-    {
-      id: 'A234456',
-      name: '김헤헿7',
-      username: 'wpgkfhfef',
-      phone: '010-1234-5678',
-      course: '그래픽',
-      date: '2025.03.06',
-      photo: '',
-    },
-    {
-      id: 'A7823456',
-      name: '김헤헿8',
-      username: 'wpgkfhfef',
-      phone: '010-1234-5678',
-      course: '그래픽',
-      date: '2025.03.06',
-      photo: '',
-    },
-    {
-      id: 'A723456',
-      name: '김헤헿9',
-      username: 'wpgkfhfef',
-      phone: '010-1234-5678',
-      course: '그래픽',
-      date: '2025.03.06',
-      photo: '',
-    },
-    {
-      id: 'A986556',
-      name: '김헤헿10',
-      username: 'wpgkfhfef',
-      phone: '010-1234-5678',
-      course: '그래픽',
-      date: '2025.03.06',
-      photo: '',
-    },
-    {
-      id: 'A08723123456',
-      name: '김헤헿11',
-      username: 'wpgkfhfef',
-      phone: '010-1234-5678',
-      course: '그래픽',
-      date: '2025.03.06',
-      photo: '',
-    },
-    {
-      id: 'A063126',
-      name: '김헤헿12',
-      username: 'wpgkfhfef',
-      phone: '010-1234-5678',
-      course: '그래픽',
-      date: '2025.03.06',
-      photo: '',
-    },
+    // {
+    //   id: 'A6873513',
+    //   name: '김헤헿1',
+    //   username: 'wpgkfhfef',
+    //   phone: '010-1234-5678',
+    //   course: '그래픽',
+    //   date: '2025.03.06',
+    //   photo: '',
+    // },
+    // {
+    //   id: 'A572145',
+    //   name: '김헤헿2',
+    //   username: 'wpgkfhfef',
+    //   phone: '010-1234-5678',
+    //   course: '그래픽',
+    //   date: '2025.03.06',
+    //   photo: '',
+    // },
+    // {
+    //   id: 'A6721346',
+    //   name: '김헤헿3',
+    //   username: 'wpgkfhfef',
+    //   phone: '010-1234-5678',
+    //   course: '그래픽',
+    //   date: '2025.03.06',
+    //   photo: '',
+    // },
+    // {
+    //   id: 'A11223344',
+    //   name: '김헤헿4',
+    //   username: 'wpgkfhfef',
+    //   phone: '010-1234-5678',
+    //   course: '그래픽',
+    //   date: '2025.03.06',
+    //   photo: '',
+    // },
+    // {
+    //   id: 'A563244',
+    //   name: '김헤헿5',
+    //   username: 'wpgkfhfef',
+    //   phone: '010-1234-5678',
+    //   course: '그래픽',
+    //   date: '2025.03.06',
+    //   photo: '',
+    // },
+    // {
+    //   id: 'A832556',
+    //   name: '김헤헿6',
+    //   username: 'wpgkfhfef',
+    //   phone: '010-1234-5678',
+    //   course: '그래픽',
+    //   date: '2025.03.06',
+    //   photo: '',
+    // },
+    // {
+    //   id: 'A234456',
+    //   name: '김헤헿7',
+    //   username: 'wpgkfhfef',
+    //   phone: '010-1234-5678',
+    //   course: '그래픽',
+    //   date: '2025.03.06',
+    //   photo: '',
+    // },
+    // {
+    //   id: 'A7823456',
+    //   name: '김헤헿8',
+    //   username: 'wpgkfhfef',
+    //   phone: '010-1234-5678',
+    //   course: '그래픽',
+    //   date: '2025.03.06',
+    //   photo: '',
+    // },
+    // {
+    //   id: 'A723456',
+    //   name: '김헤헿9',
+    //   username: 'wpgkfhfef',
+    //   phone: '010-1234-5678',
+    //   course: '그래픽',
+    //   date: '2025.03.06',
+    //   photo: '',
+    // },
+    // {
+    //   id: 'A986556',
+    //   name: '김헤헿10',
+    //   username: 'wpgkfhfef',
+    //   phone: '010-1234-5678',
+    //   course: '그래픽',
+    //   date: '2025.03.06',
+    //   photo: '',
+    // },
+    // {
+    //   id: 'A08723123456',
+    //   name: '김헤헿11',
+    //   username: 'wpgkfhfef',
+    //   phone: '010-1234-5678',
+    //   course: '그래픽',
+    //   date: '2025.03.06',
+    //   photo: '',
+    // },
+    // {
+    //   id: 'A063126',
+    //   name: '김헤헿12',
+    //   username: 'wpgkfhfef',
+    //   phone: '010-1234-5678',
+    //   course: '그래픽',
+    //   date: '2025.03.06',
+    //   photo: '',
+    // },
   ]);
 
   const handleRegistrationClick = () => {
@@ -210,6 +210,27 @@ const Member_list = () => {
   //   };
   //   fetchData();
   // }, []);
+
+  const handleRegistration = async (/*등록 data를 여기 담아서 보냄*/ ) => {         {/* *** 등록 버튼 클릭 시 등록컨트롤러 호출 함수 *** */}
+    try {
+      const response = await fetch('https://localhost:443/trainee/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        // body: JSON.stringify(data),
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const result = await response.json();
+      setMembers((prev) => [...prev, result]);
+      setFilteredMembers((prev) => [...prev, result]);
+      setShowRegistration(false);
+    } catch (error) {
+      console.error('Error registering data:', error.message);
+    }
+  }
 
   // 검색 상태 관리
   const [searchTerm, setSearchTerm] = useState(''); // 검색어
@@ -341,13 +362,45 @@ const Member_list = () => {
     return () => observer.disconnect();
   }, [loading, hasMore, filteredMembers]);
 
+  const [errorMessage, setErrorMessage] = useState(' ');  // 에러 메시지를 저장할 상태 변수
+
+  // 로그인 버튼 클릭 시 백엔드에 로그인 데이터 전송
+  const handleClick = async () => {
+    const r1 = { register: "R1" };
+
+    // 백엔드로 데이터 전송
+    try {
+      const response = await fetch('https://localhost:443/trainee/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(r1) // JSON 형식으로 데이터 전송
+      });
+
+      const data = await response.json();     // 응답 데이터를 JSON 형식으로 파싱
+
+      if (response.ok) {
+        // 로그인 성공 시 처리
+        console.log("유후~정보교환 성공(trainee/register)");
+        setErrorMessage('');                    // 성공 시 에러 메시지 초기화
+      } else {
+        // 로그인 실패 시 처리
+        console.log("로그인 실패");
+        setErrorMessage(data);                  // 실패 메시지 상태에 저장
+      }
+    } catch (error) {
+      console.error("로그인 오류:", error);
+      setErrorMessage("서버와 연결할 수 없습니다."); // 네트워크 오류 시 에러 메시지 표시
+    }
+  };
 
   return (
     <div className={styles.main}>
       <div className={styles.title}>훈련생 리스트</div>
 
       <div className={styles.btns}>
-        <button className={styles.registerBtn} onClick={handleRegistrationClick}>회원 등록 버튼</button> {/* 회원 등록 버튼 */}
+        <button className={styles.registerBtn} onClick={handleClick}>회원 등록 버튼</button> {/* 회원 등록 버튼 */}
         {showRegistration && (
           <Registration onClose={handleCloseRegistration} />
         )}
@@ -394,10 +447,9 @@ const Member_list = () => {
       <table className={styles.tableBody}>
         <tbody>
           {visibleMembers.map((member, index) => (
-            // <tr key={index} style= {{ backgroundColor: getCourseColor(member.course) }} >
             <tr key={index}>
               <td className={styles.photo} style={{ borderLeft: `10px solid ${getCourseColor(member.course)}` }}>
-                <img src={member.photo} alt='' />
+                <img src={member.photo} alt='member photo' />
               </td>
               <td>{member.id}</td>
               <td>{member.name} / {member.username}</td>

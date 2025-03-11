@@ -5,4 +5,22 @@
   width: 15vw;
   height: 100vh;
   background-color: #ddd;
+  padding-left: 3.75vw;
+  box-sizing: border-box;
+}
+
+.container {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+}
+
+.container li {
+  font-size: 1.5rem;
+}
+
+.trainee {
+  text-decoration: none;
+  color: black;
 }
