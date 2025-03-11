@@ -7,7 +7,7 @@ import Course_info from './Course_info';
 import Course_content from './Course_content';
 import Course_delete from './Course_delete';
 import Course_modify from './Course_modify';
-import Course_memberlist  from './Course_memberlist';
+// import Course_memberlist  from './Course_memberlist';
 
 const Course_check = () => {
     console.log("Course_check() invoked.");
@@ -71,9 +71,27 @@ const Course_check = () => {
         setShowModifyPopup(false);  // 팝업 닫기
     };
 
-    const handleModify = () => {
-        alert("수정되었습니다!");  // 저장 처리 예시
-        setShowModifyPopup(false);  // 팝업 닫기
+    const handleModifyConfirm = async () => {
+        // if (!selectedCourseId) return;
+        
+        try {
+            const response = await fetch(`https://localhost:443/course/update`, {
+            method: "POST",
+            // body: JSON.stringify({ })
+            });
+
+            if (response.ok) {
+                alert("수정되었습니다.");
+                // setCourses(prevCourses => prevCourses.filter(course => course.id !== selectedCourseId));
+            } else {
+                alert("수정 실패: ");
+            }
+        } catch (error) {
+            console.error("수정 오류:", error);
+            // alert("수정 중 오류가 발생했습니다.");
+        }
+
+        handleModifyClosePopup(); // 팝업 닫기
     };
 
     //// 삭제 팝업////////////////////////////////////////////////////////////////////////////////////////////////
@@ -95,18 +113,19 @@ const Course_check = () => {
 
     // 실제 삭제 요청
     const handleDeleteConfirm = async () => {
-        if (!selectedCourseId) return;
+        // if (!selectedCourseId) return;
         
         try {
-            const response = await fetch(`http://localhost:8080/course/${selectedCourseId}`, {
-                method: "DELETE",
+            const response = await fetch(`https://localhost:443/course/delete`, {
+            method: "POST",
+            // body: JSON.stringify({ })
             });
 
             if (response.ok) {
                 alert("삭제되었습니다.");
                 // setCourses(prevCourses => prevCourses.filter(course => course.id !== selectedCourseId));
             } else {
-                alert("삭제 실패: " + response.status);
+                alert("삭제 실패: ");
             }
         } catch (error) {
             console.error("삭제 오류:", error);
@@ -124,7 +143,7 @@ const Course_check = () => {
         <div className={styles.main}>
         
             {showDeletePopup && <Course_delete onClose={handleDeleteClosePopup} onDelete={handleDeleteConfirm} />}
-            {showModifyPopup && <Course_modify onClose={handleModifyClosePopup} onModify={handleModify} />}
+            {showModifyPopup && <Course_modify onClose={handleModifyClosePopup} onModify={handleModifyConfirm} />}
 
             <div className={styles.topbox}>
 
@@ -134,7 +153,8 @@ const Course_check = () => {
                     <div className={styles.imgbox}></div>
                     <div className={styles.buttonbox}>      
                         <button className={styles.modify_button} onClick={handleModifyShowPopup}>수정</button>
-                        <button className={styles.delete_button} onClick={handleDeleteShowPopup}>삭제</button> 
+                        {/* <button className={styles.delete_button} onClick={handleDeleteShowPopup}>삭제</button>  */}
+                        <button className={styles.delete_button} onClick={handleDeleteShowPopup}>삭제</button>
                     </div>
 
                 </div>
@@ -155,7 +175,7 @@ const Course_check = () => {
             </div>
 
             <div className={styles.bottombox}>
-                <Course_memberlist/>
+                {/* <Course_memberlist/> */}
             </div>
 
         </div>
