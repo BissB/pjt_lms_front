@@ -125,6 +125,22 @@ const Course_manage = () => {
         setFilteredCourses(results);
     };
 
+    // 구분에 따른 색상 변경
+    const courseColor = (category) => {
+        switch (category) {
+            case '풀스택':
+                return { backgroundColor: '#ff6347' };
+            case '프론트엔드':
+                return { backgroundColor: '#81F7F3' };
+            case '백엔드':
+              return { backgroundColor: '#32cd32' };
+            case '세무회계':
+              return { backgroundColor: '#ffa500' };
+            default:
+              return { backgroundColor: '#d3d3d3' }; 
+      };
+    };
+
     useEffect(() => {
     }, [selectedCategory, searchOption, search]);
 
@@ -181,6 +197,7 @@ const Course_manage = () => {
                     placeholder="검색어를 입력하세요."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
+                    onKeyPress={handleKeyPress}  // 엔터키 처리
                 />
             </div>
 
@@ -188,32 +205,30 @@ const Course_manage = () => {
            
             {filteredCourses.map((course, index) => (
            
-               <div key={index} className={styles.contentsboxlist}>
-                        <div className={styles.contentsbox}>
-                                <div className={styles.contentshead}>
-                                    <div>
-                                        <div className={styles.category}>{course.category}</div>
+                    <div className={styles.allContents}>
+                        <div key={index} className={styles.contentsboxlist}>
+                                    <div className={styles.contentsbox}>
+                                                <div style={courseColor(course.category)}>
+                                                    {course.category}
+                                                    </div>                                    
+                                            <img src={sample1} className={styles.imgbox} alt="courseimg"/>
+                                            <div className={styles.state}>{course.state}</div>
+
+                                            <div className={styles.contentstextbody}>
+                                                <div className={styles.courseName}>{course.courseName}</div>
+                                                <div className={styles.date}>{course.startDate} ~ {course.endDate}</div>
+                                            </div>
+                                        
+                                            <div className={styles.contentstextfooter}>
+                                                <div className={styles.instructorname}>
+                                                    {course.instructor}
+                                                </div>
+                                                    <p className={styles.instructor}>강사</p>
+                                                <div className={styles.capacity}>{course.capacity}</div> 
+                                            </div>
                                     </div>
-                                </div>
-
-                                <img src={sample1} className={styles.imgbox} alt="courseimg"/>
-                                <div className={styles.state}>{course.state}</div>
-
-                                <div className={styles.contentstextbody}>
-                                    <div className={styles.courseName}>{course.courseName}</div>
-                                    <div className={styles.date}>{course.startDate} ~ {course.endDate}</div>
-                                </div>
-                            
-                                <div className={styles.contentstextfooter}>
-                                    <div className={styles.instructorname}>
-                                        {course.instructor}
-                                    </div>
-                                        <p className={styles.instructor}>강사</p>
-                                    <div className={styles.capacity}>{course.capacity}</div> 
-                                </div>
-                        </div>
-                </div>
-
+                            </div>
+                    </div>
             ))}
 
 
