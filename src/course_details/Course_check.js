@@ -29,7 +29,8 @@ const Course_check = () => {
 
    
     useEffect(() => {                               // 백엔드에서 데이터 가져오기 (오류 방지 처리 추가)
-        fetch(`http://localhost:443/course/read/${courseId}`)
+        console.log("courseId:", courseId);
+        fetch(`https://localhost:443/course/${courseId}`)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("서버 응답 오류");
