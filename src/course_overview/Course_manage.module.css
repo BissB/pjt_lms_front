@@ -1,48 +1,60 @@
-.main {
-    position: fixed;
+.topmain {
+    position: absolute;
     
-    width: 85vw;
+    width: calc(85vw - 130px);
     height: 100vh;
     left: 15vw;
-
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0px 30px;
-
-    overflow: scroll;
+    padding-left: 20px;
+    padding-right: 110px;
 
     background-color: lightgray;
     backdrop-filter: blur(5px);
+
+    overflow: auto;
 }
 
+
+.main {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* 자동 줄바꿈 */
+    align-items: start;
+    row-gap: 30px;
+    column-gap: 20px;
+}
+
+/* head 및 topmenu */
 .headline {
     position: absolute;
 
     top : 50px;
-    left: 125px;
+    left: 110px;
     font-size: 40px;
 }
 
+/* 과정등록 */
 .register {
-    position: relative;
+    position: fixed;
 
-    bottom: 297px;
-    right: 655px;
+    top: 150px;
+    left: 105px;
 
     width: 120px;
     height: 50px;
 
-    background-color: lightblue;
-    border: 1px solid black;
-
+    background-color: #757CFF;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 10px 20px;
+    cursor: pointer;
 }
 .search {
     position: absolute;
     display: flex;
 
-    right: 70px;
+    right: 80px;
     top: 150px;
-    width: 90%;
+    width: 50%;
     height: 50px;
 
 }
@@ -71,27 +83,33 @@
     border: none;
 }
 
+.icon {
+    position: absolute;
+    top: 14%;
+    right: 14px;
 
-.contentsboxlist {
-    position: relative;
-    
-    top: 250px;
-    left: 125px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 
-    margin-right: 5%;
-
-    width: 16%;
-    height: 28%;
-
+    color: black;
+    font-size: 1rem;
 }
 
+/* contentsBox */
 
-.contentsbox {
+
+.allContents {
     position: relative;
+
+    top: 260px;
+    left: 85px;
     display: grid;
 
-    width: 230px;
-    height: 220px;
+    margin: 0;
+
+    width: 250px;
+    height: 250px;
 
     background-color: white;
 }
@@ -117,6 +135,9 @@
     background-color: yellow;
 }
 
+/* ////////////////////////////////////////////////// */
+
+
 .imgbox {
     position: relative;
     display: flex;
@@ -124,7 +145,7 @@
     margin: 5% 5% 0 5%;
 
     width: 90%;
-    height: 70%;
+    height: 80%;
 
     background-color: pink;
     
@@ -156,68 +177,74 @@
 
 .courseName {
     position: relative;
-    width: 100%;
-    left: 5%;
+    width: 98%;
+    padding-left: 5px;
     margin-bottom: 0;
 
     text-align: left;
 
 }
 
+.contentsfooter {
+    position: relative;
+    display: flex;
+
+    width: 100%;
+    height: 100%;
+    
+}
+
+
 .date {
-    margin-top: 10px;
-    margin-left: 5%;
+    margin-top: 5px;
+    padding-left: 5px;
 
     text-align: left;
 }
 
-.contentstextfooter {
+.contentsfooter {
     display: flex;
     align-items: center;
 
+
     width: 100%;
     height: 30px;
+
     background-color: beige;
 }
 
 .instructorname {
     position: relative;
-    margin-left: 5%;
-    width: 40%;
+    padding-left: 5px;
+    width: 50%;
 }
 
 .instructor {
     
+    margin-left: 5px;
     width: 20%;
 
 }
 
 .capacity {
     position: relative;
-    margin-left: 35%;
-    width: 30%;
+    margin-left: 100px;
+    margin-right: 7px;
+    width: 17%;
+    height: auto;
 }
 
 
 /* 팝업 ================================================*/
 
-/* =========================================================== */
 
-.courseRegisterPop {
-    position: absolute;
-    
-    top: 20%;
-    left: 150px;
-    
-    width: 90%;
-    height: 100%;
-    bottom: 40%;
-}
 .topbox{
     position: relative;
     display: flex;
     width: 70%;
-    height: 60%;
+    height: 70%;
+
+    bottom: 50%;
 
     border-radius: 10px;
 
@@ -226,8 +253,9 @@
     background-color: pink;
 
     box-shadow: 4px 4px 10px rgb(131, 0, 0);
-}
 
+    z-index: 99;
+}
 /* ============================2 */
 .top_leftbox{
     position: relative;
@@ -263,7 +291,8 @@
     width : 80%;
     height: 40%;
     
-    top: 20%;
+    top: 16%;
+    right: 8%;
 
     border-radius: 6px;
 
@@ -344,22 +373,4 @@
     justify-items: center;
     align-content: center;
 
-}
-
-/* =========================================================== */
-
-.bottombox{
-    padding: 50px;
-    box-sizing: border-box;
-
-    position: relative;
-    
-    width: 70%;
-    height: 30%;
-
-    background-color: pink;
-
-    border-radius: 10px;
-    
-    box-shadow: 4px 4px 10px rgb(131, 0, 0);;
 }

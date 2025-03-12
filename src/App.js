@@ -2,7 +2,7 @@ import './App.css';
 
 import Login from './login/Login';
 import Navbar from './navbar/Navbar';
-import { Course_manage } from './course_overview';
+import  Course_manage  from './course_overview/Course_manage';
 import { Course_check } from './course_details';
 import { Member } from './member_list/';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
