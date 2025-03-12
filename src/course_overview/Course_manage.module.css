@@ -57,7 +57,9 @@ padding 10px 20px
 
     top : 50px;
     left: 110px;
-    font-size: 40px;
+    filter: drop-shadow(0 4px 4px rgba(34, 30, 31, 0.4));
+    font-size: 36px;
+    font-weight: bold;
 }
 
 /* 과정등록 */
@@ -68,58 +70,60 @@ padding 10px 20px
     left: 105px;
 
     width: 120px;
-    height: 50px;
+    /* height: 50px; */
 
-    background-color: #f7b130;
-    color: #F5F5F5;
+    background-color: #ebbb41;
     border: none;
     border-radius: 7px;
-    padding: 10px 20px;
+    padding: 11px 20px;
+    font-size: 1rem;
     cursor: pointer;
 }
+
 .search {
     position: absolute;
     display: flex;
 
-    right: 120px;
+    right: 160px;
     top: 150px;
     width: 50%;
     height: 50px;
 }
 
 .drop1, .drop2 {
-    position: relative;;
-    margin-right: 1%;
-    padding: 5px;
+    position: relative;
+    margin-right: 10px;
+    padding: 10px;
     left: 55%;
-    width: 8%;
-    height: 35px;
+    height: 40px;
+    font-size: 1rem;
 
-    border: 1px solid  #7d7c7c;
+    border: 1px solid  #edc12e;
     background-color:#F5F5F5;
 
-    border-radius: 7px;
-    
-
+    border-radius: 5px;
 }
 
 .search_bar {
     position: relative;
 
     width: 25%;
-    height: 31px;
+    height: 40px;
 
     left: 55%;
+    font-size: 1rem;
+    padding: 10px;
+    box-sizing: border-box;
     background-color: #F5F5F5;
     
-    border: 1px solid  #7d7c7c;
-    border-radius: 7px;
+    border: 1px solid  #edc12e;
+    border-radius: 5px;
 }
 
 .icon {
     position: absolute;
-    top: 14%;
-    right: 14px;
+    top: 18%;
+    right: 1%;
 
     background-color: transparent;
     border: none;
@@ -143,10 +147,16 @@ padding 10px 20px
 
     width: 250px;
     height: 250px;
+    border-radius: 5px;
 
-    background-color: #f4deb4;
+    background-color: #fedfa9;
 }
 
+.category {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 5px 10px;
+}
 
 /* ////////////////////////////////////////////////// */
 
@@ -160,7 +170,6 @@ padding 10px 20px
     width: 90%;
     height: 80%;
 
-    background-color: pink;
     border-radius: 7px;
     
 }
@@ -174,14 +183,18 @@ padding 10px 20px
 .state {
     position: absolute;
 
-    right: 8%;
-    bottom: 40%;
+    right: 7%;
+    bottom: 35%;
 
     width: 30%;
+    text-align: center;
+    padding: 2px 0;
+    box-sizing: border-box;
     
     background-color: navy;
+    border: 1px solid #f9c771;
     color: white;
-    border-radius: 7px;
+    border-radius: 5px;
 }
 
 .contentstextbody {
@@ -193,17 +206,16 @@ padding 10px 20px
 .courseName {
     position: relative;
     width: 98%;
-    padding-left: 10px;
+    padding-left: 14px;
     margin-bottom: 0;
 
     text-align: left;
 
 }
 
-
 .date {
     margin-top: 5px;
-    padding-left: 10px;
+    padding-left: 14px;
     padding-bottom: 10px;
 
     text-align: left;
@@ -212,14 +224,16 @@ padding 10px 20px
 .contentsfooter {
     display: flex;
     align-items: center;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 5px 10px;
+    box-sizing: border-box;
 
 
     width: 100%;
     height: 30px;
 
-    background-color: #fec353;
-    border-bottom-right-radius: 7px;
-    border-bottom-left-radius: 7px;
+    background-color: #f4f4b1;
 }
 
 .instructorname {
@@ -239,7 +253,6 @@ padding 10px 20px
     position: relative;
     margin-left: 50px;
     margin-right: 7px;
-    padding-bottom: 4px;
     width: 17%;
     height: auto;
 }
