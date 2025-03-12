@@ -6,7 +6,6 @@ const Trainee_registration = ({ onClose }) => {
     name: '',
     tel: '',
     course: '',
-    upfiles: null,
   });
 
   const handleInputChange = (event) => {
@@ -30,15 +29,18 @@ const Trainee_registration = ({ onClose }) => {
     console.log(registerForm);
 
     try {
-      const formData = new FormData();
-      formData.append('name', registerForm.name);
-      formData.append('tel', registerForm.tel);
-      formData.append('course', registerForm.course);
-      formData.append('upfiles', registerForm.upfiles);
+      const jsonData = {
+        name: registerForm.name,
+        tel: registerForm.tel,
+        course: registerForm.course,
+      };
 
-      const response = await fetch('/trainee/register', {
+      const response = await fetch('https://localhost:443/trainee/register', {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(jsonData),
       });
 
       if (response.ok) {
@@ -82,7 +84,7 @@ const Trainee_registration = ({ onClose }) => {
                 name="tel"
                 value={registerForm.tel}
                 onChange={handleInputChange}
-                maxLength={11}
+                maxLength={10}
               />
               <input
                 type="text"
