@@ -1,29 +1,41 @@
 .main{
     position:absolute;
-    width: 60vw;
-    height: 60vh;
+    left:15vw;
 
-    top:50%;
-    left:50%;
-    transform: translate(-50%, -50%);
-    z-index: 100;
+    width: 85vw;
+    height: 100vh;
 
     display: flex;
     flex-direction: row;
 
-    background-color: rgb(42, 84, 90);
+    align-items : center;
+    justify-content: center;
+
+    background-color: white;
 
     border-radius: 4px;
 }
 
+.container{
+
+    width: 70%;
+    height: 70%;
+
+    display: flex;
+    flex-direction: row;
+
+    background-color: #555;
+}
 /* =========================================================== */
+
 .leftbox{
     position: relative;
 
-    width: 40%;
+    width: 50%;
     height: 100%;
 
-    left: 2%;
+    justify-items: center;
+    /* left: 2%; */
 }
 
 .titletext{
@@ -77,7 +89,7 @@
 /* =========================================================== */
 
 .rightbox{
-    width: 60%;
+    width: 50%;
     height: 100%;
 
     display: flex;
@@ -87,8 +99,8 @@
 }
 
 .file{
-    width: 400px;
-    height: 100px;
+    width: 300px;
+    height: 65px;
 
     margin-top: 100px;
 
@@ -101,7 +113,7 @@
 
 .contentbox{
     width: 500px;
-    height: 350px;
+    height: 400px;
 
     border-radius: 4px;
 

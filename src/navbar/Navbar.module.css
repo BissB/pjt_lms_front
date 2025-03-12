@@ -24,3 +24,12 @@
   text-decoration: none;
   color: black;
 }
+
+
+.logout{
+  position: absolute;
+  bottom: 100px;
+  width: 200px;
+  text-align: center;
+  font-size: 1.5rem;
+}
