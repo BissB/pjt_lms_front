@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Trainee_modification.module.css';
 
-const Trainee_modification = ({ onClose }) => {
+const Trainee_modification = () => {
   const cancel = useNavigate();
 
   const [registerForm, setRegisterForm] = useState({

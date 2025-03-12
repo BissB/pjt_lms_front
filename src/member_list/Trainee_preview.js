@@ -13,6 +13,12 @@ import img7 from './img/7.png';
 
 const Trainee_list = () => {
 
+  const criteriaDTO = {
+    page: 0,
+    pageSize: 10,
+    condition: "name",
+    q: "김태영"
+  };
   const [members, setMembers] = useState([ // 멤버 정보 (백엔드에서 어떻게 받아와야하나? 어떻게 적용해야하나?)
     {
       id: 'A0123456',
@@ -114,78 +120,6 @@ const Trainee_list = () => {
       status: '중도포기',
       photo: '',
     },
-    // {
-    //   id: 'A563244',
-    //   name: '김헤헿5',
-    //   username: 'wpgkfhfef',
-    //   phone: '010-1234-5678',
-    //   course: '그래픽',
-    //   date: '2025.03.06',
-    //   photo: '',
-    // },
-    // {
-    //   id: 'A832556',
-    //   name: '김헤헿6',
-    //   username: 'wpgkfhfef',
-    //   phone: '010-1234-5678',
-    //   course: '그래픽',
-    //   date: '2025.03.06',
-    //   photo: '',
-    // },
-    // {
-    //   id: 'A234456',
-    //   name: '김헤헿7',
-    //   username: 'wpgkfhfef',
-    //   phone: '010-1234-5678',
-    //   course: '그래픽',
-    //   date: '2025.03.06',
-    //   photo: '',
-    // },
-    // {
-    //   id: 'A7823456',
-    //   name: '김헤헿8',
-    //   username: 'wpgkfhfef',
-    //   phone: '010-1234-5678',
-    //   course: '그래픽',
-    //   date: '2025.03.06',
-    //   photo: '',
-    // },
-    // {
-    //   id: 'A723456',
-    //   name: '김헤헿9',
-    //   username: 'wpgkfhfef',
-    //   phone: '010-1234-5678',
-    //   course: '그래픽',
-    //   date: '2025.03.06',
-    //   photo: '',
-    // },
-    // {
-    //   id: 'A986556',
-    //   name: '김헤헿10',
-    //   username: 'wpgkfhfef',
-    //   phone: '010-1234-5678',
-    //   course: '그래픽',
-    //   date: '2025.03.06',
-    //   photo: '',
-    // },
-    // {
-    //   id: 'A08723123456',
-    //   name: '김헤헿11',
-    //   username: 'wpgkfhfef',
-    //   phone: '010-1234-5678',
-    //   course: '그래픽',
-    //   date: '2025.03.06',
-    //   photo: '',
-    // },
-    // {
-    //   id: 'A063126',
-    //   name: '김헤헿12',
-    //   username: 'wpgkfhfef',
-    //   phone: '010-1234-5678',
-    //   course: '그래픽',
-    //   date: '2025.03.06',
-    //   photo: '',
-    // },
   ]);
 
   // // 상태 옵션 배열
@@ -195,14 +129,6 @@ const Trainee_list = () => {
   //   { value: "3", label: "중도포기" },
   //   { value: "4", label: "취업완료" },
   // ];
-
-  const handleModificationClick = () => {
-    setShowModification(true);
-  };
-
-  const handleCloseModification = () => {
-    setShowModification(false);
-  }
 
   const handleRegistrationClick = () => {
     setShowRegistration(true);
@@ -303,10 +229,6 @@ const Trainee_list = () => {
     };
   }, [showEditMenu]);
 
-  const handleEditMenuClose = () => {
-    setShowEditMenu(null);
-  };
-
   // 검색 버튼 클릭 이벤트 핸들러
   const handleSearch = () => {
     if (searchOption === 'name') {
@@ -369,20 +291,14 @@ const Trainee_list = () => {
   // 과정 종류에 따른 색상 변경
   const getCourseColor = (course) => {
     switch (course) { // 케이스 추가할것 (***)
-      case "그래픽":
-        return "#F67272";
-      case "JAVA":
-        return "#B0B2FF";
       case "백엔드":
         return "#FFEB9B";
       case "프론트엔드":
         return "#72F2F6";
-      case "eclipse":
-        return "#FF7BED";
       case "풀스택":
         return "#96FF88";
       default:
-        return "#ddd"; // 기본 색상
+        return null; // 기본 색상
     }
   };
 

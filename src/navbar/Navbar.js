@@ -26,19 +26,21 @@ const Navbar = () => {
 
   return (
     <div className={styles.nav}>
-      <div className={styles.container}>
-        <ul>과정 관리</ul>
-        <li><Link to="/course_overview?status=2" className={styles.trainee} >진행예정</Link></li>
-        <li><Link to="/course_overview?status=1" className={styles.trainee} >진행중</Link></li>
-        <li><Link to="/course_overview?status=0" className={styles.trainee} >진행종료</Link></li>
-        <br />
-        <ul>회원 관리</ul>
-        <li><Link to="/trainee_list" className={styles.trainee} >훈련생</Link></li>
-        <li>강사</li>
-        <li>관리자</li>
-      </div>
 
-      <button className={styles.logout} onClick={handleLogout}>로그아웃</button>
+      <div className={styles.container}>
+        <div className={styles.title}>과정 관리</div>
+        <div className={styles.content}><Link to="/course_overview?status=2" >진행예정</Link></div>
+        <div className={styles.content}><Link to="/course_overview?status=1" >진행중</Link></div>
+        <div className={styles.content}><Link to="/course_overview?status=0" >진행종료</Link></div>
+
+        <br />
+
+        <div className={styles.title}>회원 관리</div>
+        <div className={styles.content}><Link to="/trainee_list"  >훈련생</Link></div>
+        <div className={styles.content}><Link to="/instructor_list" >강사</Link></div>
+
+        <button className={styles.logout} onClick={handleLogout} >Logout</button>
+      </div>
 
     </div>
   )
