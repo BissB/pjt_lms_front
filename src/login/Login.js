@@ -10,8 +10,8 @@ const Login = () => {
 
     // 상태 관리: 입력값을 저장하는 상태 변수
     const [loginData, setLoginData] = useState({
-        id: '',
-        password: ''
+        userId: '',
+        passwd: ''
     });
 
     const [errorMessage, setErrorMessage] = useState(' ');  // 에러 메시지를 저장할 상태 변수
@@ -28,16 +28,16 @@ const Login = () => {
 
     // 로그인 버튼 클릭 시 백엔드에 로그인 데이터 전송
     const handleLogin = async () => {
-        const { id, password } = loginData;
+        const { userId, passwd } = loginData;
 
         // 백엔드로 데이터 전송
         try {
-            const response = await fetch('https://localhost:8080/login/loginCheck', {
+            const response = await fetch('https://localhost:443/login/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ id, password }) // JSON 형식으로 데이터 전송
+                body: JSON.stringify({ userId, passwd }) // JSON 형식으로 데이터 전송
             });
 
             const data = await response.json();     // 응답 데이터를 JSON 형식으로 파싱
@@ -66,18 +66,18 @@ const Login = () => {
                 <form>
                     <input
                         className={styles.id}
-                        placeholder="id"
-                        name="id"                           // 서버로 전송되는 이름
-                        value={loginData.id}
+                        placeholder="userId"
+                        name="userId"                           // 서버로 전송되는 이름
+                        value={loginData.userId}
                         onChange={handleInputChange}
                     />
                     <i className={`fas fa-user ${styles.user_icon}`} />
                     <input
                         className={styles.pw}
                         placeholder="password"
-                        name="password"                     // 서버로 전송되는 이름
+                        name="passwd"                     // 서버로 전송되는 이름
                         type="password"
-                        value={loginData.password}
+                        value={loginData.passwd}
                         onChange={handleInputChange}
                     />
                     <i className={`fas fa-lock ${styles.pass_icon}`} />

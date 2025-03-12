@@ -21,6 +21,7 @@ const Course_modify = () => {
         instructor: "",
         startDate: "",
         endDate: "",
+        currCount: "",
         capacity: "",
         detail: "",
     });
@@ -37,6 +38,7 @@ const Course_modify = () => {
     //                 startDate: data.startDate || "",
     //                 endDate: data.endDate || "",
     //                 capacity: data.capacity || "",
+    //                 currCount: data.currCount || "",
     //                 detail: data.detail || "",
     //             });
     //         })
@@ -91,8 +93,9 @@ const Course_modify = () => {
                     <div className={styles.dropdown}>구분 
                         <select value={formData.type} onChange={(e) => handleChange("type", e.target.value)}>
                             <option value="">선택</option>
-                            <option value="국비">국비</option>
-                            <option value="일반">일반</option>
+                            <option value="frontend">프론트</option>
+                            <option value="backend">백엔드</option>
+                            <option value="fullstack">풀스택</option>
                         </select>
                     </div>
                     <div className={styles.inputcontainer}>과정명
@@ -101,10 +104,14 @@ const Course_modify = () => {
                     <div className={styles.inputcontainer}>강사명
                         <input className={styles.inputbox} value={formData.instructor} onChange={(e) => handleChange("instructor", e.target.value)}></input> 
                     </div>
-                    <div className={styles.inputcontainer} >수강시작|수강종료
-                        <input className={styles.inputbox} ></input> 
+                    <div className={styles.inputcontainer} >수강시작일
+                        <input className={styles.inputbox} value={formData.startDate} onChange={(e) => handleChange("startDate", e.target.value)}></input> 
+                    </div>
+                    <div className={styles.inputcontainer} >수강종료일
+                        <input className={styles.inputbox} value={formData.endDate} onChange={(e) => handleChange("endDate", e.target.value)}></input> 
                     </div>
                     <div className={styles.inputcontainer}>수강 정원
+                        <span className={styles.capacity}>(현재인원: {formData.currCount}명)</span> 
                         <input className={styles.inputbox} value={formData.capacity} onChange={(e) => handleChange("capacity", e.target.value)}></input> 
                     </div>
                 </div>

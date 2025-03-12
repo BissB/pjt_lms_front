@@ -6,7 +6,6 @@ import styles from './Course_check.module.css';
 import Course_info from './Course_info';
 import Course_content from './Course_content';
 import Course_delete from './Course_delete';
-import Course_modify from './Course_modify';
 import {Member}  from '../member_list';
 import { useParams } from "react-router-dom";
 
@@ -19,7 +18,7 @@ const Course_check = () => {
 
     const [formData, setFormData] = useState({
         type: "",
-        startDate: "",
+        name: "",
         instructor: "",
         startDate: "",
         endDate: "",
@@ -59,7 +58,7 @@ const Course_check = () => {
     //// 수정 팝업////////////////////////////////////////////////////////////////////////////////////////////////
       
     const handleModifyShowPopup = () => {
-        navigate("/course_modify");
+        navigate("/course/update/:courseId");
     };
     
 
@@ -102,12 +101,12 @@ const Course_check = () => {
 
                 <div className={styles.top_rightbox}>
                     <div className={styles.inputboxes}>
-                        <Course_info label="구분" value={formData.type} disabled />
-                        <Course_info label="수강시작" value={formData.startDate} disabled/>
+                        <Course_info label="구분" value={formData.type} disabled/>
+                        <Course_info label="수강시작일" value={formData.startDate} disabled/>
                         <Course_info label="과정명" value={formData.name} disabled/>
-                        <Course_info label="수강종료" value={formData.endDate} disabled />
+                        <Course_info label="수강종료일" value={formData.endDate} disabled/>
                         <Course_info label="강사명" value={formData.instructor} disabled/>
-                        <Course_info label="수강정원" value={formData.capacity} disabled/>                    
+                        <Course_info  label={`수강정원 (현재인원: ${formData.currCount}명)`} value= {formData.capacity} disabled/>
                     </div>
                     <Course_content label="내용" value={formData.detail} disabled/>
                 </div>
