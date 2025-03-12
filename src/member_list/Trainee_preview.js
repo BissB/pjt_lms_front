@@ -19,12 +19,13 @@ const Trainee_list = () => {
     condition: "name",
     q: "김태영"
   };
+  
   const [members, setMembers] = useState([ // 멤버 정보 (백엔드에서 어떻게 받아와야하나? 어떻게 적용해야하나?)
     {
       id: 'A0123456',
       name: '신준철',
       phone: '010-1234-5678',
-      course: '그래픽',
+      course: '프론트',
       date: '2025.03.06',
       status: '취업완료',
       photo: img1,
@@ -33,7 +34,7 @@ const Trainee_list = () => {
       id: 'A5431823',
       name: '윤성미',
       phone: '010-4167-5138',
-      course: 'JAVA',
+      course: '백엔드',
       date: '2025.02.23',
       status: '훈련중',
       photo: img2,
@@ -61,7 +62,7 @@ const Trainee_list = () => {
       id: 'A984651',
       name: '최성락',
       phone: '010-1234-5678',
-      course: 'eclipse',
+      course: '백엔드',
       date: '2025.03.01',
       status: '훈련중',
       photo: img5,
@@ -70,7 +71,7 @@ const Trainee_list = () => {
       id: 'A534651',
       name: '오연주',
       phone: '010-1234-5678',
-      course: '프론트엔드',
+      course: '프론트',
       date: '2025.01.18',
       status: '취업완료',
       photo: img6,
@@ -88,7 +89,7 @@ const Trainee_list = () => {
       id: 'A6873513',
       name: '김헤헿1',
       phone: '010-1234-5678',
-      course: '그래픽',
+      course: '풀스택',
       date: '2025.03.06',
       status: '중도포기',
       photo: '',
@@ -97,7 +98,7 @@ const Trainee_list = () => {
       id: 'A572145',
       name: '김헤헿2',
       phone: '010-1234-5678',
-      course: '그래픽',
+      course: '프론트',
       date: '2025.03.06',
       status: '중도포기',
       photo: '',
@@ -106,7 +107,7 @@ const Trainee_list = () => {
       id: 'A6721346',
       name: '김헤헿3',
       phone: '010-1234-5678',
-      course: '그래픽',
+      course: '풀스택',
       date: '2025.03.06',
       status: '중도탈락',
       photo: '',
@@ -115,7 +116,7 @@ const Trainee_list = () => {
       id: 'A11223344',
       name: '김헤헿4',
       phone: '010-1234-5678',
-      course: '그래픽',
+      course: '풀스택',
       date: '2025.03.06',
       status: '중도포기',
       photo: '',
@@ -293,12 +294,12 @@ const Trainee_list = () => {
     switch (course) { // 케이스 추가할것 (***)
       case "백엔드":
         return "#FFEB9B";
-      case "프론트엔드":
+      case "프론트":
         return "#72F2F6";
       case "풀스택":
         return "#96FF88";
       default:
-        return null; // 기본 색상
+        return "#ddd"; // 기본 색상
     }
   };
 

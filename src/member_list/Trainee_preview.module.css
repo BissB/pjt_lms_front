@@ -11,7 +11,7 @@
 .title {
     position: absolute;
     top: 10%;
-    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 4px 4px rgba(34, 30, 31, 0.4));
     font-size: 36px;
     font-weight: bold;
 }
@@ -22,7 +22,7 @@
 }
 
 .registerBtn {
-    background-color: #674eff;
+    background-color: #3247fc;
     color: white;
     border: none;
     border-radius: 7px;
@@ -42,7 +42,7 @@
     border-radius: 7px;
     padding: 10px;
     margin-left: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid #5162f5;
 
     font-size: 1rem;
 }
@@ -62,7 +62,6 @@
     border: none;
     cursor: pointer;
 
-    color: black;
     font-size: 1rem;
 }
 
@@ -71,7 +70,7 @@
     position: relative;
     padding: 20px 0 20px 5px;
     margin: 30px 0 10px;
-    background-color: #ddd;
+    background-color: #c5caf2;
     justify-content: space-evenly;
 
     font-weight: 600;
@@ -128,8 +127,9 @@
 .tableBody tr {
     position: relative;
     height: 70px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-    border: 1px solid #ddd;
+    box-shadow: 2px 2px 10px rgba(81, 98, 245, 0.4);
+    border: 1px solid #8bd2ef;
+    border-radius: 5px;
 }
 
 table img {
