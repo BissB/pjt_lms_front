@@ -2,9 +2,11 @@
 
 컬러
 
-nav - #302E2D
-배경 - #F7F7F5
-포인트 - #F2B441
+노랑 - #F2C879
+
+내부 글씨 1.2rem, #221e1f
+padding 10px 20px
+
 
 */
 
@@ -20,7 +22,7 @@ nav - #302E2D
     padding-right: 20px;
 
     /* ================================= */
-    background-color: #302E2D;
+    background-color: #F5F5F5;
     backdrop-filter: blur(5px);
 
     overflow: auto;
@@ -44,7 +46,7 @@ nav - #302E2D
     row-gap: 50px;
     column-gap: 20px;
 
-    background-color: #F7F7F5;
+    background-color: #F5F5F5;
 
     z-index: 20;
 }
@@ -68,8 +70,8 @@ nav - #302E2D
     width: 120px;
     height: 50px;
 
-    background-color: #757CFF;
-    color: white;
+    background-color: #f7b130;
+    color: #F5F5F5;
     border: none;
     border-radius: 7px;
     padding: 10px 20px;
@@ -79,35 +81,39 @@ nav - #302E2D
     position: absolute;
     display: flex;
 
-    right: 80px;
+    right: 120px;
     top: 150px;
     width: 50%;
     height: 50px;
-
 }
 
 .drop1, .drop2 {
     position: relative;;
     margin-right: 1%;
+    padding: 5px;
     left: 55%;
     width: 8%;
     height: 35px;
+
+    border: 1px solid  #7d7c7c;
+    background-color:#F5F5F5;
+
+    border-radius: 7px;
     
 
-    background-color: white;
-    
-    padding: 5px;
 }
 
 .search_bar {
     position: relative;
 
     width: 25%;
-    height: 35px;
+    height: 31px;
 
     left: 55%;
-    background-color: white;
-    border: none;
+    background-color: #F5F5F5;
+    
+    border: 1px solid  #7d7c7c;
+    border-radius: 7px;
 }
 
 .icon {
@@ -119,7 +125,7 @@ nav - #302E2D
     border: none;
     cursor: pointer;
 
-    color: black;
+    color: #7d7c7c;;
     font-size: 1rem;
 }
 
@@ -138,7 +144,7 @@ nav - #302E2D
     width: 250px;
     height: 250px;
 
-    background-color: white;
+    background-color: #f7e3c0;
 }
 
 
