@@ -18,13 +18,14 @@ const Course_check = () => {
     const {courseId} = useParams(); // 과정 코드 받아오기
 
     const [formData, setFormData] = useState({
-        category: "",
+        type: "",
         startDate: "",
-        courseName: "",
-        endDate: "",
         instructor: "",
+        startDate: "",
+        endDate: "",
         capacity: "",
-        content: ""
+        currCount: "",
+        detail: ""
     });
 
    
@@ -54,14 +55,6 @@ const Course_check = () => {
             });
             // fetchData();    // *** db에서 데이터 받아오기 ***굼금! 
     }, []);
-
-
-    const handleChange = (field) => (e) => {        // field를 받아서 e.target.value를 formData에 넣어줌
-        setFormData((prev) => ({                    
-            ...prev,
-            [field]: e.target.value      
-        }));
-    };
 
     //// 수정 팝업////////////////////////////////////////////////////////////////////////////////////////////////
       
@@ -109,14 +102,14 @@ const Course_check = () => {
 
                 <div className={styles.top_rightbox}>
                     <div className={styles.inputboxes}>
-                        <Course_info label="구분" value={formData.type} onChange={(e) => handleChange("type", e.target.value)} />
-                        <Course_info label="수강시작" value={formData.startDate} onChange={(e) => handleChange("startDate", e.target.value)} />
-                        <Course_info label="과정명" value={formData.name} onChange={(e) => handleChange("name", e.target.value)} />
-                        <Course_info label="수강종료" value={formData.endDate} onChange={(e) => handleChange("endDate", e.target.value)} />
-                        <Course_info label="강사명" value={formData.instructor} onChange={(e) => handleChange("instructor", e.target.value)} />
-                        <Course_info label="수강정원" value={formData.capacity} onChange={(e) => handleChange("capacity", e.target.value)} />                    
+                        <Course_info label="구분" value={formData.type} disabled />
+                        <Course_info label="수강시작" value={formData.startDate} disabled/>
+                        <Course_info label="과정명" value={formData.name} disabled/>
+                        <Course_info label="수강종료" value={formData.endDate} disabled />
+                        <Course_info label="강사명" value={formData.instructor} disabled/>
+                        <Course_info label="수강정원" value={formData.capacity} disabled/>                    
                     </div>
-                    <Course_content value={formData.content} onChange={(e) => handleChange("content", e.target.value)} />
+                    <Course_content label="내용" value={formData.detail} disabled/>
                 </div>
                 
 

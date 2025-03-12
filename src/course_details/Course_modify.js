@@ -1,4 +1,5 @@
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { useNavigate , useParams } from 'react-router-dom';
 
 import styles from './Course_modify.module.css';
 
@@ -6,23 +7,67 @@ const Course_modify = () => {
     console.log("Course_modify() invoked.");
 
     const navigate = useNavigate();
+    const { courseId } = useParams(); // URL에서 courseId 가져오기
 
+    /// 수정 팝업 닫고 디테일로 이동 //////////////////////////////////////////////////////////////////////////////////////////
     const onClose = () => {
         navigate("/course_detail");
     }
 
+    /// 수정할 데이터  //////////////////////////////////////////////////////////////////////////////////////////
+    const [formData, setFormData] = useState({
+        type: "",
+        name: "",
+        instructor: "",
+        startDate: "",
+        endDate: "",
+        capacity: "",
+        detail: "",
+    });
+
+    // 📌 **백엔드에서 기존 데이터를 가져오기**
+    //  useEffect(() => {
+    //     fetch(`http://localhost:443/course/read/${courseId}`)
+    //         .then((response) => response.json())
+    //         .then((data) => {
+    //             setFormData({
+    //                 type: data.type || "",
+    //                 name: data.name || "",
+    //                 instructor: data.instructor || "",
+    //                 startDate: data.startDate || "",
+    //                 endDate: data.endDate || "",
+    //                 capacity: data.capacity || "",
+    //                 detail: data.detail || "",
+    //             });
+    //         })
+    //         .catch((error) => console.error("데이터 불러오기 실패:", error));
+    // }, [courseId]);
+
+    // 📌 **입력값이 변경될 때 상태 업데이트**
+    
+    const handleChange = (field, value) => {
+        setFormData((prevData) => ({
+            ...prevData,
+            [field]: value,
+        }));
+    };
+
+
+    /// 수정 확인 //////////////////////////////////////////////////////////////////////////////////////////
     const handleModifyConfirm = async () => {
-        // if (!selectedCourseId) return;
        
     try {
-        const response = await fetch(`https://localhost:443/course/update`, {
-        method: "POST",
-        // body: JSON.stringify({ })
+        const response = await fetch(`https://localhost:443/course/update/${courseId}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
         });
 
         if (response.ok) {
             alert("수정되었습니다.");
-            // setCourses(prevCourses => prevCourses.filter(course => course.id !== selectedCourseId));
+            navigate(`/course_detail/${courseId}`);
         } else {
             alert("수정 실패: ");
         }
@@ -34,35 +79,39 @@ const Course_modify = () => {
     onClose();
     };
 
+    /// /////////////////////////////////////////////////////////////////////////////////////////////
+    
+    
+
     return(
         <div className={styles.main}>
             <div className={styles.container}>
                 <div className={styles.leftbox}>
                     <div className={styles.titletext}>과정 정보 관리</div>
                     <div className={styles.dropdown}>구분 
-                        <select>
-                            <option>선택</option>
-                            <option>국비</option>
-                            <option>일반</option>
+                        <select value={formData.type} onChange={(e) => handleChange("type", e.target.value)}>
+                            <option value="">선택</option>
+                            <option value="국비">국비</option>
+                            <option value="일반">일반</option>
                         </select>
                     </div>
                     <div className={styles.inputcontainer}>과정명
-                        <input className={styles.inputbox}></input> 
+                        <input className={styles.inputbox}  value={formData.name} onChange={(e) => handleChange("name", e.target.value)}></input> 
                     </div>
                     <div className={styles.inputcontainer}>강사명
-                        <input className={styles.inputbox}></input> 
+                        <input className={styles.inputbox} value={formData.instructor} onChange={(e) => handleChange("instructor", e.target.value)}></input> 
                     </div>
-                    <div className={styles.inputcontainer}>수강시작|수강종료
-                        <input className={styles.inputbox}></input> 
+                    <div className={styles.inputcontainer} >수강시작|수강종료
+                        <input className={styles.inputbox} ></input> 
                     </div>
                     <div className={styles.inputcontainer}>수강 정원
-                        <input className={styles.inputbox}></input> 
+                        <input className={styles.inputbox} value={formData.capacity} onChange={(e) => handleChange("capacity", e.target.value)}></input> 
                     </div>
                 </div>
 
                 <div className={styles.rightbox}>
                     <input className={styles.file} type='file'/>
-                    <textarea className={styles.contentbox}/>
+                    <textarea className={styles.contentbox} value={formData.detail} onChange={(e) => handleChange("detail", e.target.value)}/>
                     <div className={styles.buttonbox}>
                         <button onClick={handleModifyConfirm} className={styles.savebutton}>저장</button>
                         <button onClick={onClose} className={styles.cancelbutton}>취소</button>

@@ -20,6 +20,7 @@ function App() {
           <Route path="/course_overview" element={<Course_manage />} />
           <Route path="/course_register" element={<Course_register/>}/>
           <Route path="/course_detail" element={<Course_check />} />
+          <Route path="/course/update/:courseId" element={<Course_modify />} />
           <Route path="/trainee_list" element={<Trainee />} />
           <Route path="/trainee_modify" element={<Trainee_Modification />} />
           <Route path="/trainee_delete" element={<Trainee_Deletion />} />
