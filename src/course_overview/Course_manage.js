@@ -1,7 +1,5 @@
 import { useState,useEffect, useRef } from 'react';
-import Course_info from '../course_details/Course_info';
-import { Course_content } from '../course_details';
-import Course_modify from '../course_details';
+import { useNavigate } from 'react-router-dom';
 import styles from './Course_manage.module.css';
 import sample1 from './img/sample1.avif'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,6 +9,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';       // 무한스
 
 const Course_manage = () => {
    
+        const navigate = useNavigate();
 
         const [courses,setCourses] = useState([
             {
@@ -370,51 +369,9 @@ const Course_manage = () => {
         };
     
     
-        // 팝업 ============================================================================
-        const [formData, setFormData] = useState({
-            category: "",
-            startDate: "",
-            courseName: "",
-            endDate: "",
-            instructor: "",
-            capacity: "",
-            content: ""
-        });
-
-        const [courseRegister, setCourseRegister] = useState(false);
-
-        const openCourseRegister = () => { setCourseRegister(true); };
-        document.body.classList.add("popup-open");
-        const closeCourseRegister = () => { setCourseRegister(false); };
-        document.body.classList.remove("popup-open");
-
-        // 팝업 정보 불러오기
-        const handleChange = (field) => (e) => {
-            setFormData((prev) => ({
-                ...prev,
-                [field]: e.target.value
-            }));
-        };
-
-        // 팝업 수정
-        const [showDeletePopup, setShowDeletePopup] = useState(false);  // 팝업 상태
-        const [showModifyPopup, setShowModifyPopup] = useState(false);
-        
-        const handleModifyShowPopup = () => {
-            if(showDeletePopup) setShowDeletePopup(false);
-            setShowModifyPopup(true);  // 팝업 보이기
-        };
-        
-        const handleModifyClosePopup = () => {
-            setShowModifyPopup(false);  // 팝업 닫기
-        };
-
-        const handleModify = () => {
-            alert("수정되었습니다.");  // 저장 처리 예시
-            setShowModifyPopup(false);  // 팝업 닫기
 
 
-        ////////////////////////////////////////////////////////   데이터 불러오기   /////////////////////////////////////////////////////////
+        // //////////////////////////////////////////////////////   데이터 불러오기   /////////////////////////////////////////////////////////
         // const [searchParams] = useSearchParams();
         // const status = searchParams.get("status") || "default"; // 기본값 설정
 
@@ -445,7 +402,7 @@ const Course_manage = () => {
         //         // fetchData();    // *** db에서 데이터 받아오기 ***굼금! 
         // }, [status]);
 
-        /////////////////////////////////////////////////////////    해당 id 과정 상세조회/////////////////////////////////////////////////////////////////////
+        // ///////////////////////////////////////////////////////    해당 id 과정 상세조회/////////////////////////////////////////////////////////////////////
 
 
         // const navigate = useNavigate();
@@ -463,9 +420,13 @@ const Course_manage = () => {
         //     </div>
         // );
 
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        };
+
+        const openCourseRegister = () =>{
+
+            navigate("/course_register");
+        }
 
         return (
             <div className={styles.topmain}>
@@ -552,42 +513,6 @@ const Course_manage = () => {
                         {!hasMore && <p style={{ textAlign: 'center' }}></p>}
                 </div>
 
-                <>
-                    {/* 과정 등록 팝업 */}
-                        {courseRegister && (
-                            <div className={styles.topbox}>
-
-                            <div className={styles.top_leftbox}>
-            
-                                <button className={styles.backbutton} onClick={closeCourseRegister}><FontAwesomeIcon icon={faCircleXmark} size="3x"/></button>
-                                <div className={styles.imgbox}></div>
-                                <div className={styles.buttonbox}>      
-                                    <button className={styles.modify_button} onClick={handleModifyShowPopup}>수정</button>
-                                
-                                    {/* 어디에 쓰일지 아직 미정 */}
-                                    <button className={styles.delete_button}>삭제</button> 
-                                </div>
-            
-                            </div>
-
-            
-                            <div className={styles.top_rightbox}>
-                                <div className={styles.inputboxes}>
-                                    <Course_info label="구분" value={formData.category} onChange={(e) => handleChange("category", e.target.value)} />
-                                    <Course_info label="수강시작" value={formData.startDate} onChange={(e) => handleChange("startDate", e.target.value)} />
-                                    <Course_info label="과정명" value={formData.courseName} onChange={(e) => handleChange("courseName", e.target.value)} />
-                                    <Course_info label="수강종료" value={formData.endDate} onChange={(e) => handleChange("endDate", e.target.value)} />
-                                    <Course_info label="강사명" value={formData.instructor} onChange={(e) => handleChange("instructor", e.target.value)} />
-                                    <Course_info label="수강정원" value={formData.capacity} onChange={(e) => handleChange("capacity", e.target.value)} />                    
-                                </div>
-                                <Course_content value={formData.content} onChange={(e) => handleChange("content", e.target.value)} />
-                            </div>
-                            
-            
-                        </div>
-                        )}
-
-                </>
         
             </div>
         );
