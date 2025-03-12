@@ -45,20 +45,6 @@ const Course_manage = () => {
         
             },
 
-
-            {
-                category: '세무회계',
-                courseName: '전산 회계 1급',
-                state: '예정',
-                startDate: "2025.1.1",
-                endDate: "2025.1.31",
-                img: sample1,
-                instructor: "홍길동",
-                capacity: "30/50",
-        
-            },
-
-
             {
                 category: '프론트엔드',
                 courseName: '가뿐한 프론트앤드 부수기',
@@ -301,13 +287,20 @@ const Course_manage = () => {
         const courseColor = (category) => {
             switch (category) {
                 case '풀스택':
-                    return { backgroundColor: '#ff6347' };
+                    return { 
+                        backgroundColor: '#ff6347',
+                        borderTopLeftRadius: '7px',
+                        borderTopRightRadius: '7px', };
                 case '프론트엔드':
-                    return { backgroundColor: '#81F7F3' };
+                    return { 
+                        backgroundColor: '#81F7F3',
+                        borderTopLeftRadius: '7px',
+                        borderTopRightRadius: '7px', };
                 case '백엔드':
-                return { backgroundColor: '#32cd32' };
-                case '세무회계':
-                return { backgroundColor: '#ffa500' };
+                return { 
+                    backgroundColor: '#32cd32',
+                    borderTopLeftRadius: '7px',
+                    borderTopRightRadius: '7px', };
                 default:
                 return { backgroundColor: '#d3d3d3' }; 
         };

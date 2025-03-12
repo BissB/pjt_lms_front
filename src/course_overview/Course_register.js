@@ -37,7 +37,7 @@ const Course_register = () => {
         <div className={styles.main}>
             <div className={styles.container}>
                 <div className={styles.leftbox}>
-                    <div className={styles.titletext}>과정 정보 관리</div>
+                    <div className={styles.titletext}>과정 등록</div>
                     <div className={styles.dropdown}>구분 
                         <select>
                             <option>선택</option>

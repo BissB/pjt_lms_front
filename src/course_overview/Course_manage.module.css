@@ -144,29 +144,9 @@ padding 10px 20px
     width: 250px;
     height: 250px;
 
-    background-color: #f7e3c0;
+    background-color: #f4deb4;
 }
 
-
-/* categorybar 컬러 */
-
-.fullstackcolor {
-    display: grid;
-
-    background-color: #f08080;
-}
-
-.frontendcolor {
-    display: grid;
-
-    background-color: rgb(211, 249, 96);
-}
-
-.backendcolor {
-    display: grid;
-
-    background-color: yellow;
-}
 
 /* ////////////////////////////////////////////////// */
 
@@ -181,6 +161,7 @@ padding 10px 20px
     height: 80%;
 
     background-color: pink;
+    border-radius: 7px;
     
 }
 
@@ -194,12 +175,13 @@ padding 10px 20px
     position: absolute;
 
     right: 8%;
-    bottom: 52%;
+    bottom: 40%;
 
-    width: 20%;
+    width: 30%;
     
     background-color: navy;
     color: white;
+    border-radius: 7px;
 }
 
 .contentstextbody {
@@ -216,15 +198,6 @@ padding 10px 20px
 
     text-align: left;
 
-}
-
-.contentsfooter {
-    position: relative;
-    display: flex;
-
-    width: 100%;
-    height: 100%;
-    
 }
 
 
@@ -244,7 +217,9 @@ padding 10px 20px
     width: 100%;
     height: 30px;
 
-    background-color: beige;
+    background-color: #fec353;
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
 }
 
 .instructorname {
@@ -270,144 +245,3 @@ padding 10px 20px
 }
 
 
-/* 팝업 ================================================*/
-
-
-.topbox{
-    position: relative;
-    display: flex;
-    width: 70%;
-    height: 70%;
-
-    bottom: 50%;
-
-    border-radius: 10px;
-
-    margin-bottom: 50px;
-    
-    background-color: pink;
-
-    box-shadow: 4px 4px 10px rgb(131, 0, 0);
-
-    z-index: 99;
-}
-/* ============================2 */
-.top_leftbox{
-    position: relative;
-
-    width: 40%;
-    height: 100%;
-
-    display: flex;
-    justify-content: center;
-}
-
-.backbutton{
-    position: absolute;
-    top :20px;
-    left: 20px;
-    
-    width: 50px;
-    height: 50px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border: none;
-    border-radius: 50%;
-
-    cursor: pointer;
-
-    z-index: 99;
-}
-
-.imgbox2{
-    position: relative;
-
-    width : 80%;
-    height: 40%;
-    
-    top: 16%;
-    right: 8%;
-
-    border-radius: 6px;
-
-    background-image: url('./img/sample1.avif') ;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.buttonbox{
-    position: absolute;
-    width : 100%;
-    height : 30%;
-
-    bottom: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 100px;
-
-    /* background-color: white; */
-}
-
-.regist_button {
-    width: 20%;
-    height: 30%;
-
-    border: none;
-    border-radius: 5px;
-
-    background-color: rgb(252, 174, 174);
-
-    cursor: pointer;
-}
-
-.modify_button{
-    width: 20%;
-    height: 30%;
-
-    border: none;
-    border-radius: 5px;
-
-    background-color: rgb(252, 174, 174);
-
-    cursor: pointer;
-}
-
-.delete_button{
-    width: 20%;
-    height: 30%;
-    
-    border: none;
-    border-radius: 5px;
-
-    background-color: rgb(252, 174, 174);
-
-    cursor: pointer;
-}
-/* ============================2 */
-
-.top_rightbox{
-    width: 60%;
-    height: 100%;
-
-    justify-items: center;
-}
-
-.inputboxes{
-    position: relative;
-    width: 100%;
-    height: 60%;
-
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2열 정렬 */
-    gap: 20px; /* 요소 간 간격 */
-
-    justify-items: center;
-    align-content: center;
-
-}

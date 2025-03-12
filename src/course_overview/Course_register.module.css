@@ -1,5 +1,20 @@
+/* 
+
+컬러
+
+노랑 - #F2C879
+
+내부 글씨 1.2rem, #221e1f
+흰색 대체 - #F5F5F5;
+
+padding 10px 20px
+
+
+*/
+
 .main{
     position:absolute;
+
     left:15vw;
 
     width: 85vw;
@@ -11,7 +26,7 @@
     align-items : center;
     justify-content: center;
 
-    background-color: white;
+    background-color: #F5F5F5;
 
     border-radius: 4px;
 }
@@ -24,9 +39,24 @@
     display: flex;
     flex-direction: row;
 
-    background-color: #555;
+    background-color: #F2C879;
+    border-radius: 7px;
+
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    
 }
 /* =========================================================== */
+
+.titletext{
+    position: relative;
+    top: 50px;
+
+    width: 200px;
+    height: 70px;
+    font-size: 2rem;
+
+    margin: 10px 0 50px 25px;
+}
 
 .leftbox{
     position: relative;
@@ -38,28 +68,19 @@
     /* left: 2%; */
 }
 
-.titletext{
-    width: 200px;
-    height: 70px;
-
-    align-content: center;
-
-    /* background-color: orange; */
-
-    margin: 10px 0 50px 0;
-}
-
 .dropdown{
     width: 300px;
     height: 65px;
 
     align-content: center;
 
-    background-color: yellow;
-
+    background-color: rgb(251, 243, 235);
     border-radius: 4px;
 
     margin-bottom: 40px;
+
+    font-size: 1.2rem;
+    padding-left: 10px;
 }
 
 .inputcontainer{
