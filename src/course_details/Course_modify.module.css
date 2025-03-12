@@ -11,7 +11,7 @@
     align-items : center;
     justify-content: center;
 
-    background-color: white;
+    background-color: #f5f5f5;
 
     border-radius: 4px;
 }
@@ -134,23 +134,25 @@
 }
 
 .savebutton{
-    width: 100px;
-    height: 40px;
+    padding: 10px 30px;
 
     border:none;
     cursor: pointer;
 
     border-radius: 4px;
     background-color: white;
+
+    font-size: 1.2rem;
 }
 
 .cancelbutton{
-    width: 100px;
-    height: 40px;
+    padding: 10px 30px;
 
     border:none;
     cursor: pointer;
 
     border-radius: 4px;
     background-color: white;
+
+    font-size: 1.2rem;  
 }

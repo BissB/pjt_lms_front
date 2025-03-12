@@ -371,7 +371,7 @@ const Course_manage = () => {
     
 
 
-        // //////////////////////////////////////////////////////   데이터 불러오기   /////////////////////////////////////////////////////////
+// //////////////////////////////////////////////////////   데이터 불러오기   /////////////////////////////////////////////////////////
         // const [searchParams] = useSearchParams();
         // const status = searchParams.get("status") || "default"; // 기본값 설정
 
@@ -387,13 +387,13 @@ const Course_manage = () => {
         //         })
         //         .then((data) => {
         //             setFormData({
-        //                 category: data?.category || "",
-        //                 startDate: data?.startDate || "",
-        //                 courseName: data?.courseName || "",
-        //                 endDate: data?.endDate || "",
+        //                 type: data?.type || "",
+        //                 name: data?.name || "",
         //                 instructor: data?.instructor || "",
-        //                 capacity: data?.capacity || "",
-        //                 content: data.content || "",
+        //                 startDate: data?.startDate || "",
+        //                 endDate: data?.endDate || "",
+        //                 currCount: data?.currCount || "",
+        //                 capacity: data.capacity || "",
         //             });
         //         })
         //         .catch((error) => {
@@ -407,8 +407,8 @@ const Course_manage = () => {
 
         // const navigate = useNavigate();
 
-        // const handleCourseClick = (crsCode) => {
-        //     navigate(`/course_overview/${crsCode}`); // 클릭한 과정의 crsCode를 URL로 전달
+        // const handleCourseClick = (courseId) => {
+        //     navigate(`/course_detail/${courseId}`); // 클릭한 과정의 crsCode를 URL로 전달
         // };
         // return (
         //     <div>
