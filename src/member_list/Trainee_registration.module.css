@@ -57,8 +57,22 @@
     border: 1px solid #4F4F4F;
     padding: 3px;
     border-radius: 3px;
+    margin-bottom: 20px;
 }
 
-.registration_btns button {
-    margin: 10px 20px;
+.registration_btns {
+    width: 330px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.registration_btns .registration_cancel,
+.registration_btns .registration_submit {
+    text-decoration: none;
+    background-color: #757CFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 7px 40px;
+    cursor: pointer;
 }
