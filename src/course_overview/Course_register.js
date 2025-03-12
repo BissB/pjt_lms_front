@@ -39,28 +39,35 @@ const Course_register = () => {
                 <div className={styles.leftbox}>
                     <div className={styles.titletext}>과정 등록</div>
                     <div className={styles.dropdown}>구분 
-                        <select>
+                        <select className={styles.select}>
                             <option>선택</option>
                             <option>국비</option>
                             <option>일반</option>
                         </select>
                     </div>
-                    <div className={styles.inputcontainer}>과정명
-                        <input className={styles.inputbox}></input> 
+                    <div className={styles.inputcontainer}
+                    >과정명
+                        <input className={styles.inputbox} placeholder="과정명을 입력해주세요" ></input> 
                     </div>
                     <div className={styles.inputcontainer}>강사명
-                        <input className={styles.inputbox}></input> 
+                        <input className={styles.inputbox} placeholder="강사명을 입력해주세요" ></input> 
                     </div>
-                    <div className={styles.inputcontainer}>수강시작|수강종료
-                        <input className={styles.inputbox}></input> 
+                    <div className={styles.datebox}>
+                        <div className={styles.dateinputcontainer1}>수강시작일
+                            <input className={styles.dateinputbox} placeholder="시작일을 입력해주세요" ></input> 
+                        </div>
+                        <div className={styles.dateinputcontainer2}>수강종료일
+                            <input className={styles.dateinputbox} placeholder="종료일을 입력해주세요" ></input> 
+                        </div>
                     </div>
                     <div className={styles.inputcontainer}>수강 정원
-                        <input className={styles.inputbox}></input> 
+                        <input className={styles.inputbox} placeholder="수강 정원을 입력해주세요"></input> 
                     </div>
                 </div>
 
                 <div className={styles.rightbox}>
                     <input className={styles.file} type='file'/>
+                    <p className={styles.contentboxheadline}>&lt; 내용 &gt;</p>
                     <textarea className={styles.contentbox}/>
                     <div className={styles.buttonbox}>
                         <button onClick={handleRegisterConfirm} className={styles.savebutton}>저장</button>
