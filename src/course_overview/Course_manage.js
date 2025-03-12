@@ -347,7 +347,7 @@ const Course_manage = () => {
             {
             root: document.querySelector('#main'), // 메인 컨테이너를 root로 설정
             rootMargin: "0px 0px 200px 0px", // 아래쪽으로 감지 범위 확장 (스크롤 내리면 콘텐츠가 보일 때)
-            threshold: 1.0, // 10%만 보여도 실행
+            threshold: 1.0 // 100% 보이면 실행
             }
         );
     

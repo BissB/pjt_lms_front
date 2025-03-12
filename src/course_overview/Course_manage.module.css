@@ -1,13 +1,26 @@
+/* 
+
+컬러
+
+nav - #302E2D
+배경 - #F7F7F5
+포인트 - #F2B441
+
+*/
+
 .topmain {
     position: relative;
     
-    width: calc(85vw - 130px);
-    height: 100vh;
+    /* ============= 레이아웃 ============ */
+    width: calc(85vw - 40px);
+    min-height: 100vh;
     left: 15vw;
+    right: 0;
     padding-left: 20px;
-    padding-right: 110px;
+    padding-right: 20px;
 
-    background-color: lightgray;
+    /* ================================= */
+    background-color: #302E2D;
     backdrop-filter: blur(5px);
 
     overflow: auto;
@@ -15,11 +28,24 @@
 
 
 .main {
+    /* ============= 레이아웃 ============ */
+    width: 90%;
+    min-height: 100%;
+    height: auto;
+    /* ================================= */
+    
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* 자동 줄바꿈 */
     align-items: start;
+
+    padding-right: 10%;
+    
+
     row-gap: 50px;
     column-gap: 20px;
+
+    background-color: #F7F7F5;
+
     z-index: 20;
 }
 
