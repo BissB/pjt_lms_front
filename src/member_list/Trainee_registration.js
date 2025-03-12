@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import styles from './Member_registration.module.css';
+import styles from './Trainee_registration.module.css';
 
-const Member_registration = ({ onClose }) => {
+const Trainee_registration = ({ onClose }) => {
   const [registerForm, setRegisterForm] = useState({
     memberType: '',
     memberId: '',
@@ -214,4 +214,4 @@ const Member_registration = ({ onClose }) => {
   );
 };
 
-export default Member_registration;
+export default Trainee_registration;

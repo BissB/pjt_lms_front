@@ -2,9 +2,9 @@ import './App.css';
 
 import Login from './login/Login';
 import Navbar from './navbar/Navbar';
-import  Course_manage  from './course_overview/Course_manage';
+import { Course_manage }  from './course_overview/';
 import { Course_check } from './course_details';
-import { Member } from './member_list/';
+import { Trainee } from './member_list/';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/course_overview" element={<Course_manage />} />
           <Route path="/course_detail" element={<Course_check />} />
-          <Route path="/member_list" element={<Member />} />
+          <Route path="/member_list" element={<Trainee />} />
         </Routes>
       </div>
     </div>

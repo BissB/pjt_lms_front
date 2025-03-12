@@ -37,6 +37,12 @@
     margin-left: auto;
 }
 
+.statusCheckboxes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .input,
 .dropdown {
     border-radius: 7px;
