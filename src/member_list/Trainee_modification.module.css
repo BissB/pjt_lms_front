@@ -62,7 +62,7 @@ h2 {
 }
 
 .btns {
-    width: 306px;
+    width: 330px;
     display: flex;
     justify-content: space-around;
 }
@@ -72,7 +72,8 @@ h2 {
     text-decoration: none;
     background-color: #757CFF;
     color: white;
-    border: 1px solid 0;
+    border: none;
     border-radius: 5px;
     padding: 7px 40px;
+    cursor: pointer;
 }
