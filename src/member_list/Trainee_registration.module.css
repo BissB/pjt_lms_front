@@ -1,4 +1,4 @@
-.background {
+.registration_background {
     width: 85vw;
     height: 100vh;
     position: fixed;
@@ -9,7 +9,7 @@
     z-index: 2;
 }
 
-.container {
+.registration_container {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -29,34 +29,27 @@
 }
 
 
-h2 {
+.registration_container h2 {
     text-align: center;
     margin-bottom: 0px;
 
 }
 
-.form {
+.registration_form {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.form .radio {
-    display: flex;
-    justify-content: space-between;
-    width: 230px;
-    margin-bottom: 10px;
-}
-
-.form .textbox {
+.registration_form .registration_textbox {
     width: 300px;
     height: 30px;
 
     margin-bottom: 10px;
 }
 
-.photo {
+.registration_photo {
     display: flex;
     align-items: center;
     width: 300px;
@@ -66,6 +59,6 @@ h2 {
     border-radius: 3px;
 }
 
-.btns button {
+.registration_btns button {
     margin: 10px 20px;
 }

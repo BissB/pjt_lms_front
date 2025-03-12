@@ -1,4 +1,4 @@
-.background {
+.delete_background {
     width: 85vw;
     height: 100vh;
     position: fixed;
@@ -10,18 +10,23 @@
     z-index: 99;
 }
 
-.container {
+.delete_container {
+    display: flex;
+    flex-direction: column;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
+    justify-content: center;
+    align-items: center;
+
     border: 1px solid #ddd;
     border-radius: 10px;
     background-color: #ddd;
 
-    width: 600px;
-    height: 500px;
+    width: 400px;
+    height: 300px;
 
     padding: 30px;
     box-sizing: border-box;
@@ -30,49 +35,25 @@
 }
 
 
-h2 {
+.delete_container h2 {
     text-align: center;
-    margin-bottom: 0px;
+    margin-bottom: 100px;
 
 }
 
-.form {
+.delete_btns {
+    width: inherit;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
-.form .textbox {
-    width: 300px;
-    height: 30px;
-
-    margin-bottom: 10px;
-}
-
-.photo {
-    display: flex;
-    align-items: center;
-    width: 300px;
-    height: 30px;
-    border: 1px solid #4F4F4F;
-    padding: 3px;
-    border-radius: 3px;
-    margin-bottom: 20px;
-}
-
-.btns {
-    width: 306px;
-    display: flex;
-    justify-content: space-around;
-}
-
-.btns .cancel,
-.btns .submit {
+.delete_btns .delete_cancel,
+.delete_btns .delete_submit {
     text-decoration: none;
     background-color: #757CFF;
     color: white;
-    border: 1px solid 0;
+    border: none;
     border-radius: 5px;
     padding: 7px 40px;
+    cursor: pointer;
 }

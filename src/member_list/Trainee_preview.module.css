@@ -37,12 +37,6 @@
     margin-left: auto;
 }
 
-.statusCheckboxes {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .input,
 .dropdown {
     border-radius: 7px;
@@ -109,20 +103,22 @@
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    justify-content: space-around;
+    align-items: center;
     
-    width: 5vw;
-    height: 3vh;
+    width: 150px;
+    height: 40px;
     background-color: #555;
     text-align: center;
     border-radius: 5px;
 }
 
-.tableBody .editMenu button {
-    /* position: absolute; */
-    font-size: 1rem;
-    color: #fff;
-    cursor: pointer;
+.tableBody .editMenu .modify,
+.tableBody .editMenu .delete {
+    text-decoration: none;
+    color: white;
 }
 
 .tableBody .editMenu button:hover {
@@ -150,3 +146,4 @@ table td button {
     font-weight: 600;
     text-align: center;
 }
+

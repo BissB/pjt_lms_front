@@ -4,7 +4,7 @@ import styles from './Course_manage.module.css';
 import sample1 from './img/sample1.avif'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
-import InfiniteScroll from 'react-infinite-scroll-component';       // 무한스크롤
+// import InfiniteScroll from 'react-infinite-scroll-component';       // 무한스크롤
 
 
 const Course_manage = () => {

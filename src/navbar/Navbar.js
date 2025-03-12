@@ -33,7 +33,7 @@ const Navbar = () => {
         <li><Link to="/course_overview?status=0" className={styles.trainee} >진행종료</Link></li>
         <br />
         <ul>회원 관리</ul>
-        <li><Link to="/member_list" className={styles.trainee} >훈련생</Link></li>
+        <li><Link to="/trainee_list" className={styles.trainee} >훈련생</Link></li>
         <li>강사</li>
         <li>관리자</li>
       </div>

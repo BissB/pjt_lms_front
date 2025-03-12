@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Trainee_preview.module.css';
-import { Trainee_Registration, Trainee_Modification } from '.';
+import { Trainee_Registration } from '.';
 import img1 from './img/1.png';
 import img2 from './img/2.png';
 import img3 from './img/3.png';
@@ -16,7 +17,6 @@ const Trainee_list = () => {
     {
       id: 'A0123456',
       name: '신준철',
-      username: 'wpgkfhfef',
       phone: '010-1234-5678',
       course: '그래픽',
       date: '2025.03.06',
@@ -26,7 +26,6 @@ const Trainee_list = () => {
     {
       id: 'A5431823',
       name: '윤성미',
-      username: 'hterhjdqp',
       phone: '010-4167-5138',
       course: 'JAVA',
       date: '2025.02.23',
@@ -36,7 +35,6 @@ const Trainee_list = () => {
     {
       id: 'A4315749',
       name: '홍성태',
-      username: 'krgwsfgxfx',
       phone: '010-1234-5678',
       course: '백엔드',
       date: '2025.03.06',
@@ -47,7 +45,6 @@ const Trainee_list = () => {
     {
       id: 'A85612654',
       name: '김태영',
-      username: 'mrwsgg',
       phone: '010-1234-5678',
       course: '풀스택',
       date: '2025.03.15',
@@ -57,7 +54,6 @@ const Trainee_list = () => {
     {
       id: 'A984651',
       name: '최성락',
-      username: 'yjtdryt',
       phone: '010-1234-5678',
       course: 'eclipse',
       date: '2025.03.01',
@@ -67,7 +63,6 @@ const Trainee_list = () => {
     {
       id: 'A534651',
       name: '오연주',
-      username: 'uktreedrv',
       phone: '010-1234-5678',
       course: '프론트엔드',
       date: '2025.01.18',
@@ -77,7 +72,6 @@ const Trainee_list = () => {
     {
       id: 'A766213',
       name: '소용소',
-      username: 'htesgrrg',
       phone: '010-1234-5678',
       course: '미정',
       date: '2025.01.18',
@@ -87,7 +81,6 @@ const Trainee_list = () => {
     {
       id: 'A6873513',
       name: '김헤헿1',
-      username: 'wpgkfhfef',
       phone: '010-1234-5678',
       course: '그래픽',
       date: '2025.03.06',
@@ -97,7 +90,6 @@ const Trainee_list = () => {
     {
       id: 'A572145',
       name: '김헤헿2',
-      username: 'wpgkfhfef',
       phone: '010-1234-5678',
       course: '그래픽',
       date: '2025.03.06',
@@ -107,7 +99,6 @@ const Trainee_list = () => {
     {
       id: 'A6721346',
       name: '김헤헿3',
-      username: 'wpgkfhfef',
       phone: '010-1234-5678',
       course: '그래픽',
       date: '2025.03.06',
@@ -117,7 +108,6 @@ const Trainee_list = () => {
     {
       id: 'A11223344',
       name: '김헤헿4',
-      username: 'wpgkfhfef',
       phone: '010-1234-5678',
       course: '그래픽',
       date: '2025.03.06',
@@ -198,13 +188,13 @@ const Trainee_list = () => {
     // },
   ]);
 
-  // 상태 옵션 배열
-  const statusOptions = [
-    { value: "1", label: "훈련중" },
-    { value: "2", label: "중도탈락" },
-    { value: "3", label: "중도포기" },
-    { value: "4", label: "취업완료" },
-  ];
+  // // 상태 옵션 배열
+  // const statusOptions = [
+  //   { value: "1", label: "훈련중" },
+  //   { value: "2", label: "중도탈락" },
+  //   { value: "3", label: "중도포기" },
+  //   { value: "4", label: "취업완료" },
+  // ];
 
   const handleModificationClick = () => {
     setShowModification(true);
@@ -225,7 +215,7 @@ const Trainee_list = () => {
   useEffect(() => {   //*** db에서 데이터 받아오기 ***
     const fetchData = async () => {
       try {
-        const response = await fetch('https://your-backend-api.com/members');
+        const response = await fetch('https://localhost:443/trainee/list');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -295,6 +285,7 @@ const Trainee_list = () => {
       setShowEditMenu(null); // 팝업이 이미 열려있으면 닫기
     } else {
       setShowEditMenu(index); // 팝업 열기
+      setShowModification(false); // 수정 팝업 초기화
     }
   };
 
@@ -451,19 +442,7 @@ const Trainee_list = () => {
 
         {/* 검색항목 */}
         <div className={styles.searchContainer}>
-          <div className={styles.statusCheckboxes}>
-          {statusOptions.map((option) => (
-          <label key={option.value}>
-            <input
-              type="checkbox"
-              value={option.value}
-              checked={selectedStatus.includes(option.value)}
-              onChange={handleStatusChange}
-            />
-            {option.label}
-          </label>
-            ))}
-          </div>
+          
           <select
             name='search'
             className={styles.dropdown}
@@ -472,7 +451,6 @@ const Trainee_list = () => {
           >
             <option value="">검색 항목</option>
             <option value="name">이름</option>
-            <option value="username">아이디</option>
             <option value="phone">전화번호</option>
           </select>
           <input
@@ -494,7 +472,7 @@ const Trainee_list = () => {
       <div className={styles.tableHeader}>
         <div>사진</div>
         <div>회원번호</div>
-        <div>이름 / 아이디</div>
+        <div>이름</div>
         <div>전화번호</div>
         <div>신청과정</div>
         <div>등록일</div>
@@ -511,7 +489,7 @@ const Trainee_list = () => {
                 <img src={member.photo} alt='member photo' />
               </td>
               <td>{member.id}</td>
-              <td>{member.name} / {member.username}</td>
+              <td>{member.name}</td>
               <td>{member.phone}</td>
               <td>{member.course}</td>
               <td>{member.date}</td>
@@ -520,11 +498,8 @@ const Trainee_list = () => {
                 <button onClick={() => handleEditButton(index)} className={`${styles.edit}`}>···</button>
                 {showEditMenu === index && (
                   <div ref={editMenuRef} className={styles.editMenu}>
-                    <button onClick={handleModificationClick}>수정</button> {/* 회원 수정 버튼 */}
-        {showModification && (
-          <Trainee_Modification onClose={handleCloseModification} />
-        )}
-                    <button>삭제</button>
+                    <Link to={'/trainee_modify'} className={styles.modify}>수정</Link> {/* 회원 수정 버튼 */}
+                    <Link to={'/trainee_delete'} className={styles.delete}>삭제</Link>
                   </div>
                 )}
               </td> {/* 수정 / 삭제 버튼 */}
