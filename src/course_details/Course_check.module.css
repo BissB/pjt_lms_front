@@ -147,6 +147,8 @@
     grid-template-columns: repeat(2, 1fr); /* 2열 정렬 */
     gap: 0px; /* 요소 간 간격 */
 
+    margin-bottom: 80px;
+
     font-size: 1rem;
 
     justify-items: center;

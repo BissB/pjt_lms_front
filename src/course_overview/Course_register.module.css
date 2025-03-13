@@ -39,7 +39,7 @@ padding 10px 20px
     display: flex;
     flex-direction: row;
 
-    background-color: #f1d092;
+    background-color: #f5dbab;
     border-radius: 7px;
 
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
@@ -272,7 +272,13 @@ padding 10px 20px
 
     border-radius: 4px;
     background-color: white;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+
+    transition: all 0.3s ease;
+}
+
+.savebutton:hover {
+    transform: translateY(5px);
+    box-shadow: 4px 4px 10px #f5a510
 }
 
 .cancelbutton{
@@ -284,5 +290,11 @@ padding 10px 20px
 
     border-radius: 4px;
     background-color: white;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+
+    transition: all 0.3s ease;
+}
+
+.cancelbutton:hover {
+    transform: translateY(5px);
+    box-shadow: 4px 4px 10px #f5a510
 }
