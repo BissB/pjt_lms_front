@@ -12,8 +12,10 @@ const Instructor_modification = () => {
     course: '',
     status: '',
     enabled: '',
+    upfiles: null,
   });
 
+  // 기존 강사 정보 가져오기
   useEffect(() => {
     const fetchInstructorData = async () => {
       try {
@@ -26,12 +28,13 @@ const Instructor_modification = () => {
             course: data.course,
             status: data.status,
             enabled: data.enabled,
+            upfiles: null, // 파일은 기본적으로 null로 설정
           });
         } else {
           console.error('강사 정보 불러오기 실패:', response.statusText);
         }
       } catch (error) {
-        console.error('요청중 오류 발생:', error);
+        console.error('요청 중 오류 발생:', error);
       }
     };
 
@@ -56,7 +59,6 @@ const Instructor_modification = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(registerForm);
 
     try {
       const formData = new FormData();
@@ -66,15 +68,18 @@ const Instructor_modification = () => {
       formData.append('status', registerForm.status);
       formData.append('enabled', registerForm.enabled);
 
+      if (registerForm.upfiles) {
+        formData.append('upfiles', registerForm.upfiles); // 파일 추가
+      }
+
       const response = await fetch(`https://localhost:443/instructor/${instructorId}`, {
-        method: 'POST',
+        method: 'POST', // 수정 요청은 PUT 메서드 사용
         body: formData,
       });
 
       if (response.ok) {
-        alert('강사 정보가 수정되었습니다.');
-        navigate(-1);
-
+        alert('강사 정보가 성공적으로 수정되었습니다.');
+        navigate(-1); // 이전 페이지로 이동
       } else {
         console.error('수정 실패:', response.statusText);
         alert('강사 정보 수정에 실패했습니다.');
@@ -86,7 +91,7 @@ const Instructor_modification = () => {
   };
 
   const handleCancelClick = () => {
-    navigate(-1);
+    navigate(-1); // 이전 페이지로 이동
   };
 
   return (
@@ -122,6 +127,25 @@ const Instructor_modification = () => {
               value={registerForm.course}
               onChange={handleInputChange}
             />
+            
+            <input
+              type="text"
+              className={styles.textbox}
+              placeholder="상태(status)"
+              name="status"
+              value={registerForm.status}
+              onChange={handleInputChange}
+            />
+
+            <input
+              type="text"
+              className={styles.textbox}
+              placeholder="활성화 여부(enabled)"
+              name="enabled"
+              value={registerForm.enabled}
+              onChange={handleInputChange}
+            />
+
             <div className={styles.photo}>
               <input
                 type="file"
@@ -130,8 +154,12 @@ const Instructor_modification = () => {
                 onChange={handleFileChange}
               />
             </div>
+
             <div className={styles.btns}>
-              <button type="submit" className={styles.submit} onClick={handleCancelClick}>수정</button>
+              {/* 수정 버튼 */}
+              <button type="submit" className={styles.submit}>수정</button>
+              
+              {/* 취소 버튼 */}
               <button type="button" className={styles.cancel} onClick={handleCancelClick}>취소</button>
             </div>
           </div>
