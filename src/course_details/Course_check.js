@@ -79,7 +79,12 @@ const Course_check = () => {
     };
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+    const typeMapping = {
+        1: "NCS",
+        2: "KDT",
+        3: "산대특",
+        4: "미정"
+    };
    
     return(
 
@@ -102,7 +107,7 @@ const Course_check = () => {
 
                 <div className={styles.top_rightbox}>
                     <div className={styles.inputboxes}>
-                        <Course_info label="구분" value={formData.type} disabled/>
+                        <Course_info label="구분" value={typeMapping[formData.type] || "미정"} disabled/>
                         <Course_info label="수강시작일" value={formData.startDate} disabled/>
                         <Course_info label="과정명" value={formData.name} disabled/>
                         <Course_info label="수강종료일" value={formData.endDate} disabled/>
