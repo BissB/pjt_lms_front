@@ -21,6 +21,7 @@ const Course_manage = () => {
             img: sample1,
             instructor: "홍길동",
             capacity: "30/50",
+            // uri: "http://localhost:3000/course_register/fullstack-01"
         },
         {
             category: '프론트엔드',
@@ -458,34 +459,35 @@ const Course_manage = () => {
 
                 {/* 콘텐츠 박스 */}
                 {visibleCourses.map((course, index) => (
-                    <div className={styles.allContents} key={index}>
-                        <div className={styles.category} style={courseColor(course.category)}>
-                            {course.category}
+                    <div className={styles.allContentsBox}>
+                        <div className={styles.contentsBox} key={index}>
+                            <div className={styles.category} style={courseColor(course.category)}>
+                                {course.category}
+                            </div>
+
+                            <img src={sample1} className={styles.imgbox} alt="courseimg" />
+                            <div className={styles.state}>{course.state}</div>
+
+                            <div className={styles.contentsbody}>
+                                <div className={styles.courseName}>
+                                    {course.courseName}
+                                </div>
+                                <div className={styles.date}>
+                                    {course.startDate} ~ {course.endDate}
+                                </div>
+                            </div>
+
+                            <div className={styles.contentsfooter}>
+                                <div className={styles.instructor}>
+                                    {course.instructor}
+                                </div>
+                                <p>강사</p>
+                                <div className={styles.capacity}>
+                                    {course.capacity}
+                                </div>
+                                <p>명</p>
+                            </div>
                         </div>
-
-                        <img src={sample1} className={styles.imgbox} alt="courseimg" />
-                        <div className={styles.state}>{course.state}</div>
-
-                        <div className={styles.contentsbody}>
-                            <div className={styles.courseName}>
-                                {course.courseName}
-                            </div>
-                            <div className={styles.date}>
-                                {course.startDate} ~ {course.endDate}
-                            </div>
-                        </div>
-
-                        <div className={styles.contentsfooter}>
-                            <div className={styles.instructor}>
-                                {course.instructor}
-                            </div>
-                            <p>강사</p>
-                            <div className={styles.capacity}>
-                                {course.capacity}
-                            </div>
-                            <p>명</p>
-                        </div>
-
                     </div>
                 ))}
                 {/* 스크롤 확인용 div */}

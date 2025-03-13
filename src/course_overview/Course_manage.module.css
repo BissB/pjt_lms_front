@@ -9,7 +9,6 @@ padding 10px 20px
 
 
 */
-
 .topmain {
     position: relative;
     
@@ -36,11 +35,11 @@ padding 10px 20px
     height: auto;
     /* ================================= */
     
+    padding-right: 10vw;
+
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* 자동 줄바꿈 */
     align-items: start;
-
-    padding-right: 10%;
     
 
     row-gap: 50px;
@@ -70,12 +69,13 @@ padding 10px 20px
     left: 105px;
 
     width: 120px;
-    /* height: 50px; */
+    padding: 11px 20px;
 
     background-color: #ebbb41;
     border: none;
     border-radius: 7px;
-    padding: 11px 20px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+
     font-size: 1rem;
     cursor: pointer;
 }
@@ -125,6 +125,7 @@ padding 10px 20px
     top: 18%;
     right: 1%;
 
+
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -133,29 +134,45 @@ padding 10px 20px
     font-size: 1rem;
 }
 
-/* contentsBox */
-
-
-.allContents {
+.allContentsBox {
     position: relative;
 
-    top: 260px;
+    top: 250px;
     left: 85px;
-    display: grid;
+}
 
-    margin: 0;
+.allContentsBox:hover {
+    position: relative;
+
+    width: 250px;
+    height: 250px;
+
+    box-shadow: 
+    6px 15px 15px #edc12e;
+}
+
+.contentsBox {
+    position: relative;
+
+    display: grid;
 
     width: 250px;
     height: 250px;
     border-radius: 5px;
 
     background-color: #fedfa9;
+
+    transition: transform 0.3s ease; 
+
+    z-index: 10;
 }
+
 
 .category {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     padding: 5px 10px;
+    box-shadow: none !important; 
 }
 
 /* ////////////////////////////////////////////////// */
@@ -171,6 +188,7 @@ padding 10px 20px
     height: 80%;
 
     border-radius: 7px;
+    box-shadow: none !important; 
     
 }
 
@@ -178,29 +196,35 @@ padding 10px 20px
     position: relative;
     width: 100%;
     height: auto;
+
+    box-shadow: none !important; 
 }
 
 .state {
-    position: absolute;
+    position: relative;
 
-    right: 7%;
-    bottom: 35%;
+    left: 150px;
+    bottom: 55px;
 
     width: 30%;
     text-align: center;
     padding: 2px 0;
     box-sizing: border-box;
     
-    background-color: navy;
+    background-color: #BF0700;
     border: 1px solid #f9c771;
-    color: white;
+    color: #F5F5F5;
+    border: 1px solid #F5F5F5;
     border-radius: 5px;
+
+    box-shadow: none !important; 
 }
 
-.contentstextbody {
+.contentsbody {
     position: relative;
-    bottom: 17px;
+    bottom: 35px;
     margin-top: 0;
+    box-shadow: none !important; 
 }
 
 .courseName {
@@ -210,36 +234,44 @@ padding 10px 20px
     margin-bottom: 0;
 
     text-align: left;
+    box-shadow: none !important; 
 
 }
 
 .date {
+    
     margin-top: 5px;
     padding-left: 14px;
     padding-bottom: 10px;
 
     text-align: left;
+    box-shadow: none !important; 
 }
 
 .contentsfooter {
+    position: relative;
     display: flex;
     align-items: center;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    padding: 5px 10px;
-    box-sizing: border-box;
 
+    padding: 5px 10px;
 
     width: 100%;
     height: 30px;
+    bottom: 40px;
 
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    box-sizing: border-box;
     background-color: #f4f4b1;
+    box-shadow: none !important; 
 }
 
 .instructorname {
     position: relative;
     padding-left: 5px;
     width: 50%;
+
+    box-shadow: none !important; 
 }
 
 .instructor {
@@ -247,6 +279,7 @@ padding 10px 20px
     margin-left: 5px;
     width: 30%;
 
+    box-shadow: none !important; 
 }
 
 .capacity {
@@ -255,6 +288,7 @@ padding 10px 20px
     margin-right: 7px;
     width: 17%;
     height: auto;
-}
 
+    box-shadow: none !important; 
+}
 
