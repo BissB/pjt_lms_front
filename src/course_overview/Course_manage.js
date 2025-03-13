@@ -298,11 +298,11 @@ const Course_manage = () => {
     const courseColor = (category) => {
         switch (category) {
             case '풀스택':
-                return { backgroundColor: '#FF576A' };
+                return { backgroundColor: '#94F285' };
             case '프론트엔드':
-                return { backgroundColor: '#73D3E2' };
+                return { backgroundColor: '#72F2F2' };
             case '백엔드':
-                return { backgroundColor: '#44DC8B' };
+                return { backgroundColor: '#F2DB94' };
             default:
                 return { backgroundColor: '#d3d3d3' };
         };
