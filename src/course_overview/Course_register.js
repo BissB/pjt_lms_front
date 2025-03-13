@@ -10,27 +10,51 @@ const Course_register = () => {
         navigate("/course_overview");
     }
 
+    const [formData, setFormData] = useState({
+            type: "",
+            name: "",
+            instructor: "",
+            startDate: "",
+            endDate: "",
+            capacity: "",
+            detail: "",
+            file:""
+    });
+
     const handleRegisterConfirm = async () => {
-        // if (!selectedCourseId) return;
-       
-    try {
-        const response = await fetch(`https://localhost:443/course/register`, {
-        method: "POST",
-        // body: JSON.stringify({ })
-        });
 
-        if (response.ok) {
-            alert("수정되었습니다.");
-            // setCourses(prevCourses => prevCourses.filter(course => course.id !== selectedCourseId));
-        } else {
-            alert("수정 실패: ");
+        if (!courseName || !instructorName || !startDate || !endDate || !capacity) {
+            alert("모든 필수 정보를 입력하세요.");
+            return;
         }
-    } catch (error) {
-        console.error("수정 오류:", error);
-        // alert("수정 중 오류가 발생했습니다.");
-    }
+        
+        const data = new FormData();
+        data.append("courseType", courseType);
+        data.append("courseName", courseName);
+        data.append("instructorName", instructorName);
+        data.append("startDate", startDate);
+        data.append("endDate", endDate);
+        data.append("capacity", capacity);
+        data.append("description", description);
+//        if (file) {
+//           formData.append("file", file);
+//        }
 
-    onClose();
+        try {
+            const response = await fetch(`https://localhost:443/course`, {
+            method: "PUT",
+            });
+
+            if (response.ok) {
+                alert("등록되었습니다.");
+            } else {
+                alert("등록 실패: ");
+            }
+        } catch (error) {
+            console.error("등록 오류:", error);
+        }
+
+        onClose();
     };
 
     return(

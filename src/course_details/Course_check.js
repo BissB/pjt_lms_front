@@ -59,7 +59,7 @@ const Course_check = () => {
     //// 수정 팝업////////////////////////////////////////////////////////////////////////////////////////////////
       
     const handleModifyShowPopup = () => {
-        navigate("/course/update/:courseId");
+        navigate(`/course/update/${courseId}`);
     };
     
 

@@ -1,17 +1,19 @@
 
 import styles from './Course_delete.module.css';
+import { useParams } from 'react-router-dom';
 
 const Course_delete = ({onClose}) => {
     console.log("Course_delete() invoked.");
+
+    const { courseId } = useParams(); // URL에서 courseId 가져오기
 
     // 실제 삭제 요청
     const handleDeleteConfirm = async () => {
         // if (!selectedCourseId) return;
         
     try {
-        const response = await fetch(`https://localhost:443/course/delete`, {
-        method: "POST",
-        // body: JSON.stringify({ })
+        const response = await fetch(`https://localhost:443/course/${courseId}`, {
+        method: "DELETE",
         });
 
         if (response.ok) {

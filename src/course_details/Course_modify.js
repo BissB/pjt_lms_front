@@ -11,7 +11,7 @@ const Course_modify = () => {
 
     /// 수정 팝업 닫고 디테일로 이동 //////////////////////////////////////////////////////////////////////////////////////////
     const onClose = () => {
-        navigate("/course_detail");
+        navigate(`/course_detail/${courseId}`);
     }
 
     /// 수정할 데이터  //////////////////////////////////////////////////////////////////////////////////////////
@@ -27,23 +27,23 @@ const Course_modify = () => {
     });
 
     // 📌 **백엔드에서 기존 데이터를 가져오기**
-    //  useEffect(() => {
-    //     fetch(`http://localhost:443/course/read/${courseId}`)
-    //         .then((response) => response.json())
-    //         .then((data) => {
-    //             setFormData({
-    //                 type: data.type || "",
-    //                 name: data.name || "",
-    //                 instructor: data.instructor || "",
-    //                 startDate: data.startDate || "",
-    //                 endDate: data.endDate || "",
-    //                 capacity: data.capacity || "",
-    //                 currCount: data.currCount || "",
-    //                 detail: data.detail || "",
-    //             });
-    //         })
-    //         .catch((error) => console.error("데이터 불러오기 실패:", error));
-    // }, [courseId]);
+    useEffect(() => {
+         fetch(`https://localhost:443/course/${courseId}`)
+            .then((response) => response.json())
+            .then((data) => {
+                setFormData({
+                   type: data.type || "",
+                   name: data.name || "",
+                   instructor: data.instructor || "",
+                   startDate: data.startDate || "",
+                   endDate: data.endDate || "",
+                   capacity: data.capacity || "",
+                   currCount: data.currCount || "",
+                   detail: data.detail || "",
+               });
+           })
+           .catch((error) => console.error("데이터 불러오기 실패:", error));
+    }, [courseId]);
 
     // 📌 **입력값이 변경될 때 상태 업데이트**
     
@@ -59,7 +59,7 @@ const Course_modify = () => {
     const handleModifyConfirm = async () => {
        
     try {
-        const response = await fetch(`https://localhost:443/course/update/${courseId}`, {
+        const response = await fetch(`https://localhost:443/course/${courseId}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
