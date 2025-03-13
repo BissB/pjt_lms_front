@@ -27,6 +27,9 @@ const Course_check = () => {
         detail: ""
     });
 
+    useEffect(() => {
+        console.log("업데이트된 formData:", formData);
+    }, [formData]);  // 🔥 formData 변경될 때마다 로그 확인
    
     useEffect(() => {                               // 백엔드에서 데이터 가져오기 (오류 방지 처리 추가)
         console.log("courseId:", courseId);
@@ -38,6 +41,7 @@ const Course_check = () => {
                 return response.json();
             })
             .then((data) => {
+                console.log("curr", data.currCount);
                 setFormData({
                     // upfiles: data?.upfiles || [],
                     type: data?.type || "",
@@ -49,6 +53,7 @@ const Course_check = () => {
                     capacity: data?.capacity || "",
                     detail: data.detail || "",
                 });
+                console.log("data", data);
             })
             .catch((error) => {
                 console.error("데이터 불러오기 실패:", error);
@@ -112,7 +117,7 @@ const Course_check = () => {
                         <Course_info label="과정명" value={formData.name} disabled/>
                         <Course_info label="수강종료일" value={formData.endDate} disabled/>
                         <Course_info label="강사명" value={formData.instructor} disabled/>
-                        <Course_info  label={`수강정원 (현재인원: ${formData.currCount}명)`} value={formData.capacity} disabled/>
+                        <Course_info label={`수강정원 (현재인원: ${formData.currCount}명)`} value={formData.capacity} disabled/>
                     </div>
                     <Course_content label="내용" value={formData.detail} disabled/>
                 </div>

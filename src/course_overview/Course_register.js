@@ -19,7 +19,7 @@ const Course_register = () => {
             endDate: "",
             capacity: "",
             detail: "",
-            file: null,
+            upfiles: null,
     });
 
     const handleChange = (e) => {
@@ -33,7 +33,7 @@ const Course_register = () => {
 
     const handleRegisterConfirm = async () => {
 
-        if (!formData.type || !formData.name || !formData.instructor || !formData.startDate || !formData.endDate || !formData.capacity || !formData.detail) {
+        if (!formData.type || !formData.name  || !formData.startDate || !formData.endDate || !formData.capacity || !formData.detail) {
             alert("모든 필수 정보를 입력하세요.");
             return;
         }
@@ -46,14 +46,14 @@ const Course_register = () => {
         data.append("endDate", formData.endDate);
         data.append("capacity", formData.capacity);
         data.append("detail", formData.detail);
-        if (formData.file) {
-           data.append("file", formData.file);
+        if (formData.upfiles) {
+           data.append("upfiles", formData.upfiles);
         }
         
         console.log("formData:", formData );
 
         try {
-            const response = await fetch(`http://localhost:443/course`, {
+            const response = await fetch(`https://localhost:443/course`, {
             method: "PUT", // 현재 등록은 PUT
             body: data,
             });
@@ -78,9 +78,10 @@ const Course_register = () => {
                     <div className={styles.dropdown}>구분 
                         <select name="type" className={styles.select} onChange={handleChange}>
                             <option value="">선택</option>
-                            <option value="frontend">프론트엔드</option>
-                            <option value="backend">백엔드</option>
-                            <option value="fullstack">풀스택</option>
+                            <option value="1">NCS</option>
+                            <option value="2">KDT</option>
+                            <option value="3">산대특</option>
+                            <option value="4">미정</option>
                         </select>
                     </div>
                     <div className={styles.inputcontainer}

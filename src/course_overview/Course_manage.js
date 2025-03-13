@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styles from './Course_manage.module.css';
 import sample1 from './img/sample1.avif'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,7 +10,7 @@ import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 const Course_manage = () => {
 
     const navigate = useNavigate();
-
+    
     // //////////////////////////////////////////////////////   데이터 불러오기   /////////////////////////////////////////////////////////
     // const [searchParams] = useSearchParams();
     // const status = searchParams.get("status") || "default"; // 기본값 설정
@@ -242,7 +242,8 @@ const Course_manage = () => {
                 {/* 콘텐츠 박스 */}
                 {courses.map((course) => (
                     <div className={styles.allContentsBox} key={course.id}>
-                        <div className={styles.contentsBox} onClick={(course) => course?.id && navigate(`/course_detail/${course.id.toString()}`)}>
+                        <div className={styles.contentsBox} onClick={() => { navigate(`/course_detail/${course.courseId}`)}}>
+                                                               
                             <div className={styles.category} style={courseColor(course.type)}>
                                 {typeMapping[course.type] || "미정"}
                             </div>
