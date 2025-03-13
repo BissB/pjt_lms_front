@@ -25,8 +25,8 @@ function App() {
           <Route path="/trainee_modify" element={<Trainee_Modification />} />
           <Route path="/trainee_delete" element={<Trainee_Deletion />} />
           <Route path="/instructor_list" element={<Instructor />} />
-          <Route path="/instructor_modify" element={<Instructor_Modification />} />
-          <Route path="/instructor_delete" element={<Instructor_Deletion />} />
+          <Route path="/instructor_modify/:instructorId" element={<Instructor_Modification />} />
+          <Route path="/instructor_delete/:instructorId" element={<Instructor_Deletion />} />
         </Routes>
       </div>
     </div>

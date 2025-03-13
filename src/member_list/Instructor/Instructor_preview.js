@@ -311,8 +311,8 @@ const Instructor_list = () => {
                 <button onClick={() => handleEditButton(member.instructorId)} className={`${styles.edit}`}>···</button>
                 {showEditMenu === member.instructorId && (
                   <div ref={editMenuRef} className={styles.editMenu}>
-                    <Link to={'/instructor_modify'} className={styles.modify}>수정</Link> {/* 회원 수정 버튼 */}
-                    <Link to={'/instructor_delete'} className={styles.delete}>삭제</Link>
+                    <Link to={`/instructor_modify/${member.instructorId}`} className={styles.modify}>수정</Link> {/* 회원 수정 버튼 */}
+                    <Link to={`/instructor_delete/${member.instructorId}`} className={styles.delete}>삭제</Link>
                   </div>
                 )}
               </td> {/* 수정 / 삭제 버튼 */}
