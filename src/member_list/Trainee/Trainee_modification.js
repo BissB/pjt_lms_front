@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
-import styles from './Trainee_registration.module.css';
+import { useNavigate } from 'react-router-dom';
+import styles from './Trainee_modification.module.css';
 
-const Trainee_registration = ({ onClose }) => {
+const Trainee_modification = () => {
+  const cancel = useNavigate();
+
   const [registerForm, setRegisterForm] = useState({
-    name: '',
-    tel: '',
-    course: '',
-  });
+      traineeId:'',
+      name: '',
+      tel: '',
+      course: '',
+      upfiles: null,
+    });
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -29,28 +34,25 @@ const Trainee_registration = ({ onClose }) => {
     console.log(registerForm);
 
     try {
-      const jsonData = {
-        name: registerForm.name,
-        tel: registerForm.tel,
-        course: registerForm.course,
-      };
+      const formData = new FormData();
+      formData.append('name', registerForm.name);
+      formData.append('tel', registerForm.tel);
+      formData.append('course', registerForm.course);
+      formData.append('upfiles', registerForm.upfiles);
 
-      const response = await fetch('https://localhost:443/trainee/register', {
+      const response = await fetch(`/trainee/${registerForm.traineeId}`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(jsonData),
+        body: formData,
       });
 
       if (response.ok) {
         const data = await response.json();
-        console.log('등록 성공:', data);
-        alert('회원 등록이 완료되었습니다.');
-        onClose();
+        console.log('수정 성공:', data);
+        alert('훈련생 정보가 수정되었습니다.');
+
       } else {
-        console.error('등록 실패:', response.statusText);
-        alert('회원 등록에 실패했습니다.');
+        console.error('수정 실패:', response.statusText);
+        alert('훈련생 정보 수정에 실패했습니다.');
       }
     } catch (error) {
       console.error('요청 중 오류 발생:', error);
@@ -59,19 +61,19 @@ const Trainee_registration = ({ onClose }) => {
   };
 
   const handleCancelClick = () => {
-    onClose();
+    cancel('/trainee_list');
   };
 
   return (
     <>
-      <div className={styles.registration_background}>
-        <div className={styles.registration_container}>
-          <h2>회원 등록</h2>
+      <div className={styles.background}>
+        <div className={styles.container}>
+          <h2>훈련생 정보 수정</h2>
           <form onSubmit={handleSubmit}>
-            <div className={styles.registration_form}>
+            <div className={styles.form}>
               <input
                 type="text"
-                className={styles.registration_textbox}
+                className={styles.textbox}
                 placeholder="이름"
                 name="name"
                 value={registerForm.name}
@@ -79,22 +81,22 @@ const Trainee_registration = ({ onClose }) => {
               />
               <input
                 type="tel"
-                className={styles.registration_textbox}
+                className={styles.textbox}
                 placeholder="전화번호(-제외)"
                 name="tel"
                 value={registerForm.tel}
                 onChange={handleInputChange}
-                maxLength={10}
+                maxLength={11}
               />
               <input
                 type="text"
-                className={styles.registration_textbox}
+                className={styles.textbox}
                 placeholder="신청과정"
                 name="course"
                 value={registerForm.course}
                 onChange={handleInputChange}
               />
-              <div className={styles.registration_photo}>
+              <div className={styles.photo}>
                 <input
                   type="file"
                   accept="image/*"
@@ -102,9 +104,9 @@ const Trainee_registration = ({ onClose }) => {
                   onChange={handleFileChange}
                 />
               </div>
-              <div className={styles.registration_btns}>
-                <button type="submit" className={styles.registration_submit}>등록</button>
-                <button type="button" className={styles.registration_cancel} onClick={handleCancelClick}>취소</button>
+              <div className={styles.btns}>
+                <button type="submit" className={styles.submit}>수정</button>
+                <button type="button" className={styles.cancel} onClick={handleCancelClick}>취소</button>
               </div>
             </div>
           </form>
@@ -114,4 +116,4 @@ const Trainee_registration = ({ onClose }) => {
   );
 };
 
-export default Trainee_registration;
+export default Trainee_modification;
