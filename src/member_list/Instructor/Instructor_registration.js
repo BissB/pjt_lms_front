@@ -38,7 +38,7 @@ const Instructor_registration = ({ onClose }) => {
       formData.append('course', registerForm.course);
       formData.append('upfiles', registerForm.upfiles);
 
-      const response = await fetch('http://localhost:8888',
+      const response = await fetch('https://localhost/instructor',
         {
           method: 'POST',
           body: formData,
