@@ -92,10 +92,10 @@ const Course_register = () => {
                     </div>
                     <div className={styles.datebox}>
                         <div className={styles.dateinputcontainer1}>수강시작일
-                            <input name="startDate" className={styles.dateinputbox} placeholder="필수 입력" onChange={handleChange}></input> 
+                            <input name="startDate" className={styles.dateinputbox} placeholder="예) 2025-01-01" onChange={handleChange}></input> 
                         </div>
                         <div className={styles.dateinputcontainer2}>수강종료일
-                            <input name="endDate" className={styles.dateinputbox} placeholder="필수 입력" onChange={handleChange}></input> 
+                            <input name="endDate" className={styles.dateinputbox} placeholder="예) 2025-01-01" onChange={handleChange}></input> 
                         </div>
                     </div>
                     <div className={styles.inputcontainer}>수강 정원
