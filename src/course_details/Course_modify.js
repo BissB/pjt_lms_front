@@ -93,7 +93,7 @@ const Course_modify = () => {
                     <div className={styles.dropdown}>구분 
                         <select value={formData.type} onChange={(e) => handleChange("type", e.target.value)}>
                             <option value="">선택</option>
-                            <option value="frontend">프론트</option>
+                            <option value="frontend">프론트엔드</option>
                             <option value="backend">백엔드</option>
                             <option value="fullstack">풀스택</option>
                         </select>

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Course_register.module.css';
 
@@ -18,31 +19,43 @@ const Course_register = () => {
             endDate: "",
             capacity: "",
             detail: "",
-            file:""
+            file: null,
     });
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        setFormData((prev) => ({ ...prev, file }));
+    };
 
     const handleRegisterConfirm = async () => {
 
-        if (!courseName || !instructorName || !startDate || !endDate || !capacity) {
+        /* if (!formData.type || !formData.name || !formData.instructor || !formData.startDate || !formData.endDate || !formData.capacity || !formData.detail) {
             alert("모든 필수 정보를 입력하세요.");
             return;
-        }
+        } */
         
         const data = new FormData();
-        data.append("courseType", courseType);
-        data.append("courseName", courseName);
-        data.append("instructorName", instructorName);
-        data.append("startDate", startDate);
-        data.append("endDate", endDate);
-        data.append("capacity", capacity);
-        data.append("description", description);
-//        if (file) {
-//           formData.append("file", file);
-//        }
+        data.append("type", formData.type);
+        data.append("name", formData.name);
+        data.append("instructor", formData.instructor);
+        data.append("startDate", formData.startDate);
+        data.append("endDate", formData.endDate);
+        data.append("capacity", formData.capacity);
+        data.append("detail", formData.detail);
+        if (formData.file) {
+           data.append("file", formData.file);
+        }
+        
+        console.log("formData:", formData );
 
         try {
-            const response = await fetch(`https://localhost:443/course`, {
-            method: "PUT",
+            const response = await fetch(`http://localhost:8080/course`, {
+            method: "POST",
+            body: data,
             });
 
             if (response.ok) {
@@ -54,7 +67,7 @@ const Course_register = () => {
             console.error("등록 오류:", error);
         }
 
-        onClose();
+    //    onClose();
     };
 
     return(
@@ -63,37 +76,37 @@ const Course_register = () => {
                 <div className={styles.leftbox}>
                     <div className={styles.titletext}>과정 등록</div>
                     <div className={styles.dropdown}>구분 
-                        <select className={styles.select}>
-                            <option>선택</option>
-                            <option>풀스택</option>
-                            <option>프론트엔드</option>
-                            <option>백엔드</option>
+                        <select name="type" className={styles.select} onChange={handleChange}>
+                            <option value="">선택</option>
+                            <option value="frontend">프론트엔드</option>
+                            <option value="backend">백엔드</option>
+                            <option value="fullstack">풀스택</option>
                         </select>
                     </div>
                     <div className={styles.inputcontainer}
                     >과정명
-                        <input className={styles.inputbox} placeholder="필수 입력" ></input> 
+                        <input name="name" className={styles.inputbox} placeholder="필수 입력" onChange={handleChange}></input> 
                     </div>
                     <div className={styles.inputcontainer}>강사명
-                        <input className={styles.inputbox} placeholder="필수 입력" ></input> 
+                        <input name="instructor" className={styles.inputbox} placeholder="필수 입력" onChange={handleChange}></input> 
                     </div>
                     <div className={styles.datebox}>
                         <div className={styles.dateinputcontainer1}>수강시작일
-                            <input className={styles.dateinputbox} placeholder="필수 입력" ></input> 
+                            <input name="startDate" className={styles.dateinputbox} placeholder="필수 입력" onChange={handleChange}></input> 
                         </div>
                         <div className={styles.dateinputcontainer2}>수강종료일
-                            <input className={styles.dateinputbox} placeholder="필수 입력" ></input> 
+                            <input name="endDate" className={styles.dateinputbox} placeholder="필수 입력" onChange={handleChange}></input> 
                         </div>
                     </div>
                     <div className={styles.inputcontainer}>수강 정원
-                        <input className={styles.inputbox} placeholder="필수 입력"></input> 
+                        <input name="capacity" className={styles.inputbox} placeholder="필수 입력" onChange={handleChange}></input> 
                     </div>
                 </div>
 
                 <div className={styles.rightbox}>
-                    <input className={styles.file} type='file'/>
+                    <input className={styles.file} type='file' onChange={handleFileChange}/>
                     <p className={styles.contentboxheadline}>&lt; 내용 &gt;</p>
-                    <textarea className={styles.contentbox}/>
+                    <textarea name="detail" className={styles.contentbox} onChange={handleChange}/>
                     <div className={styles.buttonbox}>
                         <button onClick={handleRegisterConfirm} className={styles.savebutton}>저장</button>
                         <button onClick={onClose} className={styles.cancelbutton}>취소</button>

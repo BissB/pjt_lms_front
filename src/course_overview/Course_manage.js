@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import styles from './Course_manage.module.css';
 import sample1 from './img/sample1.avif'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -361,33 +361,59 @@ const Course_manage = () => {
     // //////////////////////////////////////////////////////   데이터 불러오기   /////////////////////////////////////////////////////////
     // const [searchParams] = useSearchParams();
     // const status = searchParams.get("status") || "default"; // 기본값 설정
+    const [formData, setFormData] = useState({
+        type: "",
+        name: "",
+        instructor: "",
+        startDate: "",
+        endDate: "",
+        capacity: "",
+        currCount: "",
+    });
 
-    // useEffect(() => {                               // 백엔드에서 데이터 가져오기 (오류 방지 처리 추가)
-    //     // if (!status) return; // status 값이 없으면 실행 안 함
+    useEffect(() => {                               // 백엔드에서 데이터 가져오기 (오류 방지 처리 추가)
+        // if (!status) return; // status 값이 없으면 실행 안 함
+        
+        const requestData = {
+            page: 0,           // 기본값 설정 (필요하면 변경)
+            pageSize: 10,      // 기본값 설정
+            condition: "",  // 검색 조건 예시 (필요에 따라 변경)
+            q: "",             // 검색어 (필요하면 입력)
+        };
 
-    //     fetch(`http://localhost:443/course/list/${status}`)
-    //         .then((response) => {
-    //             if (!response.ok) {
-    //                 throw new Error("서버 응답 오류");
-    //             }
-    //             return response.json();
-    //         })
-    //         .then((data) => {
-    //             setFormData({
-    //                 type: data?.type || "",
-    //                 name: data?.name || "",
-    //                 instructor: data?.instructor || "",
-    //                 startDate: data?.startDate || "",
-    //                 endDate: data?.endDate || "",
-    //                 currCount: data?.currCount || "",
-    //                 capacity: data.capacity || "",
-    //             });
-    //         })
-    //         .catch((error) => {
-    //             console.error("데이터 불러오기 실패:", error);
-    //         });
-    //         // fetchData();    // *** db에서 데이터 받아오기 ***굼금! 
-    // }, [status]);
+
+        fetch("https://localhost:443/course", {
+            method: "POST", 
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(requestData), 
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("서버 응답 오류");
+            }
+            return response.json();
+        })
+        .then((data) => {
+            if (Array.isArray(data) && data.length > 0) {
+                // 리스트에서 첫 번째 데이터를 가져와서 formData에 반영
+                const firstCourse = data[0];
+                setFormData({
+                    type: firstCourse.type || "",
+                    name: firstCourse.name || "",
+                    instructor: firstCourse.instructor || "",
+                    startDate: firstCourse.startDate || "",
+                    endDate: firstCourse.endDate || "",
+                    currCount: firstCourse.currCount || "",
+                    capacity: firstCourse.capacity || "",
+                });
+            }
+        })
+        .catch((error) => {
+            console.error("데이터 불러오기 실패:", error);
+        });
+}, []);
 
     // ///////////////////////////////////////////////////////    해당 id 과정 상세조회/////////////////////////////////////////////////////////////////////
 
