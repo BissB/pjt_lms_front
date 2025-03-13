@@ -31,8 +31,8 @@ padding 10px 20px
 .main {
     /* ============= 레이아웃 ============ */
     width: 90%;
-    min-height: 100%;
     height: auto;
+    min-height: 100vh; 
     /* ================================= */
     
     padding-right: 10vw;
@@ -41,9 +41,9 @@ padding 10px 20px
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* 자동 줄바꿈 */
     align-items: start;
     
-
-    row-gap: 50px;
     column-gap: 20px;
+
+    grid-auto-rows: minmax(300px, auto); /* 각 그리드 항목의 높이를 최소 250px로 고정 */
 
     background-color: #F5F5F5;
 
@@ -62,29 +62,43 @@ padding 10px 20px
 }
 
 /* 과정등록 */
-.register {
+
+.registerbutton {
     position: fixed;
 
     top: 150px;
     left: 105px;
 
     width: 120px;
+    
+    border-radius: 7px;
+
+}
+.register {
+    position: relative;
+    width: 130px;
+    right: 290px;
     padding: 11px 20px;
 
-    background-color: #ebbb41;
+    background-color: #f3bb2e;
     border: none;
     border-radius: 7px;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
-
     font-size: 1rem;
     cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+.register:hover {
+    transform: translateY(3px); /* hover 시 이동 */
+    box-shadow: 6px 15px 50px 5px #edc12e;
 }
 
 .search {
     position: absolute;
     display: flex;
 
-    right: 160px;
+    right: 330px;
     top: 150px;
     width: 50%;
     height: 50px;
@@ -139,6 +153,8 @@ padding 10px 20px
 
     top: 250px;
     left: 85px;
+    height: 250px;
+
 }
 
 .allContentsBox:hover {
@@ -149,7 +165,11 @@ padding 10px 20px
 
     box-shadow: 
     6px 15px 15px #edc12e;
+
+    transition: transform 0.3s ease; 
+    transform: translateY(10px);
 }
+
 
 .contentsBox {
     position: relative;
@@ -157,13 +177,11 @@ padding 10px 20px
     display: grid;
 
     width: 250px;
-    height: 250px;
+    height: 100%;
     border-radius: 5px;
 
     background-color: #fedfa9;
-
-    transition: transform 0.3s ease; 
-
+    
     z-index: 10;
 }
 
@@ -291,4 +309,3 @@ padding 10px 20px
 
     box-shadow: none !important; 
 }
-
