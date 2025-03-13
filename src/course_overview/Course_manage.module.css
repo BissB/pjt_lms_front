@@ -5,6 +5,8 @@
 노랑 - #F2C879
 
 내부 글씨 1.2rem, #221e1f
+
+화이트 - #F5F5F5
 padding 10px 20px
 
 
@@ -22,7 +24,6 @@ padding 10px 20px
 
     /* ================================= */
     background-color: #F5F5F5;
-    backdrop-filter: blur(5px);
 
     overflow: auto;
 }

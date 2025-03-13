@@ -91,12 +91,12 @@ const Course_check = () => {
 
                 <div className={styles.top_leftbox}>
 
-                    <button className={styles.backbutton} onClick={()=> navigate("/course_overview")}><i class="fa-solid fa-chevron-left fa-2x"></i></button> {/* 뒤로가기 버튼 */}
-                    <div className={styles.imgbox}></div>
-                    <div className={styles.buttonbox}>      
-                        <button className={styles.modify_button} onClick={handleModifyShowPopup}>수정</button>
-                        <button className={styles.delete_button} onClick={handleDeleteShowPopup}>삭제</button> 
-                    </div>
+                     <button className={styles.backbutton} onClick={()=> navigate("/course_overview")}><i class="fa-solid fa-chevron-left fa-1.8x"></i></button> {/* 뒤로가기 버튼 */}
+                     <div className={styles.imgbox}></div>
+                     <div className={styles.buttonbox}>      
+                         <button className={styles.modify_button} onClick={handleModifyShowPopup}>수정</button>
+                         <button className={styles.delete_button} onClick={handleDeleteShowPopup}>삭제</button> 
+                     </div>
 
                 </div>
 
@@ -107,7 +107,7 @@ const Course_check = () => {
                         <Course_info label="과정명" value={formData.name} disabled/>
                         <Course_info label="수강종료일" value={formData.endDate} disabled/>
                         <Course_info label="강사명" value={formData.instructor} disabled/>
-                        <Course_info  label={`수강정원 (현재인원: ${formData.currCount}명)`} value= {formData.capacity} disabled/>
+                        <Course_info  label={`수강정원 (현재인원: ${formData.currCount}명)`} value={formData.capacity} disabled/>
                     </div>
                     <Course_content label="내용" value={formData.detail} disabled/>
                 </div>
