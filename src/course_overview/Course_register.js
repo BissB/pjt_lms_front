@@ -53,8 +53,8 @@ const Course_register = () => {
         console.log("formData:", formData );
 
         try {
-            const response = await fetch(`http://localhost:8080/course`, {
-            method: "POST",
+            const response = await fetch(`http://localhost:443/course`, {
+            method: "PUT", // 현재 등록은 PUT
             body: data,
             });
 

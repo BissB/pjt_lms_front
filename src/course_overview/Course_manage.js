@@ -11,256 +11,45 @@ const Course_manage = () => {
 
     const navigate = useNavigate();
 
-    const [courses, setCourses] = useState([
-        {
-            category: '풀스택',
-            courseName: '완전 쉬운 풀스택 정복',
-            state: '예정',
-            startDate: "2025.1.1",
-            endDate: "2025.1.31",
-            img: sample1,
-            instructor: "홍길동",
-            capacity: "30/50",
-            // uri: "http://localhost:3000/course_register/fullstack-01"
-        },
-        {
-            category: '프론트엔드',
-            courseName: '가뿐한 프론트앤드 부수기',
-            state: '예정',
-            startDate: "2025.1.1",
-            endDate: "2025.1.31",
-            img: sample1,
-            instructor: "홍길동",
-            capacity: "30/50",
-        },
+    // //////////////////////////////////////////////////////   데이터 불러오기   /////////////////////////////////////////////////////////
+    // const [searchParams] = useSearchParams();
+    // const status = searchParams.get("status") || "default"; // 기본값 설정
 
-        {
-            category: '풀스택',
-            courseName: '완전 쉬운 풀스택 정복',
-            state: '예정',
-            startDate: "2025.1.1",
-            endDate: "2025.1.31",
-            img: sample1,
-            instructor: "홍길동",
-            capacity: "30/50",
-    
-        },
+    const [courses, setCourses] = useState([]); // 전체 데이터 리스트
 
-        {
-            category: '프론트엔드',
-            courseName: '가뿐한 프론트앤드 부수기',
-            state: '예정',
-            startDate: "2025.1.1",
-            endDate: "2025.1.31",
-            img: sample1,
-            instructor: "홍길동",
-            capacity: "30/50",
-
-        },
-
-        {
-            category: '풀스택',
-            courseName: '완전 쉬운 풀스택 정복',
-            state: '예정',
-            startDate: "2025.1.1",
-            endDate: "2025.1.31",
-            img: sample1,
-            instructor: "홍길동",
-            capacity: "30/50",
-
-        },
-
-        {
-            category: '백엔드',
-            courseName: '내 손으로 백앤드 부수기',
-            state: '예정',
-            startDate: "2025.1.1",
-            endDate: "2025.1.31",
-            img: sample1,
-            instructor: "홍길동",
-            capacity: "30/50",
-
-        },
-
-        {
-            category: '풀스택',
-            courseName: '완전 쉬운 풀스택 정복',
-            state: '예정',
-            startDate: "2025.1.1",
-            endDate: "2025.1.31",
-            img: sample1,
-            instructor: "홍길동",
-            capacity: "30/50",
-
-        },
-        {
-            category: '풀스택',
-            courseName: '완전 쉬운 풀스택 정복',
-            state: '예정',
-            startDate: "2025.1.1",
-            endDate: "2025.1.31",
-            img: sample1,
-            instructor: "홍길동",
-            capacity: "30/50",
-
-        },
-
-        {
-            category: '백엔드',
-            courseName: '내 손으로 백앤드 부수기',
-            state: '예정',
-            startDate: "2025.1.1",
-            endDate: "2025.1.31",
-            img: sample1,
-            instructor: "홍길동",
-            capacity: "30/50",
-
-        },
-
-
-        {
-            category: '백엔드',
-            courseName: '내 손으로 백앤드 부수기',
-            state: '예정',
-            startDate: "2025.1.1",
-            endDate: "2025.1.31",
-            img: sample1,
-            instructor: "홍길동",
-            capacity: "30/50",
-
-        },
-
-        {
-            category: '풀스택',
-            courseName: '완전 쉬운 풀스택 정복',
-            state: '예정',
-            startDate: "2025.1.1",
-            endDate: "2025.1.31",
-            img: sample1,
-            instructor: "홍길동",
-            capacity: "30/50",
-
-        },
-
-        {
-            category: '백엔드',
-            courseName: '내 손으로 백앤드 부수기',
-            state: '예정',
-            startDate: "2025.1.1",
-            endDate: "2025.1.31",
-            img: sample1,
-            instructor: "홍길동",
-            capacity: "30/50",
-
-        },
-
-        {
-            category: '백엔드',
-            courseName: '내 손으로 백앤드 부수기',
-            state: '예정',
-            startDate: "2025.1.1",
-            endDate: "2025.1.31",
-            img: sample1,
-            instructor: "홍길동",
-            capacity: "30/50",
-
-        },
-
-
-        {
-            category: '풀스택',
-            courseName: '완전 쉬운 풀스택 정복',
-            state: '예정',
-            startDate: "2025.1.1",
-            endDate: "2025.1.31",
-            img: sample1,
-            instructor: "홍길동",
-            capacity: "30/50",
-
-        },
-        {
-            category: '프론트엔드',
-            courseName: '가뿐한 프론트앤드 부수기',
-            state: '예정',
-            startDate: "2025.1.1",
-            endDate: "2025.1.31",
-            img: sample1,
-            instructor: "홍길동",
-            capacity: "30/50",
-
-        },
-        {
-            category: '풀스택',
-            courseName: '완전 쉬운 풀스택 정복',
-            state: '예정',
-            startDate: "2025.1.1",
-            endDate: "2025.1.31",
-            img: sample1,
-            instructor: "홍길동",
-            capacity: "30/50",
-
-        },        
+    useEffect(() => {                               // 백엔드에서 데이터 가져오기 (오류 방지 처리 추가)
+        // if (!status) return; // status 값이 없으면 실행 안 함
         
-        {
-            category: '프론트엔드',
-            courseName: '가뿐한 프론트앤드 부수기',
-            state: '예정',
-            startDate: "2025.1.1",
-            endDate: "2025.1.31",
-            img: sample1,
-            instructor: "홍길동",
-            capacity: "30/50",
+        const requestData = {
+            /* page: 1,           // 기본값 설정 (필요하면 변경)
+            pageSize: 10,      // 기본값 설정
+            condition: "",  // 검색 조건 예시 (필요에 따라 변경)
+            q: "",             // 검색어 (필요하면 입력)  */
+        };  
 
-        },
-        
-        {
-            category: '백엔드',
-            courseName: '내 손으로 백앤드 부수기',
-            state: '예정',
-            startDate: "2025.1.1",
-            endDate: "2025.1.31",
-            img: sample1,
-            instructor: "홍길동",
-            capacity: "30/50",
+        fetch("https://localhost:443/course", {
+            method: "POST", 
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(requestData), 
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("서버 응답 오류");
+                }
+                return response.json();
+            })
+            .then((data) => {
+                setCourses(data); // 전체 데이터 저장
+                console.log("courses: ", data);
+            })
+            .catch((error) => {
+                console.error("데이터 불러오기 실패:", error);
+            });
+    }, []);
 
-        },
-
-
-        {
-            category: '풀스택',
-            courseName: '완전 쉬운 풀스택 정복',
-            state: '예정',
-            startDate: "2025.1.1",
-            endDate: "2025.1.31",
-            img: sample1,
-            instructor: "홍길동",
-            capacity: "30/50",
-
-        },
-        {
-            category: '풀스택',
-            courseName: '완전 쉬운 풀스택 정복',
-            state: '예정',
-            startDate: "2025.1.1",
-            endDate: "2025.1.31",
-            img: sample1,
-            instructor: "홍길동",
-            capacity: "30/50",
-
-        },  
-        {
-            category: '프론트엔드',
-            courseName: '가뿐한 프론트앤드 부수기',
-            state: '예정',
-            startDate: "2025.1.1",
-            endDate: "2025.1.31",
-            img: sample1,
-            instructor: "홍길동",
-            capacity: "30/50",
-
-        },
-
-    ]);
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // 검색기능
     const [selectedCategory, setSelectedCategory] = useState("")    // 구분 필터
@@ -278,8 +67,7 @@ const Course_manage = () => {
 
     // 검색 기능 함수
     const handleSearch = () => {
-        let results =
-            courses;
+        let results = courses;
 
         // 구분 필터
         if (selectedCategory) {
@@ -295,8 +83,8 @@ const Course_manage = () => {
 
 
     // 구분에 따른 색상 표기 선언
-    const courseColor = (category) => {
-        switch (category) {
+    const courseColor = (type) => {
+        switch (type) {
             case '풀스택':
                 return { backgroundColor: '#94F285' };
             case '프론트엔드':
@@ -357,71 +145,15 @@ const Course_manage = () => {
     }, [hasMore, loading]); // hasMore와 loading 상태가 변경될 때마다 실행
 
     // 엔터키 입력 시 검색 기능 작동 ======================================================
-    const handleKeyPress = (e) => {
-        if (e.key === 'Enter') {
-            handleSearch(); // 검색 처리 함수 호출
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {  // 엔터키가 눌렸을 때
+            console.log('엔터키 눌림:', search);
+            // 원하는 엔터키 동작을 여기에 추가
+            // 예: 검색 요청 보내기
         }
     };
 
-
-
-
-    // //////////////////////////////////////////////////////   데이터 불러오기   /////////////////////////////////////////////////////////
-    // const [searchParams] = useSearchParams();
-    // const status = searchParams.get("status") || "default"; // 기본값 설정
-    const [formData, setFormData] = useState({
-        type: "",
-        name: "",
-        instructor: "",
-        startDate: "",
-        endDate: "",
-        capacity: "",
-        currCount: "",
-    });
-
-    useEffect(() => {                               // 백엔드에서 데이터 가져오기 (오류 방지 처리 추가)
-        // if (!status) return; // status 값이 없으면 실행 안 함
-        
-        const requestData = {
-            page: 0,           // 기본값 설정 (필요하면 변경)
-            pageSize: 10,      // 기본값 설정
-            condition: "",  // 검색 조건 예시 (필요에 따라 변경)
-            q: "",             // 검색어 (필요하면 입력)
-        };
-
-
-        fetch("https://localhost:443/course", {
-            method: "POST", 
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(requestData), 
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("서버 응답 오류");
-            }
-            return response.json();
-        })
-        .then((data) => {
-            if (Array.isArray(data) && data.length > 0) {
-                // 리스트에서 첫 번째 데이터를 가져와서 formData에 반영
-                const firstCourse = data[0];
-                setFormData({
-                    type: firstCourse.type || "",
-                    name: firstCourse.name || "",
-                    instructor: firstCourse.instructor || "",
-                    startDate: firstCourse.startDate || "",
-                    endDate: firstCourse.endDate || "",
-                    currCount: firstCourse.currCount || "",
-                    capacity: firstCourse.capacity || "",
-                });
-            }
-        })
-        .catch((error) => {
-            console.error("데이터 불러오기 실패:", error);
-        });
-}, []);
 
     // ///////////////////////////////////////////////////////    해당 id 과정 상세조회/////////////////////////////////////////////////////////////////////
 
@@ -445,9 +177,9 @@ const Course_manage = () => {
 
 
     const openCourseRegister = () => {
-
         navigate("/course_register");
     }
+
 
     return (
         <div className={styles.topmain}>
@@ -479,7 +211,7 @@ const Course_manage = () => {
                         placeholder="검색어를 입력하세요."
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
-                        onKeyPress={handleKeyPress}  // 엔터키 처리
+                        onKeyDown={(e) => handleKeyDown(e)}  // 엔터키 처리
                     />
 
                     {/* 돋보기 */}
@@ -492,19 +224,19 @@ const Course_manage = () => {
                 </div>
 
                 {/* 콘텐츠 박스 */}
-                {visibleCourses.map((course, index) => (
+                {courses.map((course) => (
                     <div className={styles.allContentsBox}>
-                        <div className={styles.contentsBox} key={index}>
-                            <div className={styles.category} style={courseColor(course.category)}>
-                                {course.category}
+                        <div className={styles.contentsBox} key={course.id}>
+                            <div className={styles.category} style={courseColor(course.type)}>
+                                {course.type}
                             </div>
 
                             <img src={sample1} className={styles.imgbox} alt="courseimg" />
-                            <div className={styles.state}>{course.state}</div>
+                            <div className={styles.state}>{course.status}</div>
 
                             <div className={styles.contentsbody}>
                                 <div className={styles.courseName}>
-                                    {course.courseName}
+                                    {course.name}
                                 </div>
                                 <div className={styles.date}>
                                     {course.startDate} ~ {course.endDate}
