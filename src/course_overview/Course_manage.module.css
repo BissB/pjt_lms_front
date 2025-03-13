@@ -92,7 +92,7 @@ padding 10px 20px
 
 .register:hover {
     transform: translateY(3px); /* hover 시 이동 */
-    box-shadow: 6px 15px 50px 5px #edc12e;
+    box-shadow: 4px 4px 10px #edc12e;
 }
 
 .search {
@@ -181,7 +181,7 @@ padding 10px 20px
     height: 100%;
     border-radius: 5px;
 
-    background-color: #fedfa9;
+    background-color: #f8efc0;
     
     z-index: 10;
 }
@@ -281,7 +281,7 @@ padding 10px 20px
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     box-sizing: border-box;
-    background-color: #f4f4b1;
+    background-color: #f7ba57;
     box-shadow: none !important; 
 }
 

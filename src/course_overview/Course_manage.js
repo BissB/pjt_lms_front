@@ -34,17 +34,17 @@ const Course_manage = () => {
             capacity: "30/50",
         },
 
-            {
-                category: '풀스택',
-                courseName: '완전 쉬운 풀스택 정복',
-                state: '예정',
-                startDate: "2025.1.1",
-                endDate: "2025.1.31",
-                img: sample1,
-                instructor: "홍길동",
-                capacity: "30/50",
-        
-            },
+        {
+            category: '풀스택',
+            courseName: '완전 쉬운 풀스택 정복',
+            state: '예정',
+            startDate: "2025.1.1",
+            endDate: "2025.1.31",
+            img: sample1,
+            instructor: "홍길동",
+            capacity: "30/50",
+    
+        },
 
         {
             category: '프론트엔드',
@@ -117,28 +117,6 @@ const Course_manage = () => {
 
         },
 
-        {
-            category: '풀스택',
-            courseName: '완전 쉬운 풀스택 정복',
-            state: '예정',
-            startDate: "2025.1.1",
-            endDate: "2025.1.31",
-            img: sample1,
-            instructor: "홍길동",
-            capacity: "30/50",
-
-        },
-        {
-            category: '풀스택',
-            courseName: '완전 쉬운 풀스택 정복',
-            state: '예정',
-            startDate: "2025.1.1",
-            endDate: "2025.1.31",
-            img: sample1,
-            instructor: "홍길동",
-            capacity: "30/50",
-
-        },
 
         {
             category: '백엔드',
@@ -165,6 +143,31 @@ const Course_manage = () => {
         },
 
         {
+            category: '백엔드',
+            courseName: '내 손으로 백앤드 부수기',
+            state: '예정',
+            startDate: "2025.1.1",
+            endDate: "2025.1.31",
+            img: sample1,
+            instructor: "홍길동",
+            capacity: "30/50",
+
+        },
+
+        {
+            category: '백엔드',
+            courseName: '내 손으로 백앤드 부수기',
+            state: '예정',
+            startDate: "2025.1.1",
+            endDate: "2025.1.31",
+            img: sample1,
+            instructor: "홍길동",
+            capacity: "30/50",
+
+        },
+
+
+        {
             category: '풀스택',
             courseName: '완전 쉬운 풀스택 정복',
             state: '예정',
@@ -175,6 +178,54 @@ const Course_manage = () => {
             capacity: "30/50",
 
         },
+        {
+            category: '프론트엔드',
+            courseName: '가뿐한 프론트앤드 부수기',
+            state: '예정',
+            startDate: "2025.1.1",
+            endDate: "2025.1.31",
+            img: sample1,
+            instructor: "홍길동",
+            capacity: "30/50",
+
+        },
+        {
+            category: '풀스택',
+            courseName: '완전 쉬운 풀스택 정복',
+            state: '예정',
+            startDate: "2025.1.1",
+            endDate: "2025.1.31",
+            img: sample1,
+            instructor: "홍길동",
+            capacity: "30/50",
+
+        },        
+        
+        {
+            category: '프론트엔드',
+            courseName: '가뿐한 프론트앤드 부수기',
+            state: '예정',
+            startDate: "2025.1.1",
+            endDate: "2025.1.31",
+            img: sample1,
+            instructor: "홍길동",
+            capacity: "30/50",
+
+        },
+        
+        {
+            category: '백엔드',
+            courseName: '내 손으로 백앤드 부수기',
+            state: '예정',
+            startDate: "2025.1.1",
+            endDate: "2025.1.31",
+            img: sample1,
+            instructor: "홍길동",
+            capacity: "30/50",
+
+        },
+
+
         {
             category: '풀스택',
             courseName: '완전 쉬운 풀스택 정복',
@@ -196,19 +247,10 @@ const Course_manage = () => {
             instructor: "홍길동",
             capacity: "30/50",
 
-        }, {
-            category: '풀스택',
-            courseName: '완전 쉬운 풀스택 정복',
-            state: '예정',
-            startDate: "2025.1.1",
-            endDate: "2025.1.31",
-            img: sample1,
-            instructor: "홍길동",
-            capacity: "30/50",
-
-        }, {
-            category: '풀스택',
-            courseName: '완전 쉬운 풀스택 정복',
+        },  
+        {
+            category: '프론트엔드',
+            courseName: '가뿐한 프론트앤드 부수기',
             state: '예정',
             startDate: "2025.1.1",
             endDate: "2025.1.31",
@@ -217,38 +259,6 @@ const Course_manage = () => {
             capacity: "30/50",
 
         },
-        {
-            category: '풀스택',
-            courseName: '완전 쉬운 풀스택 정복',
-            state: '예정',
-            startDate: "2025.1.1",
-            endDate: "2025.1.31",
-            img: sample1,
-            instructor: "홍길동",
-            capacity: "30/50",
-
-        },
-        {
-            category: '풀스택',
-            courseName: '완전 쉬운 풀스택 정복',
-            state: '예정',
-            startDate: "2025.1.1",
-            endDate: "2025.1.31",
-            img: sample1,
-            instructor: "홍길동",
-            capacity: "30/50",
-
-        }, {
-            category: '풀스택',
-            courseName: '완전 쉬운 풀스택 정복',
-            state: '예정',
-            startDate: "2025.1.1",
-            endDate: "2025.1.31",
-            img: sample1,
-            instructor: "홍길동",
-            capacity: "30/50",
-
-        }
 
     ]);
 
@@ -288,13 +298,11 @@ const Course_manage = () => {
     const courseColor = (category) => {
         switch (category) {
             case '풀스택':
-                return { backgroundColor: '#ff6347' };
+                return { backgroundColor: '#FF576A' };
             case '프론트엔드':
-                return { backgroundColor: '#81F7F3' };
+                return { backgroundColor: '#73D3E2' };
             case '백엔드':
-                return { backgroundColor: '#32cd32' };
-            case '세무회계':
-                return { backgroundColor: '#ffa500' };
+                return { backgroundColor: '#44DC8B' };
             default:
                 return { backgroundColor: '#d3d3d3' };
         };
