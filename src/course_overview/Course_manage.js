@@ -21,10 +21,10 @@ const Course_manage = () => {
         // if (!status) return; // status 값이 없으면 실행 안 함
         
         const requestData = {
-            /* page: 1,           // 기본값 설정 (필요하면 변경)
+            page: 0,           // 기본값 설정 (필요하면 변경)
             pageSize: 10,      // 기본값 설정
-            condition: "",  // 검색 조건 예시 (필요에 따라 변경)
-            q: "",             // 검색어 (필요하면 입력)  */
+            // condition: "",  // 검색 조건 예시 (필요에 따라 변경)
+            // q: "",             // 검색어 (필요하면 입력)  
         };  
 
         fetch("https://localhost:443/course", {
@@ -41,8 +41,8 @@ const Course_manage = () => {
                 return response.json();
             })
             .then((data) => {
-                setCourses(data); // 전체 데이터 저장
-                console.log("courses: ", data);
+                setCourses(data.content); // 전체 데이터 저장
+                console.log("courses: ", data.content);
             })
             .catch((error) => {
                 console.error("데이터 불러오기 실패:", error);
@@ -85,11 +85,11 @@ const Course_manage = () => {
     // 구분에 따른 색상 표기 선언
     const courseColor = (type) => {
         switch (type) {
-            case '풀스택':
+            case 1:
                 return { backgroundColor: '#94F285' };
-            case '프론트엔드':
+            case 2:
                 return { backgroundColor: '#72F2F2' };
-            case '백엔드':
+            case 3:
                 return { backgroundColor: '#F2DB94' };
             default:
                 return { backgroundColor: '#d3d3d3' };
@@ -181,6 +181,21 @@ const Course_manage = () => {
     }
 
 
+    const statusMapping = {
+        1: "등록",
+        2: "진행중",
+        3: "폐지",
+        4: "종료"
+    };
+
+    const typeMapping = {
+        1: "NCS",
+        2: "KDT",
+        3: "산대특",
+        4: "미정"
+    };
+
+
     return (
         <div className={styles.topmain}>
 
@@ -195,9 +210,10 @@ const Course_manage = () => {
                         </button>
                     <select className={styles.drop1} onChange={(e) => setSelectedCategory(e.target.value)}>
                         <option value="">구분</option>
-                        <option value="풀스택">풀스택</option>
-                        <option value="프론트엔드">프론트엔드</option>
-                        <option value="백엔드">백엔드</option>
+                        <option value="1">NCS</option>
+                        <option value="2">KDT</option>
+                        <option value="3">산대특</option>
+                        <option value="4">미정</option>
                     </select>
                     <select className={styles.drop2} onChange={(e) => setSearchOption(e.target.value)}>
                         <option value="">항목</option>
@@ -225,14 +241,14 @@ const Course_manage = () => {
 
                 {/* 콘텐츠 박스 */}
                 {courses.map((course) => (
-                    <div className={styles.allContentsBox}>
-                        <div className={styles.contentsBox} key={course.id}>
+                    <div className={styles.allContentsBox} key={course.id}>
+                        <div className={styles.contentsBox} onClick={(course) => course?.id && navigate(`/course_detail/${course.id.toString()}`)}>
                             <div className={styles.category} style={courseColor(course.type)}>
-                                {course.type}
+                                {typeMapping[course.type] || "미정"}
                             </div>
 
                             <img src={sample1} className={styles.imgbox} alt="courseimg" />
-                            <div className={styles.state}>{course.status}</div>
+                            <div className={styles.state}>{statusMapping[course.status] || "미정"}</div>
 
                             <div className={styles.contentsbody}>
                                 <div className={styles.courseName}>
@@ -250,7 +266,7 @@ const Course_manage = () => {
                                 <p>강사</p>
                                 <div className={styles.capacity}>
                                     {course.capacity}
-                                </div>
+                                </div>  
                                 <p>명</p>
                             </div>
                         </div>

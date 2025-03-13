@@ -94,9 +94,10 @@ const Course_modify = () => {
                         <select value={formData.type} className={styles.select}
                          onChange={(e) => handleChange("type", e.target.value)}>
                             <option value="">선택</option>
-                            <option value="frontend">프론트엔드</option>
-                            <option value="backend">백엔드</option>
-                            <option value="fullstack">풀스택</option>
+                            <option value="1">NCS</option>
+                            <option value="2">KDT</option>
+                            <option value="3">산대특</option>
+                            <option value="4">미정</option>
                         </select>
                     </div>
                     <div className={styles.inputcontainer}>과정명
