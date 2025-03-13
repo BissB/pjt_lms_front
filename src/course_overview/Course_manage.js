@@ -450,9 +450,9 @@ const Course_manage = () => {
                 {/* 과정 등록 버튼 */}
 
                 <div className={styles.search}>
-                    <button className={styles.register} onClick={openCourseRegister}>
-                        과정 등록
-                    </button>
+                        <button className={styles.register} onClick={openCourseRegister}>
+                            과정 등록
+                        </button>
                     <select className={styles.drop1} onChange={(e) => setSelectedCategory(e.target.value)}>
                         <option value="">구분</option>
                         <option value="풀스택">풀스택</option>

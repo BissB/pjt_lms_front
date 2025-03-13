@@ -31,7 +31,7 @@ const Course_register = () => {
         setFormData((prev) => ({ ...prev, file }));
     };
 
-    const handleRegisterConfirm = async () => {
+//     const handleRegisterConfirm = async () => {
 
         /* if (!formData.type || !formData.name || !formData.instructor || !formData.startDate || !formData.endDate || !formData.capacity || !formData.detail) {
             alert("모든 필수 정보를 입력하세요.");
@@ -58,14 +58,14 @@ const Course_register = () => {
             body: data,
             });
 
-            if (response.ok) {
-                alert("등록되었습니다.");
-            } else {
-                alert("등록 실패: ");
-            }
-        } catch (error) {
-            console.error("등록 오류:", error);
-        }
+//             if (response.ok) {
+//                 alert("등록되었습니다.");
+//             } else {
+//                 alert("등록 실패: ");
+//             }
+//         } catch (error) {
+//             console.error("등록 오류:", error);
+//         }
 
     //    onClose();
     };
@@ -110,7 +110,7 @@ const Course_register = () => {
                     <div className={styles.buttonbox}>
                         <button onClick={handleRegisterConfirm} className={styles.savebutton}>저장</button>
                         <button onClick={onClose} className={styles.cancelbutton}>취소</button>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>
