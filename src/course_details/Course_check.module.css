@@ -102,7 +102,7 @@
 
 .modify_button:hover {
     transform: translateY(3px);
-    box-shadow: 6px 15px 15px #ff7d7d;
+    box-shadow: 6px 15px 15px rgb(244, 101, 101);
 }
 
 .delete_button{
@@ -122,7 +122,7 @@
 
 .delete_button:hover {
     transform: translateY(3px);
-    box-shadow: 6px 15px 15px #ff7d7d;
+    box-shadow: 6px 15px 15px rgb(244, 101, 101);
 }
 
 /* ============================2 */

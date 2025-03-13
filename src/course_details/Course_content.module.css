@@ -1,8 +1,8 @@
 .contentbox{
     position: relative;
-    width: 82%;
+    width: 83%;
     height: 28%;
-    bottom: 80px;
+    bottom: 145px;
     border-radius: 5px;
 
     background-color: rgb(244, 101, 101);
@@ -10,8 +10,9 @@
 }
 
 .input_contentbox{
-    width: 90%;
-    height: 90%;
+    position: relative;
+    width: 100%;
+    height: 100%;
     background: transparent;
     border: none;  
     outline: none; 
@@ -22,7 +23,7 @@
     position: relative;
     
     font-size: 1.2rem;
-    bottom: 75px;
+    bottom: 140px;
     
-    right: 230px;
+    right: 233px;
 }
