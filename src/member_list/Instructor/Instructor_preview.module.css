@@ -80,7 +80,7 @@
 }
 
 .tableHeader div {
-    width: calc(100% / 7);
+    width: calc(100% / 8);
     text-align: center;
 }
 
@@ -125,8 +125,9 @@
     background-color: #444;
 }
 
-.tableBody tr {
+.tableBody .tr {
     position: relative;
+    width: calc(100% / 8);
     height: 70px;
     box-shadow: 2px 2px 10px rgba(81, 98, 245, 0.4);
     border: 1px solid #8bd2ef;

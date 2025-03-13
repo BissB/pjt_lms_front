@@ -2,127 +2,27 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Instructor_preview.module.css';
 import { Instructor_Registration } from '..';
-import img1 from '../img/1.png';
-import img2 from '../img/2.png';
-import img3 from '../img/3.png';
-import img4 from '../img/4.png';
-import img5 from '../img/5.png';
-import img6 from '../img/6.png';
-import img7 from '../img/7.png';
+// import img1 from '../img/1.png';
+// import img2 from '../img/2.png';
+// import img3 from '../img/3.png';
+// import img4 from '../img/4.png';
+// import img5 from '../img/5.png';
+// import img6 from '../img/6.png';
+// import img7 from '../img/7.png';
 
 
 const Instructor_list = () => {
-  
-  const [members, setMembers] = useState([ // 멤버 정보 (백엔드에서 어떻게 받아와야하나? 어떻게 적용해야하나?)
-    {
-      id: 'A0123456',
-      name: '신준철',
-      phone: '010-1234-5678',
-      course: '프론트',
-      date: '2025.03.06',
-      status: '취업완료',
-      photo: img1,
-    },
-    {
-      id: 'A5431823',
-      name: '윤성미',
-      phone: '010-4167-5138',
-      course: '백엔드',
-      date: '2025.02.23',
-      status: '훈련중',
-      photo: img2,
-    },
-    {
-      id: 'A4315749',
-      name: '홍성태',
-      phone: '010-1234-5678',
-      course: '백엔드',
-      date: '2025.03.06',
-      status: '취업완료',
+  // 멤버 정보 (백엔드에서 어떻게 받아와야하나? 어떻게 적용해야하나?)
+  const [members, setMembers] = useState([]);
+  // const [page, setPage] = useState(0);
+  // const [pageSize, setPageSize] = useState(10);
 
-      photo: img3,
-    },
-    {
-      id: 'A85612654',
-      name: '김태영',
-      phone: '010-1234-5678',
-      course: '풀스택',
-      date: '2025.03.15',
-      status: '취업완료',
-      photo: img4,
-    },
-    {
-      id: 'A984651',
-      name: '최성락',
-      phone: '010-1234-5678',
-      course: '백엔드',
-      date: '2025.03.01',
-      status: '훈련중',
-      photo: img5,
-    },
-    {
-      id: 'A534651',
-      name: '오연주',
-      phone: '010-1234-5678',
-      course: '프론트',
-      date: '2025.01.18',
-      status: '취업완료',
-      photo: img6,
-    },
-    {
-      id: 'A766213',
-      name: '소용소',
-      phone: '010-1234-5678',
-      course: '미정',
-      date: '2025.01.18',
-      status: '훈련중',
-      photo: img7,
-    },
-    {
-      id: 'A6873513',
-      name: '김헤헿1',
-      phone: '010-1234-5678',
-      course: '풀스택',
-      date: '2025.03.06',
-      status: '중도포기',
-      photo: '',
-    },
-    {
-      id: 'A572145',
-      name: '김헤헿2',
-      phone: '010-1234-5678',
-      course: '프론트',
-      date: '2025.03.06',
-      status: '중도포기',
-      photo: '',
-    },
-    {
-      id: 'A6721346',
-      name: '김헤헿3',
-      phone: '010-1234-5678',
-      course: '풀스택',
-      date: '2025.03.06',
-      status: '중도탈락',
-      photo: '',
-    },
-    {
-      id: 'A11223344',
-      name: '김헤헿4',
-      phone: '010-1234-5678',
-      course: '풀스택',
-      date: '2025.03.06',
-      status: '중도포기',
-      photo: '',
-    },
-  ]);
-
-  // // 상태 옵션 배열
-  // const statusOptions = [
-  //   { value: "1", label: "훈련중" },
-  //   { value: "2", label: "중도탈락" },
-  //   { value: "3", label: "중도포기" },
-  //   { value: "4", label: "취업완료" },
-  // ];
+  const requestData = {
+    // page,
+    // pageSize,
+    // "condition": "name", // 검색 항목
+    // "q": "Lorem2" // 항목 내용
+  };
 
   const handleRegistrationClick = () => {
     setShowRegistration(true);
@@ -135,51 +35,30 @@ const Instructor_list = () => {
   useEffect(() => {   //*** db에서 데이터 받아오기 ***
     const fetchData = async () => {
       try {
-        const response = await fetch('https://localhost:443/Instructor/list');
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
+        const response = await fetch('https://localhost:443/instructor', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(requestData),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+
+          if (Array.isArray(data)) {
+            setMembers(data);
+            setFilteredMembers(data);
+          } else {
+            console.log(data);
+          }
         }
-        const data = await response.json();
-        setMembers(data);
-        setFilteredMembers(data);
       } catch (error) {
-        console.error('Error fetching data:', error.message);
+        console.error('Error fetching data:', error);
       }
     };
     fetchData();
-  }, []);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const r1 = { register: "R1" };
-
-  //     // 백엔드로 데이터 전송
-  //     try {
-  //       const response = await fetch('https://localhost:443/Instructor/list', {
-  //         method: 'POST',
-  //         headers: {
-  //           'Content-Type': 'application/json'
-  //         },
-  //         body: JSON.stringify(r1) // JSON 형식으로 데이터 전송
-  //       });
-
-  //       const data = await response.json();     // 응답 데이터를 JSON 형식으로 파싱
-
-  //       if (response.ok) {
-  //         // 로그인 성공 시 처리
-  //         console.log("유후~정보교환 성공(Instructor/list)");
-  //         setErrorMessage('');                    // 성공 시 에러 메시지 초기화
-  //       } else {
-  //         // 로그인 실패 시 처리
-  //         console.log("로그인 실패");
-  //         setErrorMessage(data);                  // 실패 메시지 상태에 저장
-  //       }
-  //     } catch (error) {
-  //       console.error("로그인 오류:", error);
-  //       setErrorMessage("서버와 연결할 수 없습니다."); // 네트워크 오류 시 에러 메시지 표시
-  //     }
-  //   };
-  // }, []);
+  }, []); // [page]
 
   // 검색 상태 관리
   const [searchTerm, setSearchTerm] = useState(''); // 검색어
@@ -190,7 +69,7 @@ const Instructor_list = () => {
   const [showModification, setShowModification] = useState(false);
 
   // 무한스크롤에 사용하기위한 변수들
-  const [visibleMembers, setVisibleMembers] = useState(members.slice(0, 3)); // 처음에 보여줄 멤버 수
+  // const [visibleMembers, setVisibleMembers] = useState(members.slice(0, 3)); // 처음에 보여줄 멤버 수
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true); // 더 로드할 데이터가 있는지 여부
   const observerRef = useRef(null); // IntersectionObserver에 사용할 ref
@@ -208,6 +87,65 @@ const Instructor_list = () => {
       setShowModification(false); // 수정 팝업 초기화
     }
   };
+
+  const loadMoreMembers = async () => {
+    setLoading(true);
+    setPage(page + 1);
+
+    try {
+      const response = await fetch('https://localhost:443/instructor', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          page: page + 1,
+          pageSize,
+          condition: "name",
+          q: "Lorem2",
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+
+        if (Array.isArray(data)) {
+          setMembers((prevMembers) => [...prevMembers, ...data]);
+          setFilteredMembers((prevMembers) => [...prevMembers, ...data]);
+        } else{
+          console.log(data);
+        }
+
+        setLoading(false);
+
+        if (data.length < pageSize) {
+          setHasMore(false);
+        }
+      } else {
+        console.error('등록 실패:', response.statusText);
+      }
+    } catch (error) {
+      console.error('요청 중 오류 발생:', error);
+    }
+  };
+
+  // 무한스크롤을 위한 설정
+  useEffect(() => {
+    if (loading || !hasMore) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          loadMoreMembers();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (observerRef.current) observer.observe(observerRef.current);
+
+    return () => observer.disconnect();
+  }, [loading, hasMore]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -228,58 +166,30 @@ const Instructor_list = () => {
     if (searchOption === 'name') {
       const searchedMembers = members.filter((member) => member.name.includes(searchTerm));
       setFilteredMembers(searchedMembers);
-      setVisibleMembers(searchedMembers);
+      // setVisibleMembers(searchedMembers);
       setHasMore(true);
     } else if (searchOption === 'username') {
       const searchedMembers = members.filter((member) => member.username.includes(searchTerm));
       setFilteredMembers(searchedMembers);
-      setVisibleMembers(searchedMembers);
+      // setVisibleMembers(searchedMembers);
       setHasMore(true);
     } else if (searchOption === 'phone') {
       const searchedMembers = members.filter((member) => member.phone.includes(searchTerm));
       setFilteredMembers(searchedMembers);
-      setVisibleMembers(searchedMembers);
+      // setVisibleMembers(searchedMembers);
       setHasMore(true);
     } else {
       const searchedMembers = members.filter((member) => (member.name.includes(searchTerm) || member.username.includes(searchTerm)));
       setFilteredMembers(searchedMembers);
-      setVisibleMembers(searchedMembers);
+      // setVisibleMembers(searchedMembers);
       setHasMore(true);
     }
   };
 
-  // 상태 체크박스 변경 이벤트 핸들러
-  const handleStatusChange = (e) => {
-    const { value, checked } = e.target;
-    if (checked) {
-      setSelectedStatus((prev) => [...prev, value]);
-      // setSelectedStatus(value);
-    } else {
-      setSelectedStatus((prev) => prev.filter((status) => status !== value));
-    }
-    filterByStatus();
-  };
-
-  // 상태에 따라 필터링
-  const filterByStatus = () => {
-    if (selectedStatus.length === 0) {
-      setFilteredMembers(members);
-    } else {
-      const statusMap = {
-        "1": "훈련중",
-        "2": "중도탈락",
-        "3": "중도포기",
-        "4": "취업완료",
-      };
-
-      const filteredMembersByStatus = members.filter((member) => {
-        return selectedStatus.some((status) => member.status === statusMap[status]);
-      });
-
-      setFilteredMembers(filteredMembersByStatus);
-    }
-    setVisibleMembers(filteredMembers); // 초기에 보여줄 멤버 수 설정
-    // setHasMore(true); // 더 로드할 데이터가 있는지 여부 초기화
+  const statusMap = {
+    "1": "등록",
+    "2": "강의중",
+    "3": "퇴사",
   };
 
   // 과정 종류에 따른 색상 변경
@@ -297,46 +207,11 @@ const Instructor_list = () => {
   };
 
   // 엔터키 입력 시 검색 기능 작동
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      handleSearch();
-    }
-  };
-
-  // 무한 스크롤을 위한 데이터 로드 함수
-  const loadMoreMembers = () => {
-    setLoading(true);
-    setTimeout(() => {
-      const nextIndex = visibleMembers.length;
-      const moreMembers = filteredMembers.slice(nextIndex, nextIndex + 5); // filteredMembers에서 다음 데이터를 가져옴
-
-      if (moreMembers.length > 0) {
-        setVisibleMembers((prev) => [...prev, ...moreMembers]);
-      } else {
-        setHasMore(false); // 더 로드할 데이터가 없으면 hasMore를 false로 설정
-      }
-
-      setLoading(false);
-    }, 1000);
-  };
-
-  // 무한스크롤을 위한 설정
-  useEffect(() => {
-    if (loading || !hasMore) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          loadMoreMembers();
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (observerRef.current) observer.observe(observerRef.current);
-
-    return () => observer.disconnect();
-  }, [loading, hasMore, filteredMembers]);
+  // const handleKeyPress = (e) => {
+  //   if (e.key === 'Enter') {
+  //     handleSearch();
+  //   }
+  // };
 
   const [errorMessage, setErrorMessage] = useState(' ');  // 에러 메시지를 저장할 상태 변수
 
@@ -352,7 +227,7 @@ const Instructor_list = () => {
 
         {/* 검색항목 */}
         <div className={styles.searchContainer}>
-          
+
           <select
             name='status'
             className={styles.dropdown}
@@ -364,7 +239,7 @@ const Instructor_list = () => {
             <option value="2">강의중</option>
             <option value="3">퇴사</option>
           </select>
-          
+
           <select
             name='searchWord'
             className={styles.dropdown}
@@ -381,9 +256,9 @@ const Instructor_list = () => {
             className={styles.input}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            onKeyUp={handleKeyPress}
+            // onKeyUp={handleKeyPress}
           />
-          <button className={styles.icon} onClick={handleSearch}>
+          <button className={styles.icon} /* onClick={handleSearch} */>
             <i className='fas fa-magnifying-glass' />
           </button>
         </div>
@@ -405,20 +280,20 @@ const Instructor_list = () => {
       {/* 테이블 본문 */}
       <table className={styles.tableBody}>
         <tbody>
-          {visibleMembers.map((member, index) => (
-            <tr key={index}>
+          {filteredMembers.map((member) => (
+            <tr key={member.instructorId} className={styles.tr}>
               <td className={styles.photo} style={{ borderLeft: `10px solid ${getCourseColor(member.course)}` }}>
-                <img src={member.photo} alt='member photo' />
+                <img src={member.photo} alt='' />
               </td>
-              <td>{member.id}</td>
+              <td>{member.instructorId}</td>
               <td>{member.name}</td>
-              <td>{member.phone}</td>
-              <td>{member.course}</td>
-              <td>{member.date}</td>
+              <td>{member.tel}</td>
+              <td>111{/* {member.course} */}</td>
+              <td>{member.crtDate}</td>
               <td>{member.status}</td>
               <td>
-                <button onClick={() => handleEditButton(index)} className={`${styles.edit}`}>···</button>
-                {showEditMenu === index && (
+                <button onClick={() => handleEditButton(member.instructorId)} className={`${styles.edit}`}>···</button>
+                {showEditMenu === member.instructorId && (
                   <div ref={editMenuRef} className={styles.editMenu}>
                     <Link to={'/instructor_modify'} className={styles.modify}>수정</Link> {/* 회원 수정 버튼 */}
                     <Link to={'/instructor_delete'} className={styles.delete}>삭제</Link>
