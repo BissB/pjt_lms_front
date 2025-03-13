@@ -61,7 +61,7 @@ const Instructor_modification = () => {
   };
 
   const handleCancelClick = () => {
-    cancel('/trainee_list');
+    cancel('/instructor_list');
   };
 
   return (

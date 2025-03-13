@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Instructor_preview.module.css';
 import { Instructor_Registration } from '..';
-// import img1 from '../img/1.png';
+import img1 from '../img/profile.png';
 // import img2 from '../img/2.png';
 // import img3 from '../img/3.png';
 // import img4 from '../img/4.png';
@@ -14,14 +14,15 @@ import { Instructor_Registration } from '..';
 const Instructor_list = () => {
   // 멤버 정보 (백엔드에서 어떻게 받아와야하나? 어떻게 적용해야하나?)
   const [members, setMembers] = useState([]);
-  // const [page, setPage] = useState(0);
-  // const [pageSize, setPageSize] = useState(10);
+  const [paging, setPaging] = useState([]);  // 검색 결과
+  const [page, setPage] = useState(0);
+  const [pageSize, setPageSize] = useState(10);
 
   const requestData = {
-    // page,
-    // pageSize,
-    // "condition": "name", // 검색 항목
-    // "q": "Lorem2" // 항목 내용
+    page,
+    pageSize,
+    "condition": "name", // 검색 항목
+    "q": "Lorem2" // 항목 내용
   };
 
   const handleRegistrationClick = () => {
@@ -46,12 +47,23 @@ const Instructor_list = () => {
         if (response.ok) {
           const data = await response.json();
 
-          if (Array.isArray(data)) {
-            setMembers(data);
-            setFilteredMembers(data);
-          } else {
-            console.log(data);
-          }
+          const formattedInstructor = data.content.map((member) => ({
+            ...member,
+            tel: formatPhoneNumber(member.tel),
+          }));
+
+          setMembers(formattedInstructor);
+
+          setPaging({
+            totalPages: data.totalPages,
+            totalElements: data.totalElements,
+            currentPage: data.number,
+            isLastPage: data.last,
+            isFirstPage: data.first,
+          });
+
+          console.log(data);
+
         }
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -63,8 +75,7 @@ const Instructor_list = () => {
   // 검색 상태 관리
   const [searchTerm, setSearchTerm] = useState(''); // 검색어
   const [searchOption, setSearchOption] = useState(''); // 검색 옵션
-  const [selectedStatus, setSelectedStatus] = useState([]); // 선택된 상태
-  const [filteredMembers, setFilteredMembers] = useState(members);  // 검색 결과
+  // const [selectedStatus, setSelectedStatus] = useState([]); // 선택된 상태
   const [showRegistration, setShowRegistration] = useState(false);
   const [showModification, setShowModification] = useState(false);
 
@@ -88,105 +99,105 @@ const Instructor_list = () => {
     }
   };
 
-  const loadMoreMembers = async () => {
-    setLoading(true);
-    setPage(page + 1);
+  // const loadMoreMembers = async () => {
+  //   setLoading(true);
+  //   setPage(page + 1);
 
-    try {
-      const response = await fetch('https://localhost:443/instructor', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          page: page + 1,
-          pageSize,
-          condition: "name",
-          q: "Lorem2",
-        }),
-      });
+  //   try {
+  //     const response = await fetch('https://localhost:443/instructor', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify({
+  //         page: page + 1,
+  //         pageSize,
+  //         condition: "name",
+  //         q: "Lorem2",
+  //       }),
+  //     });
 
-      if (response.ok) {
-        const data = await response.json();
+  //     if (response.ok) {
+  //       const data = await response.json();
 
-        if (Array.isArray(data)) {
-          setMembers((prevMembers) => [...prevMembers, ...data]);
-          setFilteredMembers((prevMembers) => [...prevMembers, ...data]);
-        } else{
-          console.log(data);
-        }
+  //       if (Array.isArray(data)) {
+  //         setMembers((prevMembers) => [...prevMembers, ...data]);
+  //         setFilteredMembers((prevMembers) => [...prevMembers, ...data]);
+  //       } else{
+  //         console.log(data);
+  //       }
 
-        setLoading(false);
+  //       setLoading(false);
 
-        if (data.length < pageSize) {
-          setHasMore(false);
-        }
-      } else {
-        console.error('등록 실패:', response.statusText);
-      }
-    } catch (error) {
-      console.error('요청 중 오류 발생:', error);
-    }
-  };
+  //       if (data.length < pageSize) {
+  //         setHasMore(false);
+  //       }
+  //     } else {
+  //       console.error('등록 실패:', response.statusText);
+  //     }
+  //   } catch (error) {
+  //     console.error('요청 중 오류 발생:', error);
+  //   }
+  // };
 
   // 무한스크롤을 위한 설정
-  useEffect(() => {
-    if (loading || !hasMore) return;
+  // useEffect(() => {
+  //   if (loading || !hasMore) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          loadMoreMembers();
-        }
-      },
-      { threshold: 0.1 }
-    );
+  //   const observer = new IntersectionObserver(
+  //     (entries) => {
+  //       if (entries[0].isIntersecting) {
+  //         loadMoreMembers();
+  //       }
+  //     },
+  //     { threshold: 0.1 }
+  //   );
 
-    if (observerRef.current) observer.observe(observerRef.current);
+  //   if (observerRef.current) observer.observe(observerRef.current);
 
-    return () => observer.disconnect();
-  }, [loading, hasMore]);
+  //   return () => observer.disconnect();
+  // }, [loading, hasMore]);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (editMenuRef.current && !editMenuRef.current.contains(event.target)) {
-        setShowEditMenu(null); // 팝업이 열려 있을 때, 다른 곳을 클릭하면 닫기
-      }
-    };
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     if (editMenuRef.current && !editMenuRef.current.contains(event.target)) {
+  //       setShowEditMenu(null); // 팝업이 열려 있을 때, 다른 곳을 클릭하면 닫기
+  //     }
+  //   };
 
-    document.addEventListener('mousedown', handleClickOutside);
+  //   document.addEventListener('mousedown', handleClickOutside);
 
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [showEditMenu]);
+  //   return () => {
+  //     document.removeEventListener('mousedown', handleClickOutside);
+  //   };
+  // }, [showEditMenu]);
 
   // 검색 버튼 클릭 이벤트 핸들러
-  const handleSearch = () => {
-    if (searchOption === 'name') {
-      const searchedMembers = members.filter((member) => member.name.includes(searchTerm));
-      setFilteredMembers(searchedMembers);
-      // setVisibleMembers(searchedMembers);
-      setHasMore(true);
-    } else if (searchOption === 'username') {
-      const searchedMembers = members.filter((member) => member.username.includes(searchTerm));
-      setFilteredMembers(searchedMembers);
-      // setVisibleMembers(searchedMembers);
-      setHasMore(true);
-    } else if (searchOption === 'phone') {
-      const searchedMembers = members.filter((member) => member.phone.includes(searchTerm));
-      setFilteredMembers(searchedMembers);
-      // setVisibleMembers(searchedMembers);
-      setHasMore(true);
-    } else {
-      const searchedMembers = members.filter((member) => (member.name.includes(searchTerm) || member.username.includes(searchTerm)));
-      setFilteredMembers(searchedMembers);
-      // setVisibleMembers(searchedMembers);
-      setHasMore(true);
-    }
-  };
+  // const handleSearch = () => {
+  //   if (searchOption === 'name') {
+  //     const searchedMembers = members.filter((member) => member.name.includes(searchTerm));
+  //     setFilteredMembers(searchedMembers);
+  //     // setVisibleMembers(searchedMembers);
+  //     setHasMore(true);
+  //   } else if (searchOption === 'username') {
+  //     const searchedMembers = members.filter((member) => member.username.includes(searchTerm));
+  //     setFilteredMembers(searchedMembers);
+  //     // setVisibleMembers(searchedMembers);
+  //     setHasMore(true);
+  //   } else if (searchOption === 'phone') {
+  //     const searchedMembers = members.filter((member) => member.phone.includes(searchTerm));
+  //     setFilteredMembers(searchedMembers);
+  //     // setVisibleMembers(searchedMembers);
+  //     setHasMore(true);
+  //   } else {
+  //     const searchedMembers = members.filter((member) => (member.name.includes(searchTerm) || member.username.includes(searchTerm)));
+  //     setFilteredMembers(searchedMembers);
+  //     // setVisibleMembers(searchedMembers);
+  //     setHasMore(true);
+  //   }
+  // };
 
-  const statusMap = {
+  const status = {
     "1": "등록",
     "2": "강의중",
     "3": "퇴사",
@@ -206,14 +217,19 @@ const Instructor_list = () => {
     }
   };
 
+  // 전화번호 포맷팅
+  function formatPhoneNumber(tel) {
+    const telStr = tel.toString();
+
+    return `${telStr.slice(0, 3)}-${telStr.slice(3, 7)}-${telStr.slice(7, 11)}`;
+  }
+
   // 엔터키 입력 시 검색 기능 작동
   // const handleKeyPress = (e) => {
   //   if (e.key === 'Enter') {
   //     handleSearch();
   //   }
   // };
-
-  const [errorMessage, setErrorMessage] = useState(' ');  // 에러 메시지를 저장할 상태 변수
 
   return (
     <div className={styles.main}>
@@ -256,7 +272,7 @@ const Instructor_list = () => {
             className={styles.input}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            // onKeyUp={handleKeyPress}
+          // onKeyUp={handleKeyPress}
           />
           <button className={styles.icon} /* onClick={handleSearch} */>
             <i className='fas fa-magnifying-glass' />
@@ -280,17 +296,17 @@ const Instructor_list = () => {
       {/* 테이블 본문 */}
       <table className={styles.tableBody}>
         <tbody>
-          {filteredMembers.map((member) => (
+          {members.map((member) => (
             <tr key={member.instructorId} className={styles.tr}>
-              <td className={styles.photo} style={{ borderLeft: `10px solid ${getCourseColor(member.course)}` }}>
-                <img src={member.photo} alt='' />
+              <td className={styles.photo} style={{ borderLeft: `10px solid ${getCourseColor(member.course)}`, overflow: `hidden` }}>
+                <img src={member.photo ? member.photo : img1} alt='' />
               </td>
               <td>{member.instructorId}</td>
               <td>{member.name}</td>
               <td>{member.tel}</td>
-              <td>111{/* {member.course} */}</td>
+              <td>푸울스태액{/* {member.course} */}</td>
               <td>{member.crtDate}</td>
-              <td>{member.status}</td>
+              <td>{status[member.status]}</td>
               <td>
                 <button onClick={() => handleEditButton(member.instructorId)} className={`${styles.edit}`}>···</button>
                 {showEditMenu === member.instructorId && (

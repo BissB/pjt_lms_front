@@ -6,7 +6,7 @@ const Instructor_deletion = ({ traineeId, onClose, updateMembers }) => {
   const navigate = useNavigate();
   
   const handleDeleteClick = () => {
-    navigate('/trainee_list');
+    navigate('/instructor_list');
   }
 
   const handleDeleteTrainee = async () => {
