@@ -352,7 +352,7 @@ const Trainee_list = () => {
       <div className={styles.title}>훈련생 리스트</div>
 
       <div className={styles.btns}>
-        <button className={styles.registerBtn} onClick={handleRegistrationClick}>회원 등록 버튼</button> {/* 회원 등록 버튼 */}
+        <button className={styles.registerBtn} onClick={handleRegistrationClick}>훈련생 등록</button> {/* 회원 등록 버튼 */}
         {showRegistration && (
           <Trainee_Registration onClose={handleCloseRegistration} />
         )}
@@ -361,7 +361,20 @@ const Trainee_list = () => {
         <div className={styles.searchContainer}>
           
           <select
-            name='search'
+            name='status'
+            className={styles.dropdown}
+            value={searchOption}
+            onChange={(e) => setSearchOption(e.target.value)}
+          >
+            <option value="">훈련생 상태</option>
+            <option value="1">훈련중</option>
+            <option value="2">중도탈락</option>
+            <option value="3">중도포기</option>
+            <option value="4">취업완료</option>
+          </select>
+
+          <select
+            name="searchWord"
             className={styles.dropdown}
             value={searchOption}
             onChange={(e) => setSearchOption(e.target.value)}
@@ -370,7 +383,10 @@ const Trainee_list = () => {
             <option value="name">이름</option>
             <option value="phone">전화번호</option>
           </select>
+
+
           <input
+            name="searchText"
             type="text"
             placeholder="검색어를 입력해주세요"
             className={styles.input}
@@ -388,7 +404,7 @@ const Trainee_list = () => {
       {/* 테이블 헤더 */}
       <div className={styles.tableHeader}>
         <div>사진</div>
-        <div>회원번호</div>
+        <div>고유번호</div>
         <div>이름</div>
         <div>전화번호</div>
         <div>신청과정</div>

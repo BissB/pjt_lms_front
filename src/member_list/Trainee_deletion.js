@@ -1,8 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './Instructor_deletion.module.css';
+import styles from './Trainee_deletion.module.css';
+import { Link } from 'react-router-dom';
 
-const Instructor_deletion = ({ traineeId, onClose, updateMembers }) => {
+const Trainee_deletion = ({ traineeId, onClose, updateMembers }) => {
   const navigate = useNavigate();
   
   const handleDeleteClick = () => {
@@ -38,7 +39,7 @@ const Instructor_deletion = ({ traineeId, onClose, updateMembers }) => {
     <>
       <div className={styles.delete_background}>
         <div className={styles.delete_container}>
-          <h2>이 강사를 리스트에서 삭제하시겠습니까?</h2>
+          <h2>이 훈련생을 리스트에서 삭제하시겠습니까?</h2>
           <div className={styles.delete_btns}>
             <button onClick={handleDeleteTrainee} className={styles.delete_submit}>삭제</button>
             <button type="button" className={styles.delete_cancel} onClick={handleDeleteClick}>취소</button>
@@ -49,4 +50,4 @@ const Instructor_deletion = ({ traineeId, onClose, updateMembers }) => {
   );
 };
 
-export default Instructor_deletion;
+export default Trainee_deletion;

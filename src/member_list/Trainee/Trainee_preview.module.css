@@ -10,7 +10,7 @@
 
 .title {
     position: absolute;
-    top: 10%;
+    top: 100px;
     filter: drop-shadow(0 4px 4px rgba(34, 30, 31, 0.4));
     font-size: 36px;
     font-weight: bold;

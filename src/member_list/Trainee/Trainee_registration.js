@@ -84,7 +84,7 @@ const Trainee_registration = ({ onClose }) => {
                 name="tel"
                 value={registerForm.tel}
                 onChange={handleInputChange}
-                maxLength={10}
+                maxLength={11}
               />
               <input
                 type="text"

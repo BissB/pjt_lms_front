@@ -4,7 +4,7 @@ import Login from './login/Login';
 import Navbar from './navbar/Navbar';
 import { Course_manage, Course_register }  from './course_overview';
 import { Course_check, Course_modify } from './course_details';
-import { Trainee, Trainee_Modification, Trainee_Deletion } from './member_list/';
+import { Trainee, Trainee_Modification, Trainee_Deletion, Instructor, Instructor_Modification, Instructor_Deletion } from './member_list/';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
 function App() {
@@ -24,6 +24,9 @@ function App() {
           <Route path="/trainee_list" element={<Trainee />} />
           <Route path="/trainee_modify" element={<Trainee_Modification />} />
           <Route path="/trainee_delete" element={<Trainee_Deletion />} />
+          <Route path="/instructor_list" element={<Instructor />} />
+          <Route path="/instructor_modify" element={<Instructor_Modification />} />
+          <Route path="/instructor_delete" element={<Instructor_Deletion />} />
         </Routes>
       </div>
     </div>

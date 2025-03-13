@@ -1,24 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import styles from './Trainee_preview.module.css';
-import { Trainee_Registration } from '..';
-import img1 from './img/1.png';
-import img2 from './img/2.png';
-import img3 from './img/3.png';
-import img4 from './img/4.png';
-import img5 from './img/5.png';
-import img6 from './img/6.png';
-import img7 from './img/7.png';
+import styles from './Instructor_preview.module.css';
+import { Instructor_Registration } from '..';
+import img1 from '../img/1.png';
+import img2 from '../img/2.png';
+import img3 from '../img/3.png';
+import img4 from '../img/4.png';
+import img5 from '../img/5.png';
+import img6 from '../img/6.png';
+import img7 from '../img/7.png';
 
 
-const Trainee_list = () => {
-
-  const criteriaDTO = {
-    page: 0,
-    pageSize: 10,
-    condition: "name",
-    q: "김태영"
-  };
+const Instructor_list = () => {
   
   const [members, setMembers] = useState([ // 멤버 정보 (백엔드에서 어떻게 받아와야하나? 어떻게 적용해야하나?)
     {
@@ -142,7 +135,7 @@ const Trainee_list = () => {
   useEffect(() => {   //*** db에서 데이터 받아오기 ***
     const fetchData = async () => {
       try {
-        const response = await fetch('https://localhost:443/trainee/list');
+        const response = await fetch('https://localhost:443/Instructor/list');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -162,7 +155,7 @@ const Trainee_list = () => {
 
   //     // 백엔드로 데이터 전송
   //     try {
-  //       const response = await fetch('https://localhost:443/trainee/list', {
+  //       const response = await fetch('https://localhost:443/Instructor/list', {
   //         method: 'POST',
   //         headers: {
   //           'Content-Type': 'application/json'
@@ -174,7 +167,7 @@ const Trainee_list = () => {
 
   //       if (response.ok) {
   //         // 로그인 성공 시 처리
-  //         console.log("유후~정보교환 성공(trainee/list)");
+  //         console.log("유후~정보교환 성공(Instructor/list)");
   //         setErrorMessage('');                    // 성공 시 에러 메시지 초기화
   //       } else {
   //         // 로그인 실패 시 처리
@@ -349,19 +342,31 @@ const Trainee_list = () => {
 
   return (
     <div className={styles.main}>
-      <div className={styles.title}>훈련생 리스트</div>
+      <div className={styles.title}>강사 리스트</div>
 
       <div className={styles.btns}>
-        <button className={styles.registerBtn} onClick={handleRegistrationClick}>회원 등록 버튼</button> {/* 회원 등록 버튼 */}
+        <button className={styles.registerBtn} onClick={handleRegistrationClick}>강사 등록</button> {/* 회원 등록 버튼 */}
         {showRegistration && (
-          <Trainee_Registration onClose={handleCloseRegistration} />
+          <Instructor_Registration onClose={handleCloseRegistration} />
         )}
 
         {/* 검색항목 */}
         <div className={styles.searchContainer}>
           
           <select
-            name='search'
+            name='status'
+            className={styles.dropdown}
+            value={searchOption}
+            onChange={(e) => setSearchOption(e.target.value)}
+          >
+            <option value="">강사 상태</option>
+            <option value="1">등록됨</option>
+            <option value="2">강의중</option>
+            <option value="3">퇴사</option>
+          </select>
+          
+          <select
+            name='searchWord'
             className={styles.dropdown}
             value={searchOption}
             onChange={(e) => setSearchOption(e.target.value)}
@@ -371,7 +376,7 @@ const Trainee_list = () => {
             <option value="phone">전화번호</option>
           </select>
           <input
-            type="text"
+            type="searchText"
             placeholder="검색어를 입력해주세요"
             className={styles.input}
             value={searchTerm}
@@ -388,10 +393,10 @@ const Trainee_list = () => {
       {/* 테이블 헤더 */}
       <div className={styles.tableHeader}>
         <div>사진</div>
-        <div>회원번호</div>
+        <div>고유번호</div>
         <div>이름</div>
         <div>전화번호</div>
-        <div>신청과정</div>
+        <div>담당과정</div>
         <div>등록일</div>
         <div>상태</div>
         <div>수정 / 삭제</div>
@@ -415,8 +420,8 @@ const Trainee_list = () => {
                 <button onClick={() => handleEditButton(index)} className={`${styles.edit}`}>···</button>
                 {showEditMenu === index && (
                   <div ref={editMenuRef} className={styles.editMenu}>
-                    <Link to={'/trainee_modify'} className={styles.modify}>수정</Link> {/* 회원 수정 버튼 */}
-                    <Link to={'/trainee_delete'} className={styles.delete}>삭제</Link>
+                    <Link to={'/instructor_modify'} className={styles.modify}>수정</Link> {/* 회원 수정 버튼 */}
+                    <Link to={'/instructor_delete'} className={styles.delete}>삭제</Link>
                   </div>
                 )}
               </td> {/* 수정 / 삭제 버튼 */}
@@ -435,4 +440,4 @@ const Trainee_list = () => {
   );
 };
 
-export default Trainee_list;
+export default Instructor_list;

@@ -33,10 +33,10 @@ const Course_register = () => {
 
     const handleRegisterConfirm = async () => {
 
-        /* if (!formData.type || !formData.name || !formData.instructor || !formData.startDate || !formData.endDate || !formData.capacity || !formData.detail) {
+        if (!formData.type || !formData.name || !formData.instructor || !formData.startDate || !formData.endDate || !formData.capacity || !formData.detail) {
             alert("모든 필수 정보를 입력하세요.");
             return;
-        } */
+        }
         
         const data = new FormData();
         data.append("type", formData.type);

@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './Trainee_modification.module.css';
+import styles from './Instructor_modification.module.css';
 
-const Trainee_modification = () => {
+const Instructor_modification = () => {
   const cancel = useNavigate();
 
   const [registerForm, setRegisterForm] = useState({
-      traineeId:'',
+      insId:'',
       name: '',
       tel: '',
       course: '',
-      upfiles: null,
+      upfiles: '',
     });
 
   const handleInputChange = (event) => {
@@ -48,11 +48,11 @@ const Trainee_modification = () => {
       if (response.ok) {
         const data = await response.json();
         console.log('수정 성공:', data);
-        alert('훈련생 정보가 수정되었습니다.');
+        alert('강사 정보가 수정되었습니다.');
 
       } else {
         console.error('수정 실패:', response.statusText);
-        alert('훈련생 정보 수정에 실패했습니다.');
+        alert('강사 정보 수정에 실패했습니다.');
       }
     } catch (error) {
       console.error('요청 중 오류 발생:', error);
@@ -68,7 +68,7 @@ const Trainee_modification = () => {
     <>
       <div className={styles.background}>
         <div className={styles.container}>
-          <h2>훈련생 정보 수정</h2>
+          <h2>강사정보 수정</h2>
           <form onSubmit={handleSubmit}>
             <div className={styles.form}>
               <input
@@ -91,7 +91,7 @@ const Trainee_modification = () => {
               <input
                 type="text"
                 className={styles.textbox}
-                placeholder="신청과정"
+                placeholder="담당과정"
                 name="course"
                 value={registerForm.course}
                 onChange={handleInputChange}
@@ -116,4 +116,4 @@ const Trainee_modification = () => {
   );
 };
 
-export default Trainee_modification;
+export default Instructor_modification;
