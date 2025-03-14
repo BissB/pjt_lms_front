@@ -1,10 +1,11 @@
 
 import styles from './Course_delete.module.css';
-import { useParams } from 'react-router-dom';
+import { useParams , useNavigate} from 'react-router-dom';
 
 const Course_delete = ({onClose}) => {
     console.log("Course_delete() invoked.");
 
+    const navigate = useNavigate();
     const { courseId } = useParams(); // URL에서 courseId 가져오기
 
     // 실제 삭제 요청
@@ -18,7 +19,7 @@ const Course_delete = ({onClose}) => {
 
         if (response.ok) {
             alert("삭제되었습니다.");
-            // setCourses(prevCourses => prevCourses.filter(course => course.id !== selectedCourseId));
+            navigate("/course_overview");
         } else {
             alert("삭제 실패: ");
         }

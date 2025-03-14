@@ -26,6 +26,7 @@ const Course_register = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+ 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         setFormData((prev) => ({ ...prev, file }));
