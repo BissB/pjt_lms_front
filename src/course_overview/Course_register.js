@@ -11,51 +11,48 @@ const Course_register = () => {
         navigate("/course_overview");
     }
 
-    const [formData, setFormData] = useState({
+    const [RegisterData, setResiterData] = useState({
             type: "",
             name: "",
-            instructor: "",
+            // instructor: "",
             startDate: "",
             endDate: "",
             capacity: "",
             detail: "",
-            upfiles: null,
     });
 
+    const [RegisterFile, setRegisterFile] = useState(null);
+
+
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        setResiterData({ ...RegisterData, [e.target.name]: e.target.value });
     };
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
-        setFormData((prev) => ({ ...prev, file }));
+        setRegisterFile(file);
     };
 
     const handleRegisterConfirm = async () => {
 
-        if (!formData.type || !formData.name  || !formData.startDate || !formData.endDate || !formData.capacity || !formData.detail) {
+        if (!RegisterData.type || !RegisterData.name  || !RegisterData.startDate || !RegisterData.endDate || !RegisterData.capacity || !RegisterData.detail) {
             alert("모든 필수 정보를 입력하세요.");
             return;
         }
         
-        const data = new FormData();
-        data.append("type", formData.type);
-        data.append("name", formData.name);
-        data.append("instructor", formData.instructor);
-        data.append("startDate", formData.startDate);
-        data.append("endDate", formData.endDate);
-        data.append("capacity", formData.capacity);
-        data.append("detail", formData.detail);
-        if (formData.upfiles) {
-           data.append("upfiles", formData.upfiles);
+        const formData = new FormData();
+        formData.append("dto", new Blob([JSON.stringify(RegisterData)], { type: "application/json" }));
+        if (RegisterFile) {
+            formData.append("upfiles", RegisterFile);
         }
         
-        console.log("formData:", formData );
+        console.log("RegisterData:", RegisterData);
+        console.log("RegisterFile:", RegisterFile);
 
         try {
             const response = await fetch(`https://localhost:443/course`, {
             method: "PUT", // 현재 등록은 PUT
-            body: data,
+            body: formData,
             });
 
             if (response.ok) {

@@ -44,13 +44,13 @@ const Course_check = () => {
                 console.log("curr", data.currCount);
                 setFormData({
                     // upfiles: data?.upfiles || [],
-                    type: data?.type || "",
-                    name: data?.name || "",
-                    instructor: data?.instructor || "",
-                    startDate: data?.startDate || "",
-                    endDate: data?.endDate || "",
-                    currCount: data?.currCount || "",
-                    capacity: data?.capacity || "",
+                    type: data.type || "",
+                    name: data.name || "",
+                    instructor: data.instructor || "",
+                    startDate: data.startDate || "",
+                    endDate: data.endDate || "",
+                    currCount: data.currCount || "",
+                    capacity: data.capacity || "",
                     detail: data.detail || "",
                 });
                 console.log("data", data);
