@@ -22,11 +22,11 @@
 
     margin-bottom: 50px;
     
-    background-color: #fcc1c1;
+    background-color: #f9e9e9;
 /* 
     box-shadow: 6px 15px 15px rgb(244, 101, 101); */
 
-    box-shadow: 4px 4px 10px rgb(131, 0, 0);
+    box-shadow: 4px 4px 10px rgb(249, 187, 187);
 }
 
 /* ============================2 */
@@ -103,7 +103,7 @@
 
 .modify_button:hover {
     transform: translateY(3px);
-    box-shadow: 4px 4px 10px rgb(244, 101, 101);
+    box-shadow: 4px 4px 10px rgb(249, 187, 187);
 }
 
 .delete_button{
@@ -123,7 +123,7 @@
 
 .delete_button:hover {
     transform: translateY(3px);
-    box-shadow: 4px 4px 10px rgb(244, 101, 101);
+    box-shadow: 4px 4px 10px rgb(249, 187, 187);
 }
 
 /* ============================2 */
@@ -170,10 +170,10 @@
     width: 70%;
     height: 30%;
 
-    background-color: #fcc1c1;
+    background-color: #f9e9e9;
 
     border-radius: 10px;
 
     
-    box-shadow: 4px 4px 10px rgb(131, 0, 0);;
+    box-shadow: 4px 4px 10px rgb(249, 187, 187);
 }

@@ -31,12 +31,12 @@
     bottom: 15px;                       /*구분과 선의 줄*/
     width: 100%;
     height: 2px;
-    background-color: orangered;
+    background-color: #fc9494;
 }
 
 .inputbox{
     background: transparent;
     border: none;  
     outline: none; 
-    color: white;  /* 입력된 텍스트 색상 */
+    color: #221e1f;  /* 입력된 텍스트 색상 */
 }

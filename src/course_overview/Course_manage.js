@@ -1,9 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useState, useEffect, useRef , useCallback} from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './Course_manage.module.css';
 import sample1 from './img/sample1.avif'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 // import InfiniteScroll from 'react-infinite-scroll-component';       // 무한스크롤
 
 
@@ -15,13 +13,26 @@ const Course_manage = () => {
     // const [searchParams] = useSearchParams();
     // const status = searchParams.get("status") || "default"; // 기본값 설정
 
+    /// 무한 스크롤
     const [courses, setCourses] = useState([]); // 전체 데이터 리스트
+    const [page, setPage] = useState(0); // 현재 페이지 번호
+    const [loading, setLoading] = useState(false); // 데이터 로딩 상태
+    const [hasMore, setHasMore] = useState(true); // 추가 데이터 존재 여부
 
-    useEffect(() => {                               // 백엔드에서 데이터 가져오기 (오류 방지 처리 추가)
-        // if (!status) return; // status 값이 없으면 실행 안 함
+    const observer  = useRef();   // 스크롤 끝을 감지할 참조
+
+    useEffect(() => {
+        fetchCourses();
+    }, []);
+
+
+    const fetchCourses = useCallback(() => {                               // 백엔드에서 데이터 가져오기 (오류 방지 처리 추가)
+
+        if (loading || !hasMore) return; // 로딩 중이거나 데이터 없으면 실행 X
         
+        setLoading(true); // 로딩 시작
         const requestData = {
-            page: 0,           // 기본값 설정 (필요하면 변경)
+            page,               // useState로 page 값 관리
             pageSize: 10,      // 기본값 설정
             // condition: "",  // 검색 조건 예시 (필요에 따라 변경)
             // q: "",             // 검색어 (필요하면 입력)  
@@ -35,19 +46,36 @@ const Course_manage = () => {
             body: JSON.stringify(requestData), 
         })
             .then((response) => {
-                if (!response.ok) {
-                    throw new Error("서버 응답 오류");
-                }
+                if (!response.ok) throw new Error("서버 응답 오류");
                 return response.json();
             })
             .then((data) => {
-                setCourses(data.content); // 전체 데이터 저장
-                console.log("courses: ", data.content);
+                setCourses((prevCourses) => [...prevCourses, ...data.content]); // 기존 데이터에 추가
+                setHasMore(data.content.length > 0); // 데이터가 없으면 더 이상 요청 X
+                setPage((prevPage) => prevPage + 1); // 페이지 증가
+                console.log("data", data);
+                console.log("content",data.content);
             })
-            .catch((error) => {
-                console.error("데이터 불러오기 실패:", error);
-            });
-    }, []);
+            .catch((error) => console.error("데이터 불러오기 실패:", error))
+            .finally(() => setLoading(false)); // 로딩 종료
+
+    }, [page, loading, hasMore]);
+
+
+    // 마지막 요소를 감지하는 Observer 설정
+    const lastElementRef = useCallback((node) => {
+        if (loading) return;
+        if (observer.current) observer.current.disconnect();
+
+        observer.current = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && hasMore) {
+                fetchCourses(); // 마지막 요소가 보이면 다음 데이터 요청
+            }
+        });
+
+        if (node) observer.current.observe(node);
+    }, [loading, hasMore, fetchCourses]);
+
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -56,14 +84,6 @@ const Course_manage = () => {
     const [searchOption, setSearchOption] = useState("")
     const [search, setSearch] = useState("");
     const [filteredCourses, setFilteredCourses] = useState(courses); // 검색 결과 저장
-
-    // 무한 스크롤
-    const [visibleCourses, setVisibleCourses] = useState(courses.slice(0, 5));    // 화면에 표시할 과정들
-    const [loading, setLoading] = useState(false);   // 로딩 상태
-    const [hasMore, setHasMore] = useState(true);   // 더 불러올 데이터가 있는지에 대한 여부
-    const observerRef = useRef(null);   // 스크롤 끝을 감지할 참조
-
-    console.log(filteredCourses);
 
     // 검색 기능 함수
     const handleSearch = () => {
@@ -96,54 +116,6 @@ const Course_manage = () => {
         };
     };
 
-    const loadMoreCourses = () => {
-        if (loading || !hasMore) return;  // 이미 로딩 중이거나 데이터가 없으면 종료
-
-        setLoading(true); // 데이터 로딩 시작
-
-        setTimeout(() => {
-            const nextIndex = visibleCourses.length; // 현재 보여지는 강좌의 개수
-            const nextCourses = filteredCourses.slice(nextIndex, nextIndex + 5); // 더 가져올 강좌 5개
-
-            if (nextCourses.length > 0) {
-                setVisibleCourses((prev) => [...prev, ...nextCourses]); // 새로 가져온 강좌를 화면에 추가
-            } else {
-                setHasMore(false); // 데이터가 더 이상 없으면 hasMore를 false로 설정
-            }
-
-            setLoading(false); // 로딩 종료
-        }, 1000); // 1초 뒤에 데이터 추가
-    };
-
-    useEffect(() => { // 컴포넌트 실행과 동시에 코드 실행
-        if (loading || !hasMore) return; // 로딩 중이거나 데이터가 없으면 실행하지 않음
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    // 스크롤이 끝에 가까워지면
-                    if (entry.isIntersecting && !loading && hasMore) {
-                        loadMoreCourses(); // 더 많은 콘텐츠 로드
-                    }
-                });
-            },
-            {
-                root: document.querySelector('#main'), // 메인 컨테이너를 root로 설정
-                rootMargin: "0px 0px 200px 0px", // 아래쪽으로 감지 범위 확장 (스크롤 내리면 콘텐츠가 보일 때)
-                threshold: 1.0 // 100% 보이면 실행
-            }
-        );
-
-        // observerRef.current가 화면에 보일 때만 observer 작동
-        if (observerRef.current) {
-            observer.observe(observerRef.current);
-        }
-
-        return () => {
-            if (observerRef.current) observer.unobserve(observerRef.current); // 컴포넌트 언마운트 시 observer 해제
-        };
-    }, [hasMore, loading]); // hasMore와 loading 상태가 변경될 때마다 실행
-
     // 엔터키 입력 시 검색 기능 작동 ======================================================
 
     const handleKeyDown = (e) => {
@@ -153,28 +125,6 @@ const Course_manage = () => {
             // 예: 검색 요청 보내기
         }
     };
-
-
-    // ///////////////////////////////////////////////////////    해당 id 과정 상세조회/////////////////////////////////////////////////////////////////////
-
-
-    // const navigate = useNavigate();
-
-    // const handleCourseClick = (courseId) => {
-    //     navigate(`/course_detail/${courseId}`); // 클릭한 과정의 crsCode를 URL로 전달
-    // };
-    // return (
-    //     <div>
-    //         {courses.map((course) => (
-    //             <div key={course.id} onClick={() => handleCourseClick(course.id)}>
-    //                 {course.name}
-    //             </div>
-    //         ))}
-    //     </div>
-    // );
-
-    // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
     const openCourseRegister = () => {
         navigate("/course_register");
@@ -235,13 +185,11 @@ const Course_manage = () => {
                         <i className='fas fa-magnifying-glass' />
                     </button>
 
-
-
                 </div>
 
                 {/* 콘텐츠 박스 */}
-                {courses.map((course) => (
-                    <div className={styles.allContentsBox} key={course.id}>
+                {courses.map((course, index) => (
+                    <div className={styles.allContentsBox} key={course.id} ref={index === courses.length - 1 ? lastElementRef : null}>
                         <div className={styles.contentsBox} onClick={() => { navigate(`/course_detail/${course.courseId}`)}}>
                                                                
                             <div className={styles.category} style={courseColor(course.type)}>
@@ -273,8 +221,6 @@ const Course_manage = () => {
                         </div>
                     </div>
                 ))}
-                {/* 스크롤 확인용 div */}
-                <div ref={observerRef} style={{ height: '3px', background: 'transparent' }} />
 
                 {/* 로딩 상태 표시 */}
                 {loading && <p style={{ textAlign: 'center', marginTop: '0' }}></p>}
