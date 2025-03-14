@@ -14,15 +14,21 @@ import img1 from '../img/profile.png';
 const Instructor_list = () => {
   // 멤버 정보 (백엔드에서 어떻게 받아와야하나? 어떻게 적용해야하나?)
   const [members, setMembers] = useState([]);
-  const [paging, setPaging] = useState([]);  // 검색 결과
+  const [paging, setPaging] = useState({
+    totalPages: 0,
+    totalElements: 0,
+    currentPage: 0,
+    isLastPage: false,
+    isFirstPage: true,
+  });  // 검색 결과
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(10);
 
   const requestData = {
-    page,
-    pageSize,
-    "condition": "name", // 검색 항목
-    "q": "Lorem2" // 항목 내용
+    page: page,
+    pageSize: pageSize,
+    condition: "name", // 검색 항목
+    q: "Lorem2" // 항목 내용
   };
 
   const handleRegistrationClick = () => {
@@ -70,7 +76,7 @@ const Instructor_list = () => {
       }
     };
     fetchData();
-  }, []); // [page]
+  }, [page]); // [page]
 
   // 검색 상태 관리
   const [searchTerm, setSearchTerm] = useState(''); // 검색어

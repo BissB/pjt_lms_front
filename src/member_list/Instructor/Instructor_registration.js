@@ -2,80 +2,95 @@ import React, { useState, useEffect } from 'react';
 import styles from './Instructor_registration.module.css';
 
 const Instructor_registration = ({ onClose }) => {
+  const [courses, setCourses] = useState([]);
   const [registerForm, setRegisterForm] = useState({
     name: "",
     tel: "",
     courseId: "",
+  });
+
+  const [registerFile, setRegisterFile] = useState({
     file: null,
   });
 
-  const [selectedCourse, setSelectCourse] = useState();
-
+  // 이름 및 전화번호 입력 핸들러
   const handleChange = (e) => {
     setRegisterForm({ ...registerForm, [e.target.name]: e.target.value });
   };
 
-  // 파일 업로드시 선택된 파일을 상태값에 저장한다.
+  // 파일 업로드 핸들러
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    setRegisterForm((prev) => ({
+    setRegisterFile((prev) => ({
       ...prev,
-      file
+      file,
     }));
   };
 
-  // active 과정리스트 DB 요청코드
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await fetch('https://localhost:443/selectCourseIns', {
-  //         method: 'GET',
-  //       });
+  // 과정 선택 핸들러
+  const handleCourseChange = (event) => {
+    const selectedValue = event.target.value;
+    console.log('선택된 과정 id:', selectedValue);
 
-  //       if (response.ok) {
-  //         const data = await response.json();
+    // courseId를 바로 registerForm에 반영
+    setRegisterForm((prev) => ({
+      ...prev,
+      courseId: selectedValue,
+    }));
+  };
 
-  //         setSelectCourse(data);
-  //         console.log(data);
-  //       } else {
-  //         console.error('Failed to fetch data:', response.statusText);
-  //       }
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
+  // 과정 리스트 가져오기
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const response = await fetch('https://localhost:443/course/selectCourseIns', {
+          method: 'GET',
+        });
 
+        if (response.ok) {
+          const data = await response.json();
+          setCourses(data);
+          console.log(data);
+        } else {
+          console.error('Failed to fetch data:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchCourses();
+  }, []);
+
+  // 폼 제출 핸들러
   const handleSubmit = async (event) => {
-    console.log(registerForm);
-    event.preventDefault()
+    event.preventDefault();
+
+    if (!registerForm.courseId) {
+      alert('과정을 선택하세요.');
+      return;
+    }
+
+    console.log('registerForm:', registerForm);
+    console.log('registerFile:', registerFile);
 
     try {
       const formData = new FormData();
-      formData.append("name", registerForm.name);
-      formData.append("tel", registerForm.tel);
-      formData.append("courseId", registerForm.courseId);
-      if (registerForm.file) {
-        formData.append("file", registerForm.file);
-      }
+      formData.append("dto", new Blob([JSON.stringify(registerForm)], { type: "application/json" }));
+      formData.append("upfiles", registerFile.file);
 
-      const response = await fetch('https://localhost:443/instructor',
-        {
-          method: "PUT",
-          body: formData,
-        });
+      const response = await fetch('https://localhost:443/instructor', {
+        method: "PUT",
+        body: formData,
+      });
 
       if (response.ok) {
         const data = await response.json();
-
         console.log('등록 성공:', data);
         alert('회원 등록이 완료되었습니다.');
         onClose();
       } else {
         console.error('등록 실패:', response.statusText);
         alert('회원 등록에 실패했습니다.');
-        console.log(formData);
       }
     } catch (error) {
       console.error('요청 중 오류 발생:', error);
@@ -83,6 +98,7 @@ const Instructor_registration = ({ onClose }) => {
     }
   };
 
+  // 취소 버튼 핸들러
   const handleCancelClick = () => {
     onClose();
   };
@@ -109,22 +125,20 @@ const Instructor_registration = ({ onClose }) => {
                 onChange={handleChange}
                 maxLength={11}
               />
-              <input
-                className={styles.registration_textbox}
+
+              <select
                 name="courseId"
-                placeholder="담당과정"
+                className={styles.registration_textbox}
                 value={registerForm.courseId}
-                onChange={handleChange}
-              />
-
-              {/* <select
-              name='selectCourseListInstructor'
-              className={styles.registration_textbox}
-              value={}
+                onChange={handleCourseChange}
               >
-                <option>{  }</option>
-
-              </select> */}
+                <option value="" disabled>과정을 선택하세요</option>
+                {courses.map((course) => (
+                  <option key={course.courseId} value={course.courseId}>
+                    {course.name}
+                  </option>
+                ))}
+              </select>
 
               <div className={styles.registration_photo}>
                 <input
