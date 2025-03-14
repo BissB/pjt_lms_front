@@ -14,11 +14,10 @@ const Course_register = () => {
     const [RegisterData, setResiterData] = useState({
             type: "",
             name: "",
-            // instructor: "",
             startDate: "",
             endDate: "",
             capacity: "",
-            detail: "",
+            detail: ""
     });
 
     const [RegisterFile, setRegisterFile] = useState(null);
@@ -28,6 +27,7 @@ const Course_register = () => {
         setResiterData({ ...RegisterData, [e.target.name]: e.target.value });
     };
 
+ 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         setRegisterFile(file);

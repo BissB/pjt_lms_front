@@ -184,6 +184,8 @@ padding 10px 20px
     background-color: #f8efc0;
     
     z-index: 10;
+
+    cursor: pointer;
 }
 
 

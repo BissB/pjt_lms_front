@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate, useParams } from "react-router-dom";
 
 import styles from './Course_check.module.css';  
 import Course_info from './Course_info';
 import Course_content from './Course_content';
 import Course_delete from './Course_delete';
 import {Member}  from '../member_list';
-import { useParams } from "react-router-dom";
 
 const Course_check = () => {
     console.log("Course_check() invoked.");
@@ -24,7 +22,8 @@ const Course_check = () => {
         endDate: "",
         capacity: "",
         currCount: "",
-        detail: ""
+        detail: "",
+        upfile: null
     });
 
     useEffect(() => {
@@ -44,14 +43,15 @@ const Course_check = () => {
                 console.log("curr", data.currCount);
                 setFormData({
                     // upfiles: data?.upfiles || [],
-                    type: data.type || "",
-                    name: data.name || "",
-                    instructor: data.instructor || "",
-                    startDate: data.startDate || "",
-                    endDate: data.endDate || "",
-                    currCount: data.currCount || "",
-                    capacity: data.capacity || "",
-                    detail: data.detail || "",
+                    type: data?.type || "",
+                    name: data?.name || "",
+                    instructor: data.instructor?.name|| "",
+                    startDate: data?.startDate || "",
+                    endDate: data?.endDate || "",
+                    currCount: data?.currCount || "",
+                    capacity: data?.capacity || "",
+                    detail: data?.detail || "",
+                    upfile: data?.upfile[0] || null
                 });
                 console.log("data", data);
             })
@@ -103,9 +103,9 @@ const Course_check = () => {
 
                      <button className={styles.backbutton} onClick={()=> navigate("/course_overview")}><i class="fa-solid fa-chevron-left fa-1.8x"></i></button> {/* 뒤로가기 버튼 */}
                      <div className={styles.imgbox}></div>
-                     <div className={styles.buttonbox}>      
+                     <div className={styles.buttonbox}>
                          <button className={styles.modify_button} onClick={handleModifyShowPopup}>수정</button>
-                         <button className={styles.delete_button} onClick={handleDeleteShowPopup}>삭제</button> 
+                         <button className={styles.delete_button} onClick={handleDeleteShowPopup}>삭제</button>
                      </div>
 
                 </div>

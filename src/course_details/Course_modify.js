@@ -34,7 +34,7 @@ const Course_modify = () => {
                 setFormData({
                    type: data.type || "",
                    name: data.name || "",
-                   instructor: data.instructor || "",
+                   instructor: data.instructor?.name || "",
                    startDate: data.startDate || "",
                    endDate: data.endDate || "",
                    capacity: data.capacity || "",
