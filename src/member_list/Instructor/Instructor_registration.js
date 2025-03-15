@@ -9,9 +9,7 @@ const Instructor_registration = ({ onClose }) => {
     courseId: "",
   });
 
-  const [registerFile, setRegisterFile] = useState({
-    file: null,
-  });
+  const [registerFile, setRegisterFile] = useState(null);
 
   // 이름 및 전화번호 입력 핸들러
   const handleChange = (e) => {
@@ -21,10 +19,7 @@ const Instructor_registration = ({ onClose }) => {
   // 파일 업로드 핸들러
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    setRegisterFile((prev) => ({
-      ...prev,
-      file,
-    }));
+    setRegisterFile(file);
   };
 
   // 과정 선택 핸들러
@@ -78,7 +73,12 @@ const Instructor_registration = ({ onClose }) => {
       formData.append("name", registerForm.name);
       formData.append("courseId", registerForm.courseId)
       formData.append("tel", registerForm.tel)
-      formData.append("upfiles", registerFile.file);
+      if (registerFile) {
+        formData.append("upfiles", registerFile);
+      }
+
+      console.log('registerForm:', registerForm);
+      console.log('registerFile:', registerFile);
 
       const response = await fetch('https://localhost:443/instructor', {
         method: "PUT",
@@ -134,7 +134,7 @@ const Instructor_registration = ({ onClose }) => {
                 value={registerForm.courseId}
                 onChange={handleCourseChange}
               >
-                <option value="" disabled>과정을 선택하세요</option>
+                <option value="">과정을 선택하세요</option>
                 {courses.map((course) => (
                   <option key={course.courseId} value={course.courseId}>
                     {course.name}

@@ -41,16 +41,10 @@ const Instructor_list = () => {
 
   useEffect(() => {   //*** db에서 데이터 받아오기 ***
     const fetchData = async () => {
-      const formData = new FormData();
-      formData.append("page", requestData.page);
-      formData.append("pageSize", requestData.pageSize);
-      formData.append("condition", requestData.condition);
-      formData.append("q", requestData.q);
 
       try {
         const response = await fetch('https://localhost:443/instructor', {
           method: 'POST',
-          body: formData,
         });
 
         if (response.ok) {

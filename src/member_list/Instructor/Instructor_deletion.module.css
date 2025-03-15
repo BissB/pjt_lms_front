@@ -5,8 +5,12 @@
     top: 50%;
     left: 57.5%;
     transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(5px);
+
+    background: url(../img/modification.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
     z-index: 99;
 }
 
@@ -21,9 +25,9 @@
     justify-content: center;
     align-items: center;
 
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
     border-radius: 10px;
-    background-color: #ddd;
+    background-color: #c5caf2;
 
     width: 400px;
     height: 300px;

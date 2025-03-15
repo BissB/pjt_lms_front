@@ -6,6 +6,7 @@ const Instructor_modification = () => {
   const navigate = useNavigate();
   const { instructorId } = useParams();
 
+  const [courses, setCourses] = useState([]);
   const [registerForm, setRegisterForm] = useState({
     name: '',
     tel: '',
@@ -25,7 +26,7 @@ const Instructor_modification = () => {
           setRegisterForm({
             name: data.name,
             tel: data.tel,
-            course: data.course,
+            course: data.course ? data.course.courseId : '',
             status: data.status,
             enabled: data.enabled,
             upfiles: null, // 파일은 기본적으로 null로 설정
@@ -40,6 +41,27 @@ const Instructor_modification = () => {
 
     fetchInstructorData();
   }, [instructorId]);
+
+  useEffect(() => {   // 과정정보 가져오기
+    const fetchCourses = async () => {
+      try {
+        const response = await fetch('https://localhost:443/course/selectCourseIns', {
+          method: 'GET',
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setCourses(data);
+          console.log(data);
+        } else {
+          console.error('Failed to fetch data:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchCourses();
+  }, []);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -64,7 +86,7 @@ const Instructor_modification = () => {
       const formData = new FormData();
       formData.append('name', registerForm.name);
       formData.append('tel', registerForm.tel);
-      formData.append('course', registerForm.course);
+      formData.append('courseId', registerForm.course);
       formData.append('status', registerForm.status);
       formData.append('enabled', registerForm.enabled);
 
@@ -94,8 +116,15 @@ const Instructor_modification = () => {
     navigate(-1); // 이전 페이지로 이동
   };
 
+  const statusOption = {
+    "1": "등록",
+    "2": "강의중",
+    "3": "퇴사",
+  };
+
   return (
-    <div className={styles.background}>
+    <div className={styles.main}>
+      <div className={styles.background} />
       <div className={styles.container}>
         <h2>강사정보 수정</h2>
         <form onSubmit={handleSubmit}>
@@ -119,32 +148,41 @@ const Instructor_modification = () => {
               maxLength={11}
               required
             />
-            <input
-              type="text"
-              className={styles.textbox}
-              placeholder="담당과정"
+
+            <select
               name="course"
-              value={registerForm.course}
+              className={styles.textbox}
+              value={registerForm.course ? registerForm.course.name : '담당중인 과정이 없습니다.'}
               onChange={handleInputChange}
-            />
-            
-            <input
+            >
+              {courses.map((course) => (
+                <option key={course.courseId} value={course.courseId}>
+                  {course.name}
+                </option>
+              ))}
+            </select>
+
+            {/* <input
               type="text"
               className={styles.textbox}
               placeholder="상태(status)"
               name="status"
               value={registerForm.status}
               onChange={handleInputChange}
-            />
-
-            <input
-              type="text"
+            /> */}
+            <select
+              name="status"
               className={styles.textbox}
-              placeholder="활성화 여부(enabled)"
-              name="enabled"
-              value={registerForm.enabled}
+              value={registerForm.status}
               onChange={handleInputChange}
-            />
+            >
+              <option value="">상태를 선택하세요</option>
+              {Object.entries(statusOption).map(([key, value]) => (
+                <option key={key} value={key}>
+                  {value}
+                </option>
+              ))}
+            </select>
 
             <div className={styles.photo}>
               <input
@@ -158,7 +196,7 @@ const Instructor_modification = () => {
             <div className={styles.btns}>
               {/* 수정 버튼 */}
               <button type="submit" className={styles.submit}>수정</button>
-              
+
               {/* 취소 버튼 */}
               <button type="button" className={styles.cancel} onClick={handleCancelClick}>취소</button>
             </div>

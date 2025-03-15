@@ -45,7 +45,7 @@ const Login = () => {
                 // 로그인 성공 시 처리
                 console.log("로그인 성공");
                 setMessage(text);
-                navigate("/course_overview");
+                navigate("/course_overview/2");
 
             } else {
                 // 로그인 실패 시 처리
