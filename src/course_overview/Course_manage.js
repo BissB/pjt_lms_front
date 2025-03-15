@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useState, useEffect, useRef , useCallback} from 'react';
+import { useNavigate,useParams } from 'react-router-dom';
 
 import Course_register from './Course_register';
 import styles from './Course_manage.module.css';
@@ -10,16 +10,17 @@ import sample1 from './img/sample1.avif'
 const Course_manage = () => {
 
     const navigate = useNavigate();
-    const { status } = useParams(); // 과정 코드 받아오기
+    const {status} = useParams(); // 과정 코드 받아오기
     // //////////////////////////////////////////////////////   데이터 불러오기   /////////////////////////////////////////////////////////
     // const [searchParams] = useSearchParams();
     // const status = searchParams.get("status") || "default"; // 기본값 설정
 
-    const [listData, setListData] = useState({
-        type: "",
-        searchWord: "",
-        searchText: "",
+    const [ listData, setListData] = useState({
+            type: "",
+            searchWord: "",
+            searchText: "",
     });
+
 
     const handleChange = (field, value) => {
         setListData((prevData) => ({
@@ -27,7 +28,7 @@ const Course_manage = () => {
             [field]: value,
         }));
     };
-
+    
 
     /// 무한 스크롤
     const [courses, setCourses] = useState([]); // 전체 데이터 리스트
@@ -35,27 +36,42 @@ const Course_manage = () => {
     const [loading, setLoading] = useState(false); // 데이터 로딩 상태
     const [hasMore, setHasMore] = useState(true); // 추가 데이터 존재 여부
 
-    const observer = useRef();   // 스크롤 끝을 감지할 참조
+    const observer  = useRef();   // 스크롤 끝을 감지할 참조
 
     useEffect(() => {
         fetchCourses();
-    }, []);
+        setCourses([]);  // 기존 데이터 초기화
+        setCurrPage(0);   // 페이지 번호 초기화
+        setHasMore(true); // 추가 데이터 요청 가능 상태로 변경
+        setListData({
+            type: "",
+            searchWord: "",
+            searchText: "",
+        });
+    }, [status]);
 
 
     const fetchCourses = useCallback(() => {                               // 백엔드에서 데이터 가져오기 (오류 방지 처리 추가)
-
-        if (loading || !hasMore) return; // 로딩 중이거나 데이터 없으면 실행 X
-
+        
+        // if (loading || !hasMore) return; // 로딩 중이거나 데이터 없으면 실행 X
+        
         setLoading(true); // 로딩 시작
 
         const params = new URLSearchParams({
             currPage: currPage,      // 현재 페이지 번호
             pageSize: 10,            // 한 페이지 당 개수
-            status: status
         });
 
-        fetch(`https://localhost:443/course?${params.toString()}`, {
-            method: "POST",
+        const formData = new FormData();
+            formData.append("type", listData.type);
+            if (listData.searchWord) {
+                formData.append("searchWord", listData.searchWord);
+                formData.append("searchText", listData.searchText);
+            }
+
+        fetch(`https://localhost:443/course/list/${status}?${params.toString()}`, {
+            method: "POST", 
+            body: formData
         })
             .then((response) => {
                 if (!response.ok) throw new Error("서버 응답 오류");
@@ -66,7 +82,7 @@ const Course_manage = () => {
                 setHasMore(data.content.length > 0); // 데이터가 없으면 더 이상 요청 X
                 setCurrPage((prevPage) => prevPage + 1); // 페이지 증가
                 console.log("data", data);
-                console.log("content", data.content);
+                console.log("content",data.content);
             })
             .catch((error) => console.error("데이터 불러오기 실패:", error))
             .finally(() => setLoading(false)); // 로딩 종료
@@ -94,22 +110,29 @@ const Course_manage = () => {
 
     const handleSearch = () => {
 
-        if (loading || !hasMore) return; // 로딩 중이거나 데이터 없으면 실행 X
-
+        // if (loading || !hasMore) return; // 로딩 중이거나 데이터 없으면 실행 X
+        console.log("listData", listData);
         setLoading(true); // 로딩 시작
 
-        const formData = new FormData();
-        formData.append("currPage", currPage);
-        formData.append("pageSize", 10);
-        formData.append("type", listData.type);
-        if (listData.searchWord) {
-            formData.append("searchWord", listData.searchWord);
-            formData.append("searchText", listData.searchText);
-        }
+        setCourses([]);   // 기존 데이터 삭제
+        setCurrPage(0);   // 페이지 번호 초기화
+        setHasMore(true); // 추가 데이터 여부 리셋
 
-        fetch(`https://localhost:443/course/list/${status}`, {
+        const params = new URLSearchParams({
+            currPage: 0,      // 현재 페이지 번호
+            pageSize: 10,            // 한 페이지 당 개수
+        });
+
+        const formData = new FormData();
+            formData.append("type", listData.type);
+            if (listData.searchWord) {
+                formData.append("searchWord", listData.searchWord);
+                formData.append("searchText", listData.searchText);
+            }
+
+        fetch(`https://localhost:443/course/list/${status}?${params.toString()}`, {
             method: "POST",
-            body: formData, // FormData 전송 
+            body: formData, // FormData 전송
         })
             .then((response) => {
                 if (!response.ok) throw new Error("서버 응답 오류");
@@ -120,13 +143,15 @@ const Course_manage = () => {
                 setHasMore(data.content.length > 0); // 데이터가 없으면 더 이상 요청 X
                 setCurrPage((prevPage) => prevPage + 1); // 페이지 증가
                 console.log("data", data);
-                console.log("content", data.content);
+                console.log("content",data.content);
             })
             .catch((error) => console.error("데이터 불러오기 실패:", error))
             .finally(() => setLoading(false)); // 로딩 종료
 
     };
 
+    
+    
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -178,16 +203,17 @@ const Course_manage = () => {
 
             <div className={styles.main}>
                 {isOpen && (
-                    <Course_register closeModal={closeCourseRegister} />
+                        <Course_register closeModal={closeCourseRegister} />
                 )}
+
                 <div className={styles.headline}>과정 관리</div>
 
                 {/* 과정 등록 버튼 */}
 
                 <div className={styles.search}>
-                    <button className={styles.register} onClick={openCourseRegister}>
-                        과정 등록
-                    </button>
+                        <button className={styles.register} onClick={openCourseRegister}>
+                            과정 등록
+                        </button>
                     <select className={styles.drop1} name="type" onChange={(e) => handleChange("type", e.target.value)}>
                         <option value="">구분</option>
                         <option value="1">NCS</option>
@@ -197,8 +223,8 @@ const Course_manage = () => {
                     </select>
                     <select className={styles.drop2} name="searchWord" onChange={(e) => handleChange("searchWord", e.target.value)}>
                         <option value="">항목</option>
-                        <option value="courseName">과정명</option>
-                        <option value="instructor">강사명</option>
+                        <option value="name">과정명</option>
+                        <option value="instructorName">강사명</option>
                     </select>
 
                     <input
@@ -206,6 +232,7 @@ const Course_manage = () => {
                         name='searchText'
                         className={styles.search_bar}
                         placeholder="검색어를 입력하세요."
+                        value={listData.searchText}
                         onChange={(e) => handleChange("searchText", e.target.value)}
                     />
 
@@ -219,8 +246,8 @@ const Course_manage = () => {
                 {/* 콘텐츠 박스 */}
                 {courses.map((course, index) => (
                     <div className={styles.allContentsBox} key={course.id} ref={index === courses.length - 1 ? lastElementRef : null}>
-                        <div className={styles.contentsBox} onClick={() => { navigate(`/course_detail/${course.courseId}`) }}>
-
+                        <div className={styles.contentsBox} onClick={() => { navigate(`/course_detail/${course.courseId}`)}}>
+                                                               
                             <div className={styles.category} style={courseColor(course.type)}>
                                 {typeMapping[course.type] || "미정"}
                             </div>
@@ -244,7 +271,7 @@ const Course_manage = () => {
                                 <p>강사</p>
                                 <div className={styles.capacity}>
                                     {course.capacity}
-                                </div>
+                                </div>  
                                 <p>명</p>
                             </div>
                         </div>

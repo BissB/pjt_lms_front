@@ -19,7 +19,7 @@ const Course_delete = ({onClose}) => {
 
         if (response.ok) {
             alert("삭제되었습니다.");
-            navigate("/course_overview");
+            navigate("/course_overview/1");
         } else {
             alert("삭제 실패: ");
         }

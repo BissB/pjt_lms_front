@@ -5,10 +5,7 @@ import styles from './Course_register.module.css';
 const Course_register = ({closeModal}) => {
     console.log("Course_register() invoked.");
 
-    const navigate = useNavigate();
-
     const onClose = () => {
-        navigate("/course_overview/1");
         closeModal();
     }
 
@@ -18,7 +15,7 @@ const Course_register = ({closeModal}) => {
             startDate: "",
             endDate: "",
             capacity: "",
-            detail: ""
+            detail: "",
     });
 
     const [RegisterFile, setRegisterFile] = useState(null);
@@ -87,20 +84,14 @@ const Course_register = ({closeModal}) => {
                             <option value="4">미정</option>
                         </select>
                     </div>
-                    <div className={styles.inputcontainer}
-                    >과정명
+                    <div className={styles.inputcontainer}>과정명
                         <input name="name" className={styles.inputbox} placeholder="필수 입력" onChange={handleChange}></input> 
                     </div>
-                    <div className={styles.inputcontainer}>강사명
-                        <input name="instructor" className={styles.inputbox} placeholder="필수 입력" onChange={handleChange}></input> 
+                    <div className={styles.inputcontainer}>수강시작일
+                        <input name="startDate" className={styles.inputbox} placeholder="예) 2025-01-01" onChange={handleChange}></input> 
                     </div>
-                    <div className={styles.datebox}>
-                        <div className={styles.dateinputcontainer1}>수강시작일
-                            <input name="startDate" className={styles.dateinputbox} placeholder="예) 2025-01-01" onChange={handleChange}></input> 
-                        </div>
-                        <div className={styles.dateinputcontainer2}>수강종료일
-                            <input name="endDate" className={styles.dateinputbox} placeholder="예) 2025-01-01" onChange={handleChange}></input> 
-                        </div>
+                    <div className={styles.inputcontainer}>수강종료일
+                        <input name="endDate" className={styles.inputbox} placeholder="예) 2025-01-01" onChange={handleChange}></input> 
                     </div>
                     <div className={styles.inputcontainer}>수강 정원
                         <input name="capacity" className={styles.inputbox} placeholder="필수 입력" onChange={handleChange}></input> 
