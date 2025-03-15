@@ -29,9 +29,9 @@ const Navbar = () => {
 
       <div className={styles.container}>
         <div className={styles.title}>과정 관리</div>
-        <div className={styles.content}><Link to="/course_overview?status=2" >진행예정</Link></div>
-        <div className={styles.content}><Link to="/course_overview?status=1" >진행중</Link></div>
-        <div className={styles.content}><Link to="/course_overview?status=0" >진행종료</Link></div>
+        <div className={styles.content}><Link to="/course_overview/1" >진행예정</Link></div>
+        <div className={styles.content}><Link to="/course_overview/2" >진행중</Link></div>
+        <div className={styles.content}><Link to="/course_overview/4" >진행종료</Link></div>
 
         <br />
 

@@ -2,13 +2,14 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Course_register.module.css';
 
-const Course_register = () => {
+const Course_register = ({closeModal}) => {
     console.log("Course_register() invoked.");
 
     const navigate = useNavigate();
 
     const onClose = () => {
-        navigate("/course_overview");
+        navigate("/course_overview/1");
+        closeModal();
     }
 
     const [RegisterData, setResiterData] = useState({

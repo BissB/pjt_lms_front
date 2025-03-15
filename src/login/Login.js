@@ -28,16 +28,13 @@ const Login = () => {
 
         // 백엔드로 데이터 전송
         try {
-            // const formData = new FormData();
-            // formData.append("userId", loginData.userId);
-            // formData.append("passwd", loginData.passwd);
+            const formData = new FormData();
+            formData.append("userId", loginData.userId);
+            formData.append("passwd", loginData.passwd);
 
             const response = await fetch('https://localhost:443/security/login', {
                 method: 'POST',
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: loginData
+                body: formData
             });
 
             const text = await response.text();
