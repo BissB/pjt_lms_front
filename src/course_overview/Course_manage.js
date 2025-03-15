@@ -15,7 +15,7 @@ const Course_manage = () => {
 
     /// 무한 스크롤
     const [courses, setCourses] = useState([]); // 전체 데이터 리스트
-    const [page, setPage] = useState(0); // 현재 페이지 번호
+    const [currPage, setCurrPage] = useState(0); // 현재 페이지 번호
     const [loading, setLoading] = useState(false); // 데이터 로딩 상태
     const [hasMore, setHasMore] = useState(true); // 추가 데이터 존재 여부
 
@@ -31,19 +31,16 @@ const Course_manage = () => {
         if (loading || !hasMore) return; // 로딩 중이거나 데이터 없으면 실행 X
         
         setLoading(true); // 로딩 시작
-        const requestData = {
-            page,               // useState로 page 값 관리
-            pageSize: 10,      // 기본값 설정
-            // condition: "",  // 검색 조건 예시 (필요에 따라 변경)
-            // q: "",             // 검색어 (필요하면 입력)  
-        };  
+
+        const formData = new FormData();
+            formData.append("currPage", currPage);
+            formData.append("pageSize", 10);
+            // formData.append("condition", "");  // 필요 시 추가
+            // formData.append("q", "");          // 필요 시 추가
 
         fetch("https://localhost:443/course", {
             method: "POST", 
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(requestData), 
+            body: formData, // FormData 전송 
         })
             .then((response) => {
                 if (!response.ok) throw new Error("서버 응답 오류");
@@ -52,14 +49,14 @@ const Course_manage = () => {
             .then((data) => {
                 setCourses((prevCourses) => [...prevCourses, ...data.content]); // 기존 데이터에 추가
                 setHasMore(data.content.length > 0); // 데이터가 없으면 더 이상 요청 X
-                setPage((prevPage) => prevPage + 1); // 페이지 증가
+                setCurrPage((prevPage) => prevPage + 1); // 페이지 증가
                 console.log("data", data);
                 console.log("content",data.content);
             })
             .catch((error) => console.error("데이터 불러오기 실패:", error))
             .finally(() => setLoading(false)); // 로딩 종료
 
-    }, [page, loading, hasMore]);
+    }, [currPage, loading, hasMore]);
 
 
     // 마지막 요소를 감지하는 Observer 설정

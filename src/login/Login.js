@@ -1,21 +1,18 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import styles from './Login.module.css';
-
-
 
 const Login = () => {
     console.log("Login() invoked.");
 
+    const navigate = useNavigate();
 
     // 상태 관리: 입력값을 저장하는 상태 변수
     const [loginData, setLoginData] = useState({
-        userId: '',
+        userId : '',
         passwd: ''
     });
-
-    const [errorMessage, setErrorMessage] = useState(' ');  // 에러 메시지를 저장할 상태 변수
-
 
     // 입력값 상태 업데이트
     const handleInputChange = (e) => {
@@ -28,32 +25,35 @@ const Login = () => {
 
     // 로그인 버튼 클릭 시 백엔드에 로그인 데이터 전송
     const handleLogin = async () => {
-        const { userId, passwd } = loginData;
 
         // 백엔드로 데이터 전송
         try {
-            const response = await fetch('https://localhost:443/login/', {
+            // const formData = new FormData();
+            // formData.append("userId", loginData.userId);
+            // formData.append("passwd", loginData.passwd);
+
+            const response = await fetch('https://localhost:443/security/login', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ userId, passwd }) // JSON 형식으로 데이터 전송
+                body: loginData
             });
 
-            const data = await response.json();     // 응답 데이터를 JSON 형식으로 파싱
+            const text = await response.text();
+            console.log("서버 응답:", text);
 
             if (response.ok) {
                 // 로그인 성공 시 처리
                 console.log("로그인 성공");
-                setErrorMessage('');                    // 성공 시 에러 메시지 초기화
+                navigate("/course_overview");
+
             } else {
                 // 로그인 실패 시 처리
                 console.log("로그인 실패");
-                setErrorMessage(data);                  // 실패 메시지 상태에 저장
             }
         } catch (error) {
             console.error("로그인 오류:", error);
-            setErrorMessage("서버와 연결할 수 없습니다."); // 네트워크 오류 시 에러 메시지 표시
         }
     };
 
@@ -82,7 +82,6 @@ const Login = () => {
                     />
                     <i className={`fas fa-lock ${styles.pass_icon}`} />
 
-                    <div className={styles.errortext}>{errorMessage}</div>
                 </form>
 
                     <button className={styles.loginbutton} onClick={handleLogin}>

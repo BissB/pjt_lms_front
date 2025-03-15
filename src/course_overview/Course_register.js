@@ -41,7 +41,12 @@ const Course_register = () => {
         }
         
         const formData = new FormData();
-        formData.append("dto", new Blob([JSON.stringify(RegisterData)], { type: "application/json" }));
+        formData.append("type", RegisterData.type);
+        formData.append("name", RegisterData.name);
+        formData.append("startDate", RegisterData.startDate);
+        formData.append("endDate", RegisterData.endDate);
+        formData.append("capacity", RegisterData.capacity);
+        formData.append("detail", RegisterData.detail);
         if (RegisterFile) {
             formData.append("upfiles", RegisterFile);
         }
@@ -102,7 +107,7 @@ const Course_register = () => {
                 </div>
 
                 <div className={styles.rightbox}>
-                    <input className={styles.file} type='file' onChange={handleFileChange}/>
+                    <input className={styles.file} name="file" type='file' onChange={handleFileChange}/>
                     <p className={styles.contentboxheadline}>&lt; 내용 &gt;</p>
                     <textarea name="detail" className={styles.contentbox} onChange={handleChange}/>
                     <div className={styles.buttonbox}>

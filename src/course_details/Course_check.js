@@ -17,18 +17,17 @@ const Course_check = () => {
     const [formData, setFormData] = useState({
         type: "",
         name: "",
-        instructor: "",
         startDate: "",
         endDate: "",
         capacity: "",
         currCount: "",
         detail: "",
-        upfile: null
+        // upfile: null
     });
 
     useEffect(() => {
         console.log("업데이트된 formData:", formData);
-    }, [formData]);  // 🔥 formData 변경될 때마다 로그 확인
+    }, [formData]);  //  formData 변경될 때마다 로그 확인
    
     useEffect(() => {                               // 백엔드에서 데이터 가져오기 (오류 방지 처리 추가)
         console.log("courseId:", courseId);
@@ -42,16 +41,14 @@ const Course_check = () => {
             .then((data) => {
                 console.log("curr", data.currCount);
                 setFormData({
-                    // upfiles: data?.upfiles || [],
                     type: data?.type || "",
                     name: data?.name || "",
-                    instructor: data.instructor?.name|| "",
                     startDate: data?.startDate || "",
                     endDate: data?.endDate || "",
                     currCount: data?.currCount || "",
                     capacity: data?.capacity || "",
                     detail: data?.detail || "",
-                    upfile: data?.upfile[0] || null
+                    // upfile: data?.upfile[0] || null
                 });
                 console.log("data", data);
             })
@@ -116,8 +113,8 @@ const Course_check = () => {
                         <Course_info label="수강시작일" value={formData.startDate} disabled/>
                         <Course_info label="과정명" value={formData.name} disabled/>
                         <Course_info label="수강종료일" value={formData.endDate} disabled/>
-                        <Course_info label="강사명" value={formData.instructor} disabled/>
-                        <Course_info label={`수강정원 (현재인원: ${formData.currCount}명)`} value={formData.capacity} disabled/>
+                        <Course_info label="현재 인원" value={formData.currCount} disabled/>
+                        <Course_info label="수강 정원" value={formData.capacity} disabled/>
                     </div>
                     <Course_content label="내용" value={formData.detail} disabled/>
                 </div>
