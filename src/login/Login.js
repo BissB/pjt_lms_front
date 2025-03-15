@@ -93,13 +93,12 @@ const Login = () => {
                     <i className={`fas fa-lock ${styles.pass_icon}`} />
                 </div>
 
-                    {message && (
-                        <div className={styles.message}>
-                            {message}
-                        </div>
-                    )}
-                            <div className={styles.button}>
-
+                {message && (
+                    <div className={styles.message}>
+                        {message}
+                    </div>
+                )}
+                <div className={styles.button}>
                     <button className={styles.loginbutton} onClick={handleLogin}>
                         로그인
                     </button>

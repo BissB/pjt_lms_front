@@ -13,7 +13,7 @@ padding 10px 20px
 */
 
 .main{
-    position:absolute;
+    position: fixed;
 
     left:15vw;
 
@@ -26,12 +26,12 @@ padding 10px 20px
     align-items : center;
     justify-content: center;
 
-    background: url(./img/register.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(5px);
 
     border-radius: 4px;
+
+    z-index: 2;
 }
 
 .container{
@@ -46,6 +46,8 @@ padding 10px 20px
     border-radius: 7px;
 
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+
+    z-index: 3;
     
 }
 /* =========================================================== */
