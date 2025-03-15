@@ -75,7 +75,9 @@ const Instructor_registration = ({ onClose }) => {
 
     try {
       const formData = new FormData();
-      formData.append("dto", new Blob([JSON.stringify(registerForm)], { type: "application/json" }));
+      formData.append("name", registerForm.name);
+      formData.append("courseId", registerForm.courseId)
+      formData.append("tel", registerForm.tel)
       formData.append("upfiles", registerFile.file);
 
       const response = await fetch('https://localhost:443/instructor', {
