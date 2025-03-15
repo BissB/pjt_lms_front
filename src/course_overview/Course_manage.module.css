@@ -19,8 +19,6 @@ padding 10px 20px
     min-height: 100vh;
     left: 15vw;
     right: 0;
-    padding-left: 20px;
-    padding-right: 20px;
 
     /* ================================= */
     background-color: #F5F5F5;
@@ -31,7 +29,6 @@ padding 10px 20px
 
 .main {
     /* ============= 레이아웃 ============ */
-    width: 85vw;
     height: auto;
     min-height: 100vh; 
     /* ================================= */

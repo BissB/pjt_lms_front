@@ -39,7 +39,6 @@ const Course_manage = () => {
     const observer  = useRef();   // 스크롤 끝을 감지할 참조
 
     useEffect(() => {
-        fetchCourses();
         setCourses([]);  // 기존 데이터 초기화
         setCurrPage(0);   // 페이지 번호 초기화
         setHasMore(true); // 추가 데이터 요청 가능 상태로 변경
@@ -48,8 +47,16 @@ const Course_manage = () => {
             searchWord: "",
             searchText: "",
         });
+        handleChange("type", "");
+        handleChange("searchWord", "");
+        handleChange("searchText", "");
+
+        fetchCourses();
     }, [status]);
 
+    useEffect(() => {
+        fetchCourses();  // currPage가 변경될 때마다 실행
+    }, [currPage]);  // ✅ currPage가 변경되면 다시 실행되도록 설정
 
     const fetchCourses = useCallback(() => {                               // 백엔드에서 데이터 가져오기 (오류 방지 처리 추가)
         
@@ -87,7 +94,7 @@ const Course_manage = () => {
             .catch((error) => console.error("데이터 불러오기 실패:", error))
             .finally(() => setLoading(false)); // 로딩 종료
 
-    }, [currPage, loading, hasMore]);
+    }, [status, currPage, loading, hasMore]);
 
 
     // 마지막 요소를 감지하는 Observer 설정
@@ -170,6 +177,12 @@ const Course_manage = () => {
     };
 
     // 엔터키 입력 시 검색 기능 작동 ======================================================
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleSearch();
+        }
+    };
+
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -183,7 +196,7 @@ const Course_manage = () => {
 
 
     const statusMapping = {
-        1: "등록",
+        1: "진행예정",
         2: "진행중",
         3: "폐지",
         4: "종료"
@@ -214,14 +227,14 @@ const Course_manage = () => {
                         <button className={styles.register} onClick={openCourseRegister}>
                             과정 등록
                         </button>
-                    <select className={styles.drop1} name="type" onChange={(e) => handleChange("type", e.target.value)}>
+                    <select className={styles.drop1} name="type" value={listData.type} onChange={(e) => handleChange("type", e.target.value)}>
                         <option value="">구분</option>
                         <option value="1">NCS</option>
                         <option value="2">KDT</option>
                         <option value="3">산대특</option>
                         <option value="4">미정</option>
                     </select>
-                    <select className={styles.drop2} name="searchWord" onChange={(e) => handleChange("searchWord", e.target.value)}>
+                    <select className={styles.drop2} name="searchWord" value={listData.searchWord} onChange={(e) => handleChange("searchWord", e.target.value)}>
                         <option value="">항목</option>
                         <option value="name">과정명</option>
                         <option value="instructorName">강사명</option>
@@ -234,6 +247,7 @@ const Course_manage = () => {
                         placeholder="검색어를 입력하세요."
                         value={listData.searchText}
                         onChange={(e) => handleChange("searchText", e.target.value)}
+                        onKeyUp={handleKeyPress}
                     />
 
                     {/* 돋보기 */}

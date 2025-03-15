@@ -25,6 +25,8 @@ const Course_check = () => {
         // upfile: null
     });
 
+    const [status, setStatus] = useState("");
+
     useEffect(() => {
         console.log("업데이트된 formData:", formData);
     }, [formData]);  //  formData 변경될 때마다 로그 확인
@@ -40,6 +42,7 @@ const Course_check = () => {
             })
             .then((data) => {
                 console.log("curr", data.currCount);
+                console.log("status", data.status);
                 setFormData({
                     type: data?.type || "",
                     name: data?.name || "",
@@ -50,7 +53,9 @@ const Course_check = () => {
                     detail: data?.detail || "",
                     // upfile: data?.upfile[0] || null
                 });
+                setStatus(data?.status || "");
                 console.log("data", data);
+                console.log("status", data.status);
             })
             .catch((error) => {
                 console.error("데이터 불러오기 실패:", error);
@@ -98,7 +103,7 @@ const Course_check = () => {
 
                 <div className={styles.top_leftbox}>
 
-                     <button className={styles.backbutton} onClick={()=> navigate("/course_overview/1")}><i class="fa-solid fa-chevron-left fa-1.8x"></i></button> {/* 뒤로가기 버튼 */}
+                     <button className={styles.backbutton} onClick={()=> navigate(`/course_overview/${status}`)}><i class="fa-solid fa-chevron-left fa-1.8x"></i></button> {/* 뒤로가기 버튼 */}
                      <div className={styles.imgbox}></div>
                      <div className={styles.buttonbox}>
                          <button className={styles.modify_button} onClick={handleModifyShowPopup}>수정</button>
