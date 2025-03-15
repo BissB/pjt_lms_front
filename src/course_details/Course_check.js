@@ -98,7 +98,7 @@ const Course_check = () => {
 
                 <div className={styles.top_leftbox}>
 
-                     <button className={styles.backbutton} onClick={()=> navigate("/course_overview")}><i class="fa-solid fa-chevron-left fa-1.8x"></i></button> {/* 뒤로가기 버튼 */}
+                     <button className={styles.backbutton} onClick={()=> navigate(-1)}><i class="fa-solid fa-chevron-left fa-1.8x"></i></button> {/* 뒤로가기 버튼 */}
                      <div className={styles.imgbox}></div>
                      <div className={styles.buttonbox}>
                          <button className={styles.modify_button} onClick={handleModifyShowPopup}>수정</button>
