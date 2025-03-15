@@ -7,10 +7,11 @@ const Login = () => {
     console.log("Login() invoked.");
 
     const navigate = useNavigate();
+    const [message, setMessage] = useState();
 
     // 상태 관리: 입력값을 저장하는 상태 변수
     const [loginData, setLoginData] = useState({
-        userId : '',
+        userId: '',
         passwd: ''
     });
 
@@ -34,7 +35,7 @@ const Login = () => {
 
             const response = await fetch('https://localhost:443/security/login', {
                 method: 'POST',
-                body: formData
+                body: formData,
             });
 
             const text = await response.text();
@@ -43,32 +44,43 @@ const Login = () => {
             if (response.ok) {
                 // 로그인 성공 시 처리
                 console.log("로그인 성공");
+                setMessage(text);
                 navigate("/course_overview");
 
             } else {
                 // 로그인 실패 시 처리
                 console.log("로그인 실패");
+                setMessage(text);
             }
         } catch (error) {
             console.error("로그인 오류:", error);
         }
     };
 
+    // 엔터키 입력 시 검색 기능 작동
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleLogin();
+        }
+    };
+
 
     return (
         <div className={styles.login}>
-                <div className={styles.logo}></div>
             <div className={styles.main}>
-
-                <form>
+                <div className={styles.logo}></div>
+                <div className={styles.id_container}>
                     <input
                         className={styles.id}
                         placeholder="userId"
                         name="userId"                           // 서버로 전송되는 이름
                         value={loginData.userId}
                         onChange={handleInputChange}
+                        onKeyUp={handleKeyPress}
                     />
                     <i className={`fas fa-user ${styles.user_icon}`} />
+                </div>
+                <div className={styles.pw_container}>
                     <input
                         className={styles.pw}
                         placeholder="password"
@@ -76,14 +88,21 @@ const Login = () => {
                         type="password"
                         value={loginData.passwd}
                         onChange={handleInputChange}
-                    />
+                        onKeyUp={handleKeyPress}
+                    ></input>
                     <i className={`fas fa-lock ${styles.pass_icon}`} />
+                </div>
 
-                </form>
-
+                {message && (
+                    <div className={styles.message}>
+                        {message}
+                    </div>
+                )}
+                <div className={styles.button}>
                     <button className={styles.loginbutton} onClick={handleLogin}>
                         로그인
                     </button>
+                </div>
             </div>
         </div>
     )

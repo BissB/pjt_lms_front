@@ -66,7 +66,8 @@ const Trainee_modification = () => {
 
   return (
     <>
-      <div className={styles.background}>
+      <div className={styles.main}>
+        <div className={styles.background} />
         <div className={styles.container}>
           <h2>훈련생 정보 수정</h2>
           <form onSubmit={handleSubmit}>

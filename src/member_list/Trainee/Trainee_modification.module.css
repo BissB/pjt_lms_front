@@ -1,13 +1,23 @@
-.background {
+.main {
     width: 85vw;
     height: 100vh;
     position: fixed;
     top: 50%;
     left: 57.5%;
     transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(5px);
+    background: url(../img/modification.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
     z-index: 99;
+}
+
+.background {
+    width: 85vw;
+    height: 100vh;
+    /* background-color: rgba(255, 255, 255, 0.2); */
+    /* backdrop-filter: blur(5px); */
 }
 
 .container {
@@ -16,7 +26,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
 
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
     border-radius: 10px;
     background-color: #ddd;
 
