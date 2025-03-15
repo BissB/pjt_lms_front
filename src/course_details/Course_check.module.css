@@ -9,7 +9,10 @@
     align-items: center;
     justify-content: center; 
 
-    background-color: #f5f5f5;
+    background: url(../course_overview/img/register.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 /* =========================================================== */
 .topbox{
@@ -22,11 +25,11 @@
 
     margin-bottom: 50px;
     
-    background-color: #f9e9e9;
+    background-color: #f5dbab;
 /* 
     box-shadow: 6px 15px 15px rgb(244, 101, 101); */
+    box-shadow: 2px 2px 20px rgba(245, 219, 171, 0.4);
 
-    box-shadow: 4px 4px 10px rgb(249, 187, 187);
 }
 
 /* ============================2 */
@@ -103,7 +106,7 @@
 
 .modify_button:hover {
     transform: translateY(3px);
-    box-shadow: 4px 4px 10px rgb(249, 187, 187);
+    box-shadow: 0px 4px 10px rgb(249, 187, 187);
 }
 
 .delete_button{
@@ -123,7 +126,7 @@
 
 .delete_button:hover {
     transform: translateY(3px);
-    box-shadow: 4px 4px 10px rgb(249, 187, 187);
+    box-shadow: 0px 4px 10px rgb(249, 187, 187);
 }
 
 /* ============================2 */
@@ -170,10 +173,10 @@
     width: 70%;
     height: 30%;
 
-    background-color: #f9e9e9;
+    background-color: #f5dbab;
 
     border-radius: 10px;
 
+    box-shadow: 2px 2px 20px rgba(245, 219, 171, 0.4);
     
-    box-shadow: 4px 4px 10px rgb(249, 187, 187);
 }

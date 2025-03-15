@@ -26,7 +26,10 @@ padding 10px 20px
     align-items : center;
     justify-content: center;
 
-    background-color: #F5F5F5;
+    background: url(./img/register.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 
     border-radius: 4px;
 }
@@ -278,7 +281,7 @@ padding 10px 20px
 
 .savebutton:hover {
     transform: translateY(5px);
-    box-shadow: 4px 4px 10px #f5a510
+    box-shadow: 0px 4px 5px #fcbe49;
 }
 
 .cancelbutton{
@@ -296,5 +299,5 @@ padding 10px 20px
 
 .cancelbutton:hover {
     transform: translateY(5px);
-    box-shadow: 4px 4px 10px #f5a510
+    box-shadow: 0px 4px 5px #fcbe49;
 }
