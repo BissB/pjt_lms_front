@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import styles from './Trainee_preview.module.css';
-import img1 from '../img/profile.png';
+import img1 from './img/profile.png';
+import styles from './Course_trainee.module.css';
 
 const Course_trainee = () => {
   const [members, setMembers] = useState([]);
@@ -38,13 +38,6 @@ const Course_trainee = () => {
     fetchMembers();
   }, []);
 
-  const status = {
-    "1": "훈련중",
-    "2": "중도탈락",
-    "3": "중도포기",
-    "4": "취업완료",
-  };
-
   const getCourseColor = (course) => {
     switch (course) {
       case "백엔드":
@@ -59,38 +52,32 @@ const Course_trainee = () => {
   };
 
   return (
-    <div className={styles.tableBody}>
-      {loading && <p>Loading...</p>}
-      {!loading && members.length === 0 && <p>훈련생 데이터가 없습니다.</p>}
-      <table>
-        <thead>
-          <tr>
-            <th>사진</th>
-            <th>고유번호</th>
-            <th>이름</th>
-            <th>전화번호</th>
-            <th>신청과정</th>
-            <th>등록일</th>
-            <th>상태</th>
-          </tr>
-        </thead>
+    <>
+      <div className={styles.tableHeader}>
+        <div>사진</div>
+        <div>고유번호</div>
+        <div>이름</div>
+        <div>전화번호</div>
+        <div>신청과정</div>
+        <div>등록일</div>
+      </div>
+      <table className={styles.tableBody}>
         <tbody>
           {members.map((member) => (
-            <tr key={member.traineeId}>
-              <td style={{ borderLeft: `10px solid ${getCourseColor(member.course)}` }}>
-                <img src={member.photo || img1} alt="profile" />
+            <tr key={member.traineeId} className={styles.tr}>
+              <td className={styles.photo}>
+                <img src={member.photo ? member.photo : img1} alt='' />
               </td>
               <td>{member.traineeId}</td>
               <td>{member.name}</td>
               <td>{member.tel}</td>
               <td>{member.course?.name || '정보 없음'}</td>
               <td>{member.crtDate}</td>
-              <td>{status[member.status]}</td>
             </tr>
           ))}
         </tbody>
       </table>
-    </div>
+      </>
   );
 };
 
