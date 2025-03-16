@@ -21,8 +21,8 @@ function App() {
           <Route path="/course_detail/:courseId" element={<Course_check />} />
           <Route path="/course/update/:courseId" element={<Course_modify />} />
           <Route path="/trainee_list" element={<Trainee />} />
-          <Route path="/trainee_modify" element={<Trainee_Modification />} />
-          <Route path="/trainee_delete" element={<Trainee_Deletion />} />
+          <Route path="/trainee_modify/:traineeId" element={<Trainee_Modification />} />
+          <Route path="/trainee_delete/:traineeId" element={<Trainee_Deletion />} />
           <Route path="/instructor_list" element={<Instructor />} />
           <Route path="/instructor_modify/:instructorId" element={<Instructor_Modification />} />
           <Route path="/instructor_delete/:instructorId" element={<Instructor_Deletion />} />

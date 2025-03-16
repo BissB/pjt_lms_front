@@ -20,6 +20,8 @@ const Instructor_modification = () => {
   // 기존 강사 정보 가져오기
   useEffect(() => {
     const fetchInstructorData = async () => {
+
+
       try {
         const response = await fetch(`https://localhost:443/instructor/${instructorId}`);
 
@@ -46,18 +48,25 @@ const Instructor_modification = () => {
     fetchInstructorData();
   }, [instructorId]);
 
+
   // 과정 정보 가져오기
   useEffect(() => {
     const fetchCourses = async () => {
+      const params = new URLSearchParams({
+        instructorId: instructorId,
+      });
+
       try {
-        const response = await fetch('https://localhost:443/course/selectCourseIns', {
-          method: 'GET',
-        });
+        const response = await fetch(`https://localhost:443/course/selectCourseIns?${params.toString()}`,
+          {
+            method: 'GET',
+          });
 
         if (response.ok) {
           const data = await response.json();
           setCourses(data);
           console.log('과정 정보:', data);
+          console.log('params: ', params);
         } else {
           console.error('Failed to fetch courses:', response.statusText);
         }
@@ -74,7 +83,7 @@ const Instructor_modification = () => {
     console.log('강사 정보:', registerForm);
     console.log('과정 정보:', courses);
     console.log('업로드 파일:', registerForm.upfiles);
-  }, [registerForm, courses]);
+  }, []);
 
   // 입력값 변경 핸들러
   const handleChange = (field, value) => {
@@ -111,7 +120,7 @@ const Instructor_modification = () => {
       }
 
       const response = await fetch(`https://localhost:443/instructor/${instructorId}`, {
-        method: 'PUT', // 수정 요청은 PUT 메서드 사용
+        method: 'POST', // 수정 요청은 PUT 메서드 사용
         body: formData,
       });
 
