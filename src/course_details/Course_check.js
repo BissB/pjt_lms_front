@@ -5,7 +5,6 @@ import styles from './Course_check.module.css';
 import Course_info from './Course_info';
 import Course_content from './Course_content';
 import Course_delete from './Course_delete';
-import {Member}  from '../member_list';
 
 const Course_check = () => {
     console.log("Course_check() invoked.");
@@ -23,7 +22,6 @@ const Course_check = () => {
         currCount: "",
         detail: "",
         instructor:"",
-        // upfile: null
     });
 
     const [status, setStatus] = useState("");
@@ -53,7 +51,6 @@ const Course_check = () => {
                     capacity: data?.capacity || "",
                     detail: data?.detail || "",
                     instructor: data.instructor?.name || "지정된 강사 없음",
-                    // upfile: data?.upfile[0] || null
                 });
                 setStatus(data?.status || "");
                 console.log("data", data);
@@ -106,7 +103,7 @@ const Course_check = () => {
                 <div className={styles.top_leftbox}>
 
                      <button className={styles.backbutton} onClick={()=> navigate(`/course_overview/${status}`)}><i class="fa-solid fa-chevron-left fa-1.8x"></i></button> {/* 뒤로가기 버튼 */}
-                     <div className={styles.imgbox}></div>
+                     <div className={styles.imgbox} ></div>
                      <div className={styles.buttonbox}>
                          <button className={styles.modify_button} onClick={handleModifyShowPopup}>수정</button>
                          <button className={styles.delete_button} onClick={handleDeleteShowPopup}>삭제</button>
@@ -130,8 +127,7 @@ const Course_check = () => {
             </div>
 
             <div className={styles.bottombox}>
-                {/* <Course_memberlist/> */}
-                {/* <Member /> */}
+                
             </div>
 
         </div>
