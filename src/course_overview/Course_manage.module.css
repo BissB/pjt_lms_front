@@ -12,38 +12,40 @@ padding 10px 20px
 
 */
 .topmain {
-    position: relative;
+    position: absolute;
     
     /* ============= 레이아웃 ============ */
-    width: calc(85vw - 40px);
-    min-height: 100vh;
+    width: 85vw;
     left: 15vw;
-    right: 0;
 
     /* ================================= */
-    background-color: #F5F5F5;
-
-    overflow: auto;
+    background: url(../login/img/login_back.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    overflow-x: hidden;
 }
 
+.blur {
+    position: fixed;
+    top: 0;
+    left: 15vw;
+    width: 85vw;
+    height: 100vh;
+
+    background-color: rgba(255, 255, 255, 0.4);
+}
 
 .main {
     /* ============= 레이아웃 ============ */
-    height: auto;
-    min-height: 100vh; 
     /* ================================= */
     
-    padding-right: 10vw;
+    padding-right: 5vw;
 
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* 자동 줄바꿈 */
-    align-items: start;
-    
-    column-gap: 20px;
-
-    grid-auto-rows: minmax(300px, auto); /* 각 그리드 항목의 높이를 최소 250px로 고정 */
-
-    background-color: #F5F5F5;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 
     z-index: 20;
 }
@@ -174,7 +176,7 @@ padding 10px 20px
 
     display: grid;
 
-    width: 250px;
+    width: 230px;
     height: 100%;
     border-radius: 5px;
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './Instructor_preview.module.css';
 import { Instructor_Registration } from '..';
 import img1 from '../img/profile.png';
@@ -23,6 +23,7 @@ const Instructor_list = () => {
   });  // 검색 결과
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(10);
+  const navigate = useNavigate();
 
   const requestData = {
     page: page,
@@ -49,14 +50,14 @@ const Instructor_list = () => {
 
         if (response.ok) {
           const data = await response.json();
-
+          
           const formattedInstructor = data.content.map((member) => ({
             ...member,
             tel: formatPhoneNumber(member.tel),
           }));
-
+          
           setMembers(formattedInstructor);
-
+          
           setPaging({
             totalPages: data.totalPages,
             totalElements: data.totalElements,
@@ -64,8 +65,9 @@ const Instructor_list = () => {
             isLastPage: data.last,
             isFirstPage: data.first,
           });
-
+          
           console.log(data);
+          navigate('/instructor_list');
 
         }
       } catch (error) {
@@ -77,7 +79,7 @@ const Instructor_list = () => {
 
   // 검색 상태 관리
   const [searchTerm, setSearchTerm] = useState(''); // 검색어
-  const [searchOption, setSearchOption] = useState(''); // 검색 옵션
+  const [searchOption, setSearchOption] = useState([]); // 검색 옵션
   // const [selectedStatus, setSelectedStatus] = useState([]); // 선택된 상태
   const [showRegistration, setShowRegistration] = useState(false);
   const [showModification, setShowModification] = useState(false);
@@ -161,19 +163,19 @@ const Instructor_list = () => {
   //   return () => observer.disconnect();
   // }, [loading, hasMore]);
 
-  // useEffect(() => {
-  //   const handleClickOutside = (event) => {
-  //     if (editMenuRef.current && !editMenuRef.current.contains(event.target)) {
-  //       setShowEditMenu(null); // 팝업이 열려 있을 때, 다른 곳을 클릭하면 닫기
-  //     }
-  //   };
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (editMenuRef.current && !editMenuRef.current.contains(event.target)) {
+        setShowEditMenu(null); // 팝업이 열려 있을 때, 다른 곳을 클릭하면 닫기
+      }
+    };
 
-  //   document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
 
-  //   return () => {
-  //     document.removeEventListener('mousedown', handleClickOutside);
-  //   };
-  // }, [showEditMenu]);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showEditMenu]);
 
   // 검색 버튼 클릭 이벤트 핸들러
   // const handleSearch = () => {
@@ -236,6 +238,7 @@ const Instructor_list = () => {
 
   return (
     <div className={styles.main}>
+      <div className={styles.blur} />
       <div className={styles.title}>강사 리스트</div>
 
       <div className={styles.btns}>
@@ -307,7 +310,7 @@ const Instructor_list = () => {
               <td>{member.instructorId}</td>
               <td>{member.name}</td>
               <td>{member.tel}</td>
-              <td>푸울스태액{/* {member.course} */}</td>
+              <td>{member.course?.name || '정보 없음'}</td>
               <td>{member.crtDate}</td>
               <td>{status[member.status]}</td>
               <td>

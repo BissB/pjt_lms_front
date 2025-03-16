@@ -5,8 +5,11 @@ import styles from './Navbar.module.css';
 const Navbar = () => {
 
   const handleLogout = () => {
-    fetch('http://localhost:443/logout', {
+    fetch('https://localhost:443/security/logout', {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
       .then((response) => {
         if (!response.ok) {
@@ -16,13 +19,16 @@ const Navbar = () => {
       })
       .then((data) => {
         if (data.message === '로그아웃 성공') {
+          alert("로그아웃 되었습니다.")
           window.location.href = '/';
+        } else {
+          console.error('응답 메시지:', data.message);
         }
       })
       .catch((error) => {
         console.error('로그아웃 중 에러 발생:', error);
       });
-  }
+  };
 
   return (
     <div className={styles.nav}>
