@@ -83,7 +83,7 @@ const Course_manage = () => {
             .then((data) => {
                 setCourses((prevCourses) => [...prevCourses, ...data.content]); // 기존 데이터에 추가
                 setHasMore(data.content.length === 10); // 데이터가 없으면 더 이상 요청 X
-                if(data.content.length === 10){
+                if (data.content.length === 10) {
                     setCurrPage((prevPage) => prevPage + 1)
                 }; // 페이지 증가}
                 console.log("data", data);
@@ -222,9 +222,11 @@ const Course_manage = () => {
                 {/* 과정 등록 버튼 */}
 
                 <div className={styles.search}>
-                        <button className={styles.register} onClick={openCourseRegister}>
-                            과정 등록
-                        </button>
+                    <button className={styles.register} onClick={openCourseRegister}>
+                        과정 등록
+                    </button>
+                </div>
+                <div className={styles.rightBtn}>
                     <select className={styles.drop1} name="type" value={listData.type} onChange={(e) => handleChange("type", e.target.value)}>
                         <option value="">구분</option>
                         <option value="1">NCS</option>
@@ -247,13 +249,13 @@ const Course_manage = () => {
                         onChange={(e) => handleChange("searchText", e.target.value)}
                         onKeyUp={handleKeyPress}
                     />
-
-                    {/* 돋보기 */}
                     <button className={styles.icon} onClick={() => handleSearch()}>
                         <i className='fas fa-magnifying-glass' />
                     </button>
-
                 </div>
+
+                {/* 돋보기 */}
+
 
                 {/* 콘텐츠 박스 */}
                 {courses.map((course, index) => (

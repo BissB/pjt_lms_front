@@ -17,6 +17,7 @@ padding 10px 20px
     /* ============= 레이아웃 ============ */
     width: 85vw;
     left: 15vw;
+    min-height: 100vh;
 
     /* ================================= */
     background: url(../login/img/login_back.jpg);
@@ -45,7 +46,7 @@ padding 10px 20px
 
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 100px;
 
     z-index: 20;
 }
@@ -77,8 +78,9 @@ padding 10px 20px
 .register {
     position: relative;
     width: 130px;
-    right: 290px;
+    left: 0;
     padding: 11px 20px;
+    height: 45px;
 
     background-color: #f3bb2e;
     border: none;
@@ -98,18 +100,23 @@ padding 10px 20px
     position: absolute;
     display: flex;
 
-    right: 330px;
+    left: 110px;
     top: 150px;
-    width: 50%;
-    height: 50px;
+
+}
+
+.rightBtn {
+    display: flex;
+    position: absolute;
+    top: 150px;
+    right: 10vw;;
 }
 
 .drop1, .drop2 {
     position: relative;
-    margin-right: 10px;
+    margin-right: 20px;
     padding: 10px;
-    left: 55%;
-    height: 40px;
+    height: 45px;
     font-size: 1rem;
 
     border: 1px solid  #edc12e;
@@ -121,10 +128,9 @@ padding 10px 20px
 .search_bar {
     position: relative;
 
-    width: 25%;
-    height: 40px;
+    width: 300px;
+    height: 45px;
 
-    left: 55%;
     font-size: 1rem;
     padding: 10px;
     box-sizing: border-box;
@@ -136,10 +142,10 @@ padding 10px 20px
 
 .icon {
     position: absolute;
-    top: 18%;
-    left: 895px;
+    top: 50%;
+    right: 2%;
 
-
+    transform: translateY(-50%);
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -160,14 +166,8 @@ padding 10px 20px
 .allContentsBox:hover {
     position: relative;
 
-    width: 250px;
-    height: 250px;
-
-    box-shadow: 
-    6px 15px 15px #edc12e;
-
+    transform: translateY(5px);
     transition: transform 0.3s ease; 
-    transform: translateY(10px);
 }
 
 
