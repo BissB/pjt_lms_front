@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import img1 from './img/profile.png';
 import styles from './Course_trainee.module.css';
 
 const Course_trainee = () => {

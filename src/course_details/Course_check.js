@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 
 import styles from './Course_check.module.css';
-import { Course_trainee, Course_delete, Course_content, Course_info } from '.';
+import { Course_delete, Course_content, Course_info } from '.';
 
 const Course_check = () => {
     console.log("Course_check() invoked.");
