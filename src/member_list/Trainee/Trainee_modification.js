@@ -55,7 +55,7 @@ const Trainee_modification = () => {
 
 
       try {
-        const response = await fetch(`https://localhost:443/course/selectCourseTrn}`,
+        const response = await fetch(`https://localhost:443/course/selectCourseTrn`,
           {
             method: 'GET',
           });

@@ -16,6 +16,10 @@ const Trainee_registration = ({ onClose }) => {
 
   const [registerFile, setRegisterFile] = useState(null);
 
+  const handleChange = (e) => {
+    setRegisterForm({ ...registerForm, [e.target.name]: e.target.value });
+  };
+
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setRegisterFile(file);
@@ -32,9 +36,10 @@ const Trainee_registration = ({ onClose }) => {
   useEffect(() => {
       const fetchCourses = async () => {
         try {
-          const response = await fetch('https://localhost:443/course/selectCourseIns', { method: 'GET' });
+          const response = await fetch('https://localhost:443/course/selectCourseTrn', { method: 'GET' });
           if (response.ok) {
             const data = await response.json();
+            console.log('courses: ', courses);
             setCourses(data);
           } else {
             console.log('과정 정보를 불러오는데 실패했습니다.');
@@ -58,7 +63,7 @@ const Trainee_registration = ({ onClose }) => {
     event.preventDefault();
 
     if (!registerForm.courseId || !registerForm.name || !registerForm.tel) {
-      alert('이름, 전화번호, 담당과정을 입력하세요');
+      alert('이름, 전화번호, 신청과정을 입력하세요');
       return;
     }
 
@@ -78,12 +83,12 @@ const Trainee_registration = ({ onClose }) => {
       });
 
       if (response.ok) {
-        alert('회원 등록이 완료되었습니다.');
+        alert('훈련생 등록이 완료되었습니다.');
         console.log(response);
         reloadPage();
         onClose();
       } else {
-        alert('회원 등록에 실패했습니다.');
+        alert('훈련생 등록에 실패했습니다.');
         console.log(response);
       }
     } catch (error) {
@@ -102,7 +107,7 @@ const Trainee_registration = ({ onClose }) => {
   return (
     <div className={styles.registration_background}>
       <div className={styles.registration_container}>
-        <h2>강사 등록</h2>
+        <h2>훈련생 등록</h2>
         <form onSubmit={handleSubmit}>
           <div className={styles.registration_form}>
             <input
