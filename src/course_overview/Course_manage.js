@@ -77,7 +77,7 @@ const Course_manage = () => {
         setCourses([]);
         setCurrPage(0);
         setHasMore(true);
-        setListData({type: "", searchWord: "", searchText: "",})
+        setListData({ type: "", searchWord: "", searchText: "", })
         handleChange("type", "");
         handleChange("searchWord", "");
         handleChange("searchText", "");
@@ -135,7 +135,6 @@ const Course_manage = () => {
 
     return (
         <div className={styles.topmain}>
-            <div className={styles.blur} />
             <div className={styles.main}>
                 {isOpen && <Course_register closeModal={closeCourseRegister} />}
                 <div className={styles.headline}>과정 관리</div>
@@ -144,6 +143,8 @@ const Course_manage = () => {
                     <button className={styles.register} onClick={openCourseRegister}>
                         과정 등록
                     </button>
+                </div>
+                <div className={styles.rightBtn}>
                     <select
                         className={styles.drop1}
                         name="type"
@@ -207,7 +208,7 @@ const Course_manage = () => {
                                 <div className={styles.contentsfooter}>
                                     <div className={styles.instructor}>{course.instructor.name}</div>
                                     <p>강사</p>
-                                    <div className={styles.capacity}>{course.capacity}</div>
+                                    <div className={styles.capacity}>{course.currCount} / {course.capacity}</div>
                                     <p>명</p>
                                 </div>
                             </div>

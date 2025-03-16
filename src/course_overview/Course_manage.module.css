@@ -28,16 +28,6 @@ padding 10px 20px
     overflow-x: hidden;
 }
 
-.blur {
-    position: fixed;
-    top: 0;
-    left: 15vw;
-    width: 85vw;
-    height: 100vh;
-
-    background-color: rgba(255, 255, 255, 0.4);
-}
-
 .main {
     /* ============= 레이아웃 ============ */
     /* ================================= */
@@ -297,17 +287,17 @@ padding 10px 20px
 .instructor {
     
     margin-left: 5px;
-    width: 100px;
+    width: 80px;
 
     box-shadow: none !important; 
 }
 
 .capacity {
     position: relative;
-    margin-left: 50px;
-    margin-right: 7px;
+    margin-left: 20px;
+    margin-right: 4px;
     top: 25%;
-    width: 80px;
+    width: 50px;
     height: 30px;
 
     box-shadow: none !important; 
