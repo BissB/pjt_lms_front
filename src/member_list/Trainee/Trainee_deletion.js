@@ -1,33 +1,24 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , useParams} from 'react-router-dom';
 import styles from './Trainee_deletion.module.css';
-import { Link } from 'react-router-dom';
 
-const Trainee_deletion = ({ traineeId, onClose, updateMembers }) => {
+const Trainee_deletion = () => {
   const navigate = useNavigate();
+  const { traineeId } = useParams();
   
-  const handleDeleteClick = () => {
-    navigate('/trainee_list');
-  }
-
-  const handleDeleteTrainee = async () => {
+  const handleDeleteClick = async () => {
     try {
-      const response = await fetch('https://localhost:443/trainee/delete', {
+      const response = await fetch(`https://localhost:443/trainee/${traineeId}`, {
         method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ id: traineeId }), // 훈련생 ID 전송
       });
 
       if (response.ok) {
         const data = await response.json();
-        console.log('삭제 성공:', data);
-        alert('회원 삭제가 완료되었습니다.');
-        updateMembers(traineeId); // 삭제 후 목록 갱신
+        alert('훈련생 삭제가 완료되었습니다.');
+        navigate(-1);
       } else {
-        console.error('등록 실패:', response.statusText);
-        alert('회원 삭제에 실패했습니다.');
+        console.error('삭제 실패:', response.statusText);
+        alert('훈련생 삭제에 실패했습니다.');
       }
     } catch (error) {
       console.error('요청 중 오류 발생:', error);
@@ -41,8 +32,8 @@ const Trainee_deletion = ({ traineeId, onClose, updateMembers }) => {
         <div className={styles.delete_container}>
           <h2>이 훈련생을 리스트에서 삭제하시겠습니까?</h2>
           <div className={styles.delete_btns}>
-            <button onClick={handleDeleteTrainee} className={styles.delete_submit}>삭제</button>
-            <button type="button" className={styles.delete_cancel} onClick={handleDeleteClick}>취소</button>
+            <button className={styles.delete_submit} onClick={handleDeleteClick}>삭제</button>
+            <button type="button" className={styles.delete_cancel} onClick={()=> navigate(-1)}>취소</button>
           </div>
         </div>
       </div>

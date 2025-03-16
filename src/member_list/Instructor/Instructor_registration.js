@@ -16,10 +16,6 @@ const Instructor_registration = ({ onClose }) => {
 
   const [registerFile, setRegisterFile] = useState(null);
 
-  const handleChange = (e) => {
-    setRegisterForm({ ...registerForm, [e.target.name]: e.target.value });
-  };
-
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setRegisterFile(file);
