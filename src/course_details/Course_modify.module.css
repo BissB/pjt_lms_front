@@ -55,17 +55,20 @@
     bottom: 10px;
 
     justify-items: center;
-    /* left: 2%; */
+}
+
+.selectcontainer{
+    display: flex;
+
 }
 
 .dropdown{
     position: relative;
 
     bottom: 40px;
-    width: 300px;
+    width: 200px;
     height: 65px;
 
-    right: 70px;
     align-content: center;
 
     background-color: transparent;
