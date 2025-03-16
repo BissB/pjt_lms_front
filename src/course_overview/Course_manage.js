@@ -280,11 +280,10 @@ const Course_manage = () => {
 
                             <div className={styles.contentsfooter}>
                                 <div className={styles.instructor}>
-                                    {course.instructor}
+                                    {course.instructor} 강사
                                 </div>
-                                <p>강사</p>
                                 <div className={styles.capacity}>
-                                    {course.currCount}/{course.capacity}
+                                    {course.currCount} / {course.capacity} 명
                                 </div>
                             </div>
                         </div>

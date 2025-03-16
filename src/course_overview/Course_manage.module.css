@@ -109,7 +109,7 @@ padding 10px 20px
     display: flex;
     position: absolute;
     top: 150px;
-    right: 10vw;;
+    right: 3vw;
 }
 
 .drop1, .drop2 {
@@ -176,7 +176,7 @@ padding 10px 20px
 
     display: grid;
 
-    width: 230px;
+    width: 250px;
     height: 100%;
     border-radius: 5px;
 
@@ -275,7 +275,7 @@ padding 10px 20px
 
     padding: 5px 10px;
 
-    width: 100%;
+    width: 250px;
     height: 30px;
     bottom: 40px;
 
@@ -297,7 +297,7 @@ padding 10px 20px
 .instructor {
     
     margin-left: 5px;
-    width: 30%;
+    width: 100px;
 
     box-shadow: none !important; 
 }
@@ -306,8 +306,9 @@ padding 10px 20px
     position: relative;
     margin-left: 50px;
     margin-right: 7px;
-    width: 17%;
-    height: auto;
+    top: 25%;
+    width: 80px;
+    height: 30px;
 
     box-shadow: none !important; 
 }

@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 
 import styles from './Course_check.module.css';  
-import Course_info from './Course_info';
-import Course_content from './Course_content';
-import Course_delete from './Course_delete';
+import { Course_trainee, Course_delete, Course_content, Course_info } from '.';
 
 const Course_check = () => {
     console.log("Course_check() invoked.");
@@ -127,7 +125,7 @@ const Course_check = () => {
             </div>
 
             <div className={styles.bottombox}>
-                
+                <Course_trainee />
             </div>
 
         </div>
