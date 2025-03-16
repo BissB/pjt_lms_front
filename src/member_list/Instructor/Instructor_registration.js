@@ -40,6 +40,7 @@ const Instructor_registration = ({ onClose }) => {
         if (response.ok) {
           const data = await response.json();
           setCourses(data);
+          console.log('data: ', data);
         } else {
           console.log('과정 정보를 불러오는데 실패했습니다.');
         }
@@ -49,14 +50,14 @@ const Instructor_registration = ({ onClose }) => {
     fetchCourses();
   }, []);
 
-  useEffect(() => {
-    if (courses.length > 0 && !registerForm.courseId) {
-      setRegisterForm((prevForm) => ({
-        ...prevForm,
-        courseId: courses[0].courseId,
-      }));
-    }
-  }, [courses]);
+  // useEffect(() => {
+  //   if (courses.length > 0 && !registerForm.courseId) {
+  //     setRegisterForm((prevForm) => ({
+  //       ...prevForm,
+  //       courseId: courses[0].courseId,
+  //     }));
+  //   }
+  // }, [courses]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -137,6 +138,7 @@ const Instructor_registration = ({ onClose }) => {
                 </option>
               ))}
             </select>
+
             <div className={styles.registration_photo}>
               <input type="file" name="file" onChange={handleFileChange} />
             </div>

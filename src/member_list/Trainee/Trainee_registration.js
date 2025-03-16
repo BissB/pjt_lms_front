@@ -50,14 +50,14 @@ const Trainee_registration = ({ onClose }) => {
       fetchCourses();
   }, []);
 
-  useEffect(() => {
-      if (courses.length > 0 && !registerForm.courseId) {
-        setRegisterForm((prevForm) => ({
-          ...prevForm,
-          courseId: courses[0].courseId,
-        }));
-      }
-  }, [courses]);
+  // useEffect(() => {
+  //     if (courses.length > 0 && !registerForm.courseId) {
+  //       setRegisterForm((prevForm) => ({
+  //         ...prevForm,
+  //         courseId: courses[0].courseId,
+  //       }));
+  //     }
+  // }, [courses]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
