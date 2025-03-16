@@ -284,9 +284,8 @@ const Course_manage = () => {
                                 </div>
                                 <p>강사</p>
                                 <div className={styles.capacity}>
-                                    {course.capacity}
+                                    {course.currCount}/{course.capacity}
                                 </div>
-                                <p>명</p>
                             </div>
                         </div>
                     </div>

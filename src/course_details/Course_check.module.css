@@ -13,6 +13,8 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+
+    overflow-x: hidden;
 }
 /* =========================================================== */
 .topbox{
@@ -179,4 +181,11 @@
 
     box-shadow: 2px 2px 20px rgba(245, 219, 171, 0.4);
     
+}
+
+
+.allContentsBox{
+    width:100px;
+    height: 100px;
+    background-color: black;
 }
