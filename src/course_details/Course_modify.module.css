@@ -210,6 +210,10 @@
 
 }
 
+.fileName{
+    align-self: flex-start;
+}
+
 .contentboxheadline{
     position: relative;
 

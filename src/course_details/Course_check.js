@@ -22,6 +22,7 @@ const Course_check = () => {
         capacity: "",
         currCount: "",
         detail: "",
+        instructor:"",
         // upfile: null
     });
 
@@ -48,9 +49,10 @@ const Course_check = () => {
                     name: data?.name || "",
                     startDate: data?.startDate || "",
                     endDate: data?.endDate || "",
-                    currCount: data?.currCount || "",
+                    currCount: data?.currCount || "0",
                     capacity: data?.capacity || "",
                     detail: data?.detail || "",
+                    instructor: data.instructor?.name || "지정된 강사 없음",
                     // upfile: data?.upfile[0] || null
                 });
                 setStatus(data?.status || "");
@@ -118,8 +120,8 @@ const Course_check = () => {
                         <Course_info label="수강시작일" value={formData.startDate} disabled/>
                         <Course_info label="과정명" value={formData.name} disabled/>
                         <Course_info label="수강종료일" value={formData.endDate} disabled/>
-                        <Course_info label="현재 인원" value={formData.currCount} disabled/>
-                        <Course_info label="수강 정원" value={formData.capacity} disabled/>
+                        <Course_info label="강사명" value={formData.instructor} disabled/>
+                        <Course_info label={`수강 정원(현재 인원: ${formData.currCount}명)`} value={formData.capacity} disabled/>
                     </div>
                     <Course_content label="내용" value={formData.detail} disabled/>
                 </div>

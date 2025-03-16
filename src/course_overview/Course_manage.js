@@ -54,13 +54,9 @@ const Course_manage = () => {
         fetchCourses();
     }, [status]);
 
-    useEffect(() => {
-        fetchCourses();  // currPage가 변경될 때마다 실행
-    }, [currPage]);  // ✅ currPage가 변경되면 다시 실행되도록 설정
-
     const fetchCourses = useCallback(() => {                               // 백엔드에서 데이터 가져오기 (오류 방지 처리 추가)
 
-        // if (loading || !hasMore) return; // 로딩 중이거나 데이터 없으면 실행 X
+        if (loading || !hasMore) return; // 로딩 중이거나 데이터 없으면 실행 X
 
         setLoading(true); // 로딩 시작
 
@@ -86,8 +82,10 @@ const Course_manage = () => {
             })
             .then((data) => {
                 setCourses((prevCourses) => [...prevCourses, ...data.content]); // 기존 데이터에 추가
-                setHasMore(data.content.length > 0); // 데이터가 없으면 더 이상 요청 X
-                setCurrPage((prevPage) => prevPage + 1); // 페이지 증가
+                setHasMore(data.content.length === 10); // 데이터가 없으면 더 이상 요청 X
+                if(data.content.length === 10){
+                    setCurrPage((prevPage) => prevPage + 1)
+                }; // 페이지 증가}
                 console.log("data", data);
                 console.log("content", data.content);
             })
@@ -104,7 +102,7 @@ const Course_manage = () => {
 
         observer.current = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting && hasMore) {
-                fetchCourses(); // 마지막 요소가 보이면 다음 데이터 요청
+                fetchCourses();
             }
         });
 

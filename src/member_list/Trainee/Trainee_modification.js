@@ -34,7 +34,7 @@ const Trainee_modification = () => {
             status: data.status,
             enabled: data.enabled,
             upfiles: null, // 새 파일 업로드를 위해 초기화
-            existingFileName: data.upfiles || '', // 기존 파일 이름 설정
+            existingFileName: data.upfile[0]?.original || '선택한 파일 없음', // 기존 파일 이름 설정
           });
           console.log('훈련생 정보:', data);
         } else {
@@ -203,11 +203,10 @@ const Trainee_modification = () => {
             </select>
 
             <div className={styles.photo}>
-              {registerForm.existingFileName && (
-                <p>기존 파일 이름: {registerForm.existingFileName}</p>
-              )}
               <input type="file" name="upfiles" onChange={handleFileChange} />
             </div>
+            
+            <p>기존 파일 이름: {registerForm.existingFileName}</p>
 
             <div className={styles.btns}>
               <button type="submit" className={styles.submit}>수정</button>

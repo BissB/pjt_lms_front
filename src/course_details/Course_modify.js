@@ -24,6 +24,7 @@ const Course_modify = () => {
         capacity: "",
         detail: "",
         status:"",
+        fileName:"",
     });
 
     const [modifyFile, setModifyFile] = useState(null);
@@ -42,6 +43,7 @@ const Course_modify = () => {
                    currCount: data.currCount || "",
                    detail: data.detail || "",
                    status: data.status || "",
+                   fileName: data.upfile[0]?.original || "선택한 파일 없음"
                });
            })
            .catch((error) => console.error("데이터 불러오기 실패:", error));
@@ -152,6 +154,7 @@ const Course_modify = () => {
 
                 <div className={styles.rightbox}>
                     <input className={styles.file} name="upfiles" type='file' onChange={handleFileChange} />
+                    <div className={styles.fileName}>기존 파일 이름: {modifyFormData.fileName}</div>
                     <p className={styles.contentboxheadline}>&lt; 내용 &gt;</p>
                     <textarea className={styles.contentbox} name="detail" value={modifyFormData.detail} onChange={(e) => handleChange("detail", e.target.value)}/>
                     <div className={styles.buttonbox}>
