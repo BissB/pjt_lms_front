@@ -15,9 +15,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
 
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
     border-radius: 10px;
-    background-color: #ddd;
+    background-color: #c5caf2;
 
     width: 600px;
     height: 500px;
@@ -31,7 +31,7 @@
 
 .registration_container h2 {
     text-align: center;
-    margin-bottom: 0px;
+    margin-bottom: 60px;
 
 }
 
@@ -47,6 +47,13 @@
     height: 30px;
 
     margin-bottom: 10px;
+}
+
+.registration_form select {
+    width: 300px;
+    height: 30px;
+    padding: 3px 2px;
+    box-sizing: content-box;
 }
 
 .registration_photo {

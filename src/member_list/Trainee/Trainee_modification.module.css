@@ -26,7 +26,7 @@
 
     /* border: 1px solid #ddd; */
     border-radius: 10px;
-    background-color: #ddd;
+    background-color: #c5caf2;
 
     width: 600px;
     height: 500px;
@@ -53,20 +53,28 @@ h2 {
 
 .form .textbox {
     width: 300px;
-    height: 30px;
+    height: 40px;
 
     margin-bottom: 10px;
+}
+
+.form select {
+    width: 300px;
+    height: 30px;
+    box-sizing: content-box;
+    padding: 3px 2px;
 }
 
 .photo {
     display: flex;
     align-items: center;
-    width: 300px;
-    height: 30px;
-    border: 1px solid #4F4F4F;
-    padding: 3px;
-    border-radius: 3px;
+    width: 302px;
+    height: 44px;
+    background-color: white;
+    padding: 5px 20px;
+    border-radius: 5px;
     margin-bottom: 20px;
+    box-sizing: border-box;
 }
 
 .btns {

@@ -211,7 +211,6 @@ const Instructor_list = () => {
 
   return (
     <div className={styles.main}>
-      <div className={styles.blur} />
       <div className={styles.title}>강사 리스트</div>
       <div className={styles.btns}>
         <button className={styles.registerBtn} onClick={handleRegistrationClick}>강사 등록</button>

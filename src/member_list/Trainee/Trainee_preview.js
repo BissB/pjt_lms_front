@@ -161,7 +161,6 @@ const Ttrainee_list = () => {
 
   return (
     <div className={styles.main}>
-      <div className={styles.blur} />
       <div className={styles.title}>훈련생 리스트</div>
       <div className={styles.btns}>
         <button className={styles.registerBtn} onClick={handleRegistrationClick}>훈련생 등록</button>
