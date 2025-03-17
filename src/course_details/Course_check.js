@@ -23,6 +23,7 @@ const Course_check = () => {
         upfilePath: "",
         upfileUuid: "",
         upfileExtension:"",
+        upfileOriginal: "",
     });
     const [trainees, setTrainees] = useState([]);
     const [status, setStatus] = useState("");
@@ -60,6 +61,7 @@ const Course_check = () => {
                     upfilePath: data.upfile[0]?.path || "",
                     upfileUuid: data.upfile[0]?.uuid || "",
                     upfileExtension: data.upfile[0]?.extension || "",
+                    upfileOriginal: data.upfile[0]?.original || "",
                 });
                 setStatus(data?.status || "");
 
@@ -128,7 +130,8 @@ const Course_check = () => {
 
                     <button className={styles.backbutton} onClick={() => navigate(`/course_overview/${status}`)}><i class="fa-solid fa-chevron-left fa-1.8x"></i></button> {/* 뒤로가기 버튼 */}
                     {/* <div className={styles.imgbox} > <img src={`/courseFile/39241600-2977-4137-bd11-3fd968422601.png`}></img></div> */}
-                    <div className={styles.imgbox} > <img src={`${formData.upfilePath}${formData.upfileUuid}${formData.upfileExtension}`}></img></div>
+                    {/* <div className={styles.imgbox} > <img src={`${formData.upfilePath}${formData.upfileUuid}${formData.upfileExtension}`}></img></div> */}
+                    <div className={styles.imgbox} > <img src={`${formData.upfilePath}${formData.upfileOriginal}`}></img></div>
                     <div className={styles.buttonbox}>
                         <button className={styles.modify_button} onClick={handleModifyShowPopup}>수정</button>
                         <button className={styles.delete_button} onClick={handleDeleteShowPopup}>삭제</button>
