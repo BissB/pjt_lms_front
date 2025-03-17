@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Course_register from './Course_register';
 import styles from './Course_manage.module.css';
+import LinesEllipsis from 'react-lines-ellipsis';
 import sample1 from './img/sample1.avif';
 
 const Course_manage = () => {
@@ -199,8 +200,10 @@ const Course_manage = () => {
                                 <div className={styles.category} style={courseColor(course.type)}>
                                     {typeMapping[course.type] || "미정"}
                                 </div>
-                                <img src={`${course.upfilePath}${course.upfileName}`} className={styles.imgbox} alt="courseimg" />
-                                <div className={styles.state}>{statusMapping[course.status] || "미정"}</div>
+                                <div className={styles.imgbox}>
+                                    <img src={`${course.upfilePath}${course.upfileName}`} alt="courseimg" />
+                                    <div className={styles.state}>{statusMapping[course.status] || "미정"}</div>
+                                </div>
                                 <div className={styles.contentsbody}>
                                     <div className={styles.courseName}>{course.name}</div>
                                     <div className={styles.date}>

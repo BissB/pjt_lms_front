@@ -22,7 +22,7 @@ const Course_check = () => {
         instructor: "",
         upfilePath: "",
         upfileUuid: "",
-        upfileExtension:"",
+        upfileExtension: "",
         upfileOriginal: "",
     });
     const [trainees, setTrainees] = useState([]);
@@ -69,7 +69,7 @@ const Course_check = () => {
                     ...member,
                     tel: formatPhoneNumber(member.tel),
                 }));
-                
+
                 setTrainees(formattedTrainees);
 
                 console.log("data", data);
@@ -116,7 +116,7 @@ const Course_check = () => {
         "2": "중도탈락",
         "3": "중도포기",
         "4": "취업완료",
-      };
+    };
 
     return (
 

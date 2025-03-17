@@ -18,6 +18,8 @@ padding 10px 20px
     width: 85vw;
     left: 15vw;
     min-height: 100vh;
+    padding-top: 30vh;
+    box-sizing: border-box;
 
     /* ================================= */
     background: url(./img/register.png);
@@ -32,11 +34,12 @@ padding 10px 20px
     /* ============= 레이아웃 ============ */
     /* ================================= */
     
-    padding-right: 5vw;
-
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
     gap: 100px;
+    justify-content: center;
+    align-items: center;
 
     z-index: 20;
 }
@@ -47,7 +50,8 @@ padding 10px 20px
 
     top : 50px;
     left: 110px;
-    filter: drop-shadow(0 4px 4px rgba(34, 30, 31, 0.4));
+    color: #f5f5f5;
+    filter: drop-shadow(0 4px 4px rgba(255, 255, 255, 0.4));
     font-size: 36px;
     font-weight: bold;
 }
@@ -147,8 +151,6 @@ padding 10px 20px
 .allContentsBox {
     position: relative;
 
-    top: 250px;
-    left: 85px;
     height: 250px;
 
 }
@@ -164,7 +166,8 @@ padding 10px 20px
 .contentsBox {
     position: relative;
 
-    display: grid;
+    display: flex;
+    flex-direction: column;
 
     width: 250px;
     height: 100%;
@@ -179,46 +182,36 @@ padding 10px 20px
 
 
 .category {
+    width: 250px;
+    height: 20px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    padding: 5px 10px;
-    box-shadow: none !important; 
 }
 
 /* ////////////////////////////////////////////////// */
 
-
-.imgbox {
+.contentsBox .imgbox {
     position: relative;
-    display: flex;
-
-    margin: 5% 5% 0 5%;
-
-    width: 90%;
-    height: 80%;
-
-    border-radius: 7px;
-    box-shadow: none !important; 
-    
+    width: 200px;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
 }
 
-.imgbox img {
-    position: relative;
-    width: 100%;
-    height: auto;
-
-    box-shadow: none !important; 
+.contentsBox img {
+    border-radius: 5px;
+    width: 200px;
 }
 
 .state {
-    position: relative;
+    position: absolute;
 
-    left: 150px;
-    bottom: 55px;
+    right: 10px;
+    bottom: 10px;
 
-    width: 30%;
+    width: 60px;
     text-align: center;
-    padding: 2px 0;
     box-sizing: border-box;
     
     background-color: #BF0700;
@@ -231,35 +224,26 @@ padding 10px 20px
 }
 
 .contentsbody {
+    width: 200px;
     position: relative;
-    bottom: 35px;
-    margin-top: 0;
-    box-shadow: none !important; 
 }
 
 .courseName {
-    position: relative;
-    width: 98%;
-    padding-left: 14px;
-    margin-bottom: 0;
-
+    padding: 10px 10px;
+    height: 30px;
+    box-sizing: border-box;
+    overflow: hidden;
     text-align: left;
-    box-shadow: none !important; 
 
 }
 
 .date {
-    
-    margin-top: 5px;
-    padding-left: 14px;
-    padding-bottom: 10px;
-
     text-align: left;
-    box-shadow: none !important; 
 }
 
 .contentsfooter {
-    position: relative;
+    position: absolute;
+
     display: flex;
     align-items: center;
 
@@ -267,7 +251,7 @@ padding 10px 20px
 
     width: 250px;
     height: 30px;
-    bottom: 40px;
+    bottom: 0;
 
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;

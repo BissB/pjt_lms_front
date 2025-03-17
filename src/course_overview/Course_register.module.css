@@ -15,6 +15,7 @@ padding 10px 20px
 .main{
     position: fixed;
 
+    top: 0;
     left:15vw;
 
     width: 85vw;
