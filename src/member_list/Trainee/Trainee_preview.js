@@ -61,6 +61,8 @@ const Ttrainee_list = () => {
         const formattedTtrainee = data.content.map((member) => ({
           ...member,
           tel: formatPhoneNumber(member.tel),
+          upfilePath: member.upfile[0]?.path || "",
+          upfileName: member.upfile[0]?.original || "",
         }));
         setMembers(prev => currPage === 0 ? formattedTtrainee : [...prev, ...formattedTtrainee]);
         setPaging({
@@ -217,7 +219,7 @@ const Ttrainee_list = () => {
           {members.map((member) => (
             <tr key={member.traineeId} className={styles.tr}>
               <td className={styles.photo} style={{ borderLeft: `10px solid ${getCourseColor(member.course)}`, overflow: 'hidden' }}>
-                <img src={member.photo ? member.photo : img1} alt='' />
+                <img src={`${member.upfilePath}${member.upfileName}`} alt='' />
               </td>
               <td>{member.traineeId}</td>
               <td>{member.name}</td>

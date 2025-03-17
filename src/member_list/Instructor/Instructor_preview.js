@@ -136,6 +136,8 @@ const Instructor_list = () => {
         const formattedInstructor = data.content.map((member) => ({
           ...member,
           tel: formatPhoneNumber(member.tel),
+          upfilePath: member.upfile[0]?.path || "",
+          upfileName: member.upfile[0]?.original || "",
         }));
         setMembers(prev => currPage === 0 ? formattedInstructor : [...prev, ...formattedInstructor]);
 
@@ -267,7 +269,7 @@ const Instructor_list = () => {
           {members.map((member) => (
             <tr key={member.instructorId} className={styles.tr}>
               <td className={styles.photo} style={{ borderLeft: `10px solid ${getCourseColor(member.course)}`, overflow: 'hidden' }}>
-                <img src={member.photo ? member.photo : img1} alt='' />
+                <img src={`${member.upfilePath}${member.upfileName}`} alt='' />
               </td>
               <td>{member.instructorId}</td>
               <td>{member.name}</td>
