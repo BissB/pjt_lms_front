@@ -56,7 +56,9 @@ const Course_manage = () => {
             const data = await response.json();
             const coursesWithInstructor = data.content.map(course => ({
                 ...course,
-                instructor: course.instructor || {} // instructor가 없으면 빈 객체로 설정
+                instructor: course.instructor || {}, // instructor가 없으면 빈 객체로 설정
+                upfilePath: course.upfile[0]?.path || "",
+                upfileName: course.upfile[0]?.original || "",
             }));
             setCourses((prevCourses) => (reset ? coursesWithInstructor : [...prevCourses, ...coursesWithInstructor]));
             // setCourses((prevCourses) => (reset ? data.content : [...prevCourses, ...data.content]));
@@ -197,7 +199,7 @@ const Course_manage = () => {
                                 <div className={styles.category} style={courseColor(course.type)}>
                                     {typeMapping[course.type] || "미정"}
                                 </div>
-                                <img src={sample1} className={styles.imgbox} alt="courseimg" />
+                                <img src={`${course.upfilePath}${course.upfileName}`} className={styles.imgbox} alt="courseimg" />
                                 <div className={styles.state}>{statusMapping[course.status] || "미정"}</div>
                                 <div className={styles.contentsbody}>
                                     <div className={styles.courseName}>{course.name}</div>
