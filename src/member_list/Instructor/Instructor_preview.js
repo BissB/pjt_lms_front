@@ -192,16 +192,14 @@ const Instructor_list = () => {
     "3": "퇴사",
   };
 
-  const getCourseColor = (course) => {
-    switch (course) {
-      case "백엔드":
+  const getCourseColor = (member) => {
+    switch (member.status) {
+      case 1:
         return "#FFEB9B";
-      case "프론트":
+      case 2:
         return "#72F2F6";
-      case "풀스택":
-        return "#96FF88";
       default:
-        return "#ddd";
+        return "#96FF88";
     }
   };
 
@@ -268,7 +266,7 @@ const Instructor_list = () => {
         <tbody>
           {members.map((member) => (
             <tr key={member.instructorId} className={styles.tr}>
-              <td className={styles.photo} style={{ borderLeft: `10px solid ${getCourseColor(member.course)}`, overflow: 'hidden' }}>
+              <td className={styles.photo} style={{ borderLeft: `10px solid ${getCourseColor(member)}`, overflow: 'hidden' }}>
                 {/* <img src={`${member.upfilePath}${member.upfileName}`} alt='' /> */}
                 <img src={img1} alt='' />
               </td>

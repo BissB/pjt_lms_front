@@ -1,21 +1,10 @@
-/* 
-
-컬러
-
-노랑 - #F2C879
-
-내부 글씨 1.2rem, #221e1f
-
-화이트 - #F5F5F5
-padding 10px 20px
-
-
-*/
 .topmain {
     position: absolute;
     
     /* ============= 레이아웃 ============ */
     width: 85vw;
+    height: 100vh;
+    overflow-y: auto;
     left: 15vw;
     min-height: 100vh;
     padding-top: 30vh;
@@ -34,6 +23,10 @@ padding 10px 20px
     /* ============= 레이아웃 ============ */
     /* ================================= */
     
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;

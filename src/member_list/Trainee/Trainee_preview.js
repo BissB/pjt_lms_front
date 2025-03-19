@@ -4,7 +4,7 @@ import styles from './Trainee_preview.module.css';
 import { Trainee_Registration } from '..';
 import img1 from '../img/profile.png';
 
-const Ttrainee_list = () => {
+const Trainee_list = () => {
   // 멤버 정보 및 페이징
   const [members, setMembers] = useState([]);
   const [paging, setPaging] = useState({
@@ -58,13 +58,14 @@ const Ttrainee_list = () => {
 
       if (response.ok) {
         const data = await response.json();
-        const formattedTtrainee = data.content.map((member) => ({
+        const formattedTrainee = data.content.map((member) => ({
           ...member,
           tel: formatPhoneNumber(member.tel),
           upfilePath: member.upfile[0]?.path || "",
           upfileName: member.upfile[0]?.original || "",
         }));
-        setMembers(prev => currPage === 0 ? formattedTtrainee : [...prev, ...formattedTtrainee]);
+        console.log(formattedTrainee);
+        setMembers(prev => currPage === 0 ? formattedTrainee : [...prev, ...formattedTrainee]);
         setPaging({
           totalPages: data.totalPages,
           totalElements: data.totalElements,
@@ -150,13 +151,13 @@ const Ttrainee_list = () => {
 
   const getCourseColor = (member) => {
     switch (member.status) {
-      case "1":
+      case 1:
         return "#FFEB9B";
-      case "2":
+      case 2:
         return "#72F2F6";
-      case "3":
+      case 3:
         return "#96FF88";
-      case "4":
+      case 4:
         return "#62D491";
       default:
         return "#ddd";
@@ -220,7 +221,7 @@ const Ttrainee_list = () => {
         <tbody>
           {members.map((member) => (
             <tr key={member.traineeId} className={styles.tr}>
-              <td className={styles.photo} style={{ borderLeft: `10px solid ${getCourseColor(member.course)}`, overflow: 'hidden' }}>
+              <td className={styles.photo} style={{ borderLeft: `10px solid ${getCourseColor(member)}`, overflow: 'hidden' }}>
                 <img src={`${member.upfilePath}${member.upfileName}`} alt='' />
               </td>
               <td>{member.traineeId}</td>
@@ -249,4 +250,4 @@ const Ttrainee_list = () => {
   );
 };
 
-export default Ttrainee_list;
+export default Trainee_list;

@@ -98,7 +98,9 @@ const Course_manage = () => {
                     console.log("Fetching more data at page:", currPage);
                     fetchCourses(currPage);
                 }
-            }, { threshold: 0.7 });
+            }, { 
+                root: document.querySelector('.topmain'),
+                threshold: 0.7 });
 
             if (node) observer.current.observe(node);
         },
@@ -137,7 +139,6 @@ const Course_manage = () => {
 
     return (
         <div className={styles.topmain}>
-            <div className={styles.main}>
                 {isOpen && <Course_register closeModal={closeCourseRegister} />}
                 <div className={styles.headline}>과정 관리</div>
 
@@ -183,6 +184,7 @@ const Course_manage = () => {
                     </button>
                 </div>
 
+            <div className={styles.main}>
                 {courses.length === 0 && !loading && !hasMore ? (
                     <p style={{ textAlign: 'center', marginTop: '20px' }}>데이터가 없습니다.</p>
                 ) : (
