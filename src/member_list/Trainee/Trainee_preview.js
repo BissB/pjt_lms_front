@@ -148,14 +148,16 @@ const Ttrainee_list = () => {
     "4": "취업완료",
   };
 
-  const getCourseColor = (course) => {
-    switch (course) {
-      case "백엔드":
+  const getCourseColor = (member) => {
+    switch (member.status) {
+      case "1":
         return "#FFEB9B";
-      case "프론트":
+      case "2":
         return "#72F2F6";
-      case "풀스택":
+      case "3":
         return "#96FF88";
+      case "4":
+        return "#62D491";
       default:
         return "#ddd";
     }

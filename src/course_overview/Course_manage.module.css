@@ -184,6 +184,8 @@ padding 10px 20px
 .category {
     width: 250px;
     height: 20px;
+    padding-left: 20px;
+    box-sizing: border-box;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
@@ -224,21 +226,26 @@ padding 10px 20px
 }
 
 .contentsbody {
-    width: 200px;
     position: relative;
+    width: 250px;
+    height: 250px;
 }
 
 .courseName {
-    padding: 10px 10px;
-    height: 30px;
-    box-sizing: border-box;
+    width: 200px;
+    margin: 5px 0;
+    padding-left: 20px;
     overflow: hidden;
+    font-size: 0.8rem;
     text-align: left;
 
 }
 
 .date {
     text-align: left;
+    padding-left: 20px;
+    font-size: 0.8rem;
+    margin-bottom: 5px;
 }
 
 .contentsfooter {

@@ -269,7 +269,8 @@ const Instructor_list = () => {
           {members.map((member) => (
             <tr key={member.instructorId} className={styles.tr}>
               <td className={styles.photo} style={{ borderLeft: `10px solid ${getCourseColor(member.course)}`, overflow: 'hidden' }}>
-                <img src={`${member.upfilePath}${member.upfileName}`} alt='' />
+                {/* <img src={`${member.upfilePath}${member.upfileName}`} alt='' /> */}
+                <img src={img1} alt='' />
               </td>
               <td>{member.instructorId}</td>
               <td>{member.name}</td>

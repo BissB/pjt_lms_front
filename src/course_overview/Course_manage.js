@@ -2,7 +2,6 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Course_register from './Course_register';
 import styles from './Course_manage.module.css';
-import LinesEllipsis from 'react-lines-ellipsis';
 import sample1 from './img/sample1.avif';
 
 const Course_manage = () => {
